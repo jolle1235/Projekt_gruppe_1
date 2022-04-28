@@ -10,9 +10,12 @@
 
 int main(void)
 {
+	DDRB = 1;
+	
     /* Replace with your application code */
     while (1) 
     {
+		PORTB = 0b01101110;
     }
 }
 
