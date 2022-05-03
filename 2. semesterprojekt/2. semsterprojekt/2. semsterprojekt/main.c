@@ -6,10 +6,14 @@
  */ 
 
 #include <avr/io.h>
+#include <avr/interrupt.h>
+
 
 
 int main(void)
 {
+	sei();
+	
 	DDRB = 1;
 	
     /* Replace with your application code */
