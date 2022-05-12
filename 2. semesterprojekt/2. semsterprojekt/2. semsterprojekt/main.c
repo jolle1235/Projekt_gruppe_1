@@ -5,6 +5,7 @@
  * Author : jespe
  */ 
 
+#include <util/delay.h>
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
@@ -14,12 +15,21 @@ int main(void)
 {
 	sei();
 	
-	DDRB = 1;
+	DDRB = 0b11111111;
+	initIOpins();
+	initINT0();
+	
 	
     /* Replace with your application code */
     while (1) 
     {
-		PORTB = 0b01101110;
+		
     }
+}
+
+ISR(INT0_vect)
+{
+	turnOnLight();
+	
 }
 
