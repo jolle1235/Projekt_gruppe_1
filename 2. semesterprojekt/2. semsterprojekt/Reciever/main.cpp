@@ -44,19 +44,25 @@ int main(void)
 		while(startbit != seneste4Bit)
 			if (zerocross)
 			{
-				bit4 = bit3;
+								
+				moenster4 = bit3;
+				moenster3 = bit2;
+				moenster2 = bit1;
+				bit1 = nyesteBit;
+				
+				seneste4Bit = moenster4 | moenster3 | moenster2 | bit1;
+				
+				zerocross = false;
+				// PORTB ^= (1<<6);		bruges til at teste
+				
+				/*bit4 = bit3;
 				bit3 = bit2;
 				bit2 = bit1;
 				bit1 = nyesteBit;
 				
 				moenster4 = (bit4 << 3);
 				moenster3 = (bit3 << 2);
-				moenster2 = (bit2 << 1);
-				
-				seneste4Bit = moenster4 | moenster3 | moenster2 | bit1;
-				
-				zerocross = false;
-				// PORTB ^= (1<<6);		bruges til at teste
+				moenster2 = (bit2 << 1);*/
 			}
 		
 		int adresselaengde = 0;
