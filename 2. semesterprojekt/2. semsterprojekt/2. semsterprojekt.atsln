@@ -7,6 +7,8 @@ Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "2. semsterprojekt", "2. sem
 EndProject
 Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "Reciever", "Reciever\Reciever.cppproj", "{060B1701-7C39-4CDF-9E56-C88EB0914EB1}"
 EndProject
+Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "Transmitter", "Transmitter\Transmitter.cppproj", "{54ADA2D9-4457-4CBD-8561-1B5268ACB25B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|AVR = Debug|AVR
@@ -21,6 +23,10 @@ Global
 		{060B1701-7C39-4CDF-9E56-C88EB0914EB1}.Debug|AVR.Build.0 = Debug|AVR
 		{060B1701-7C39-4CDF-9E56-C88EB0914EB1}.Release|AVR.ActiveCfg = Release|AVR
 		{060B1701-7C39-4CDF-9E56-C88EB0914EB1}.Release|AVR.Build.0 = Release|AVR
+		{54ADA2D9-4457-4CBD-8561-1B5268ACB25B}.Debug|AVR.ActiveCfg = Debug|AVR
+		{54ADA2D9-4457-4CBD-8561-1B5268ACB25B}.Debug|AVR.Build.0 = Debug|AVR
+		{54ADA2D9-4457-4CBD-8561-1B5268ACB25B}.Release|AVR.ActiveCfg = Release|AVR
+		{54ADA2D9-4457-4CBD-8561-1B5268ACB25B}.Release|AVR.Build.0 = Release|AVR
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
