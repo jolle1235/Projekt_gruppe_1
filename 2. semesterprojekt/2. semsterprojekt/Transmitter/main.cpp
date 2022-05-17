@@ -11,6 +11,7 @@
 #define F_CPU 16000000
 #include <util/delay.h>
 #include "UART.h"
+#include "Transmitter.h"
 
 ISR(INT0_vect);
 ISR(USART0_RX_vect);
@@ -18,14 +19,14 @@ void initInterupt0();
 void initIOpins();
 
 
-int startbit[4] = {1,1,1,0};
-int stopbit[4] = {0,1,1,1};
-volatile int zeroCross = 0;
+//volatile int startbit[4] = {1,1,1,0};
+volatile int stopbit[4] = {0,1,1,1};
+//volatile int zeroCross = 0;
 volatile char modtaget;
+Transmitter sender;
 
 int main(void)
 {
-
 	initIOpins();
 	initInterupt0();
 	UART uart0;
@@ -35,16 +36,9 @@ int main(void)
     /* Replace with your application code */
     while (1) 
     {
-		//char streng[] = "abcde";
-		//while (streng != 0)
-		//{
-			//while((0b00100000 & UCSR0A) == 0)
-			//{}
-			//UDR0 = streng;
-			//streng++;
-		//}
-		while (1)
-		{
+			uart0.SendString("Ingen kommando");
+			_delay_ms(1000);
+			
 			if ((modtaget == 'a') || (modtaget == 'b') || (modtaget == 'c') || (modtaget == 'd'))
 			{
 				switch (modtaget)
@@ -63,95 +57,65 @@ int main(void)
 					kommando[3] = 0;
 					kommando[4] = 1;
 					kommando[5] = 0;
-					for (int i = 0; i < 6; i++)
-					{
-						UDR0 = adresse[i];
-						_delay_ms(500);
-						PORTB = PINB ^ (adresse[i]<<i);
-					}
 					break;
 				}
-				UDR0 = modtaget;
-				uart0.SendString("Hej");
-				_delay_ms(1000);
+				
+				sender.sendStartBits();
+				
+				for (int i = 0; i < 6; i++)
+				{
+					while (sender.getZeroCross()==0)
+					{}
+					PORTC = adresse[i];
+					TCCR0A |= 0b00000000;
+					TCCR0B |= 0b00000010;
+					while ((TIFR0 & (1<<0)) == 0)
+					{}
+					PORTC = 0;
+					TCCR0B |= 0b00000000;
+					TIFR0 = 0b00000001;
+					sender.setZeroCross(0);
+				}
+
+				for (int i = 0; i < 6; i++)
+				{
+					while (sender.getZeroCross()==0)
+					{}
+					PORTC = kommando[i];
+					TCCR0A |= 0b00000000;
+					TCCR0B |= 0b00000010;
+					while ((TIFR0 & (1<<0)) == 0)
+					{}
+					PORTC = 0;
+					TCCR0B |= 0b00000000;
+					TIFR0 = 0b00000001;
+					sender.setZeroCross(0);
+				}
+
+
+				for (int i = 0; i < 4; i++)
+				{
+					while (sender.getZeroCross()==0)
+					{}
+					PORTC = stopbit[i];
+					TCCR0A |= 0b00000000;
+					TCCR0B |= 0b00000010;
+					while ((TIFR0 & (1<<0)) == 0)
+					{}
+					PORTC = 0;
+					TCCR0B |= 0b00000000;
+					TIFR0 = 0b00000001;
+					sender.setZeroCross(0);
+				}							
+
 			}
-		}
-		
-		
-
-		
-		for (int i = 0; i < 4; i++)
-		{
-			while (zeroCross==0)
-			{}
-			PORTC = startbit[i];
-			TCCR0A |= 0b00000000;
-			TCCR0B |= 0b00000010;
-			while ((TIFR0 & (1<<0)) == 0)
-			{}
-			PORTC = 0;
-			TCCR0B |= 0b00000000;
-			TIFR0 = 0b00000001;
-			zeroCross = 0;
-		}
-
-		for (int i = 0; i < 6; i++)
-		{
-			while (zeroCross==0)
-			{}
-			PORTC = adresse[i];
-			TCCR0A |= 0b00000000;
-			TCCR0B |= 0b00000010;
-			while ((TIFR0 & (1<<0)) == 0)
-			{}
-			PORTC = 0;
-			TCCR0B |= 0b00000000;
-			TIFR0 = 0b00000001;
-			zeroCross = 0;
-		}		
-		
-		for (int i = 0; i < 6; i++)
-		{
-			while (zeroCross==0)
-			{}
-			PORTC = kommando[i];
-			TCCR0A |= 0b00000000;
-			TCCR0B |= 0b00000010;
-			while ((TIFR0 & (1<<0)) == 0)
-			{}
-			PORTC = 0;
-			TCCR0B |= 0b00000000;
-			TIFR0 = 0b00000001;
-			zeroCross = 0;
-		}
-		
-		
-		for (int i = 0; i < 4; i++)
-		{
-			while (zeroCross==0)
-			{}
-			PORTC = stopbit[i];
-			TCCR0A |= 0b00000000;
-			TCCR0B |= 0b00000010;
-			while ((TIFR0 & (1<<0)) == 0)
-			{}
-			PORTC = 0;
-			TCCR0B |= 0b00000000;
-			TIFR0 = 0b00000001;
-			zeroCross = 0;
-		}
-		
-
-		while (1)
-		{
-			PORTB = 0xFF;
-		}
+		modtaget = '0';
     }
 }
 
 ISR(INT0_vect)
 {
-	zeroCross = 1;
+	sender.setZeroCross(1);
 	PORTB = PINB ^ 0b10000000;
 }
 
