@@ -10,24 +10,28 @@
 #include <stdlib.h>
 #define F_CPU 16000000
 #include <util/delay.h>
+#include "UART.h"
 
 
 
-bool zerocross = false;		// Bliver True når der har været et ZeroCross
+volatile int zerocross = 0;		// Bliver True når der har været et ZeroCross
 int nyesteBit = 0;			// Får en værdi inde i interupt
 int laengde = 0;			// Bruges til at teste inde i interupt rutinen
 
 ISR(INT0_vect);
 void initInterupt0();
+void initADC();
 
 int main(void)
 {
+	
 	DDRF = 0;
 	DDRD = 0;			//Sætter IO pins kan tilføjes i en funktion
 	DDRB = 0xFF;
 	PORTB = 0;
 	
 	initInterupt0();
+	initADC();
 	
 	int startbit = 0b1110;
 	int slutbit = 0b0111;
@@ -36,15 +40,27 @@ int main(void)
 	int moenster6, moenster5, moenster4, moenster3, moenster2 = 0b0000;
 	int adresse = 0b000000;
 	int kommando = 0b000000;
+	int x;
 	
     /* Replace with your application code */
     while (1) 
     {
+		UART uart;
+		uart.SendString("ingenting modtaget");
 		
-		while(startbit != seneste4Bit)
-			if (zerocross)
+		while(startbit != seneste4Bit){
+			if (zerocross == true)
 			{
-								
+				ADCSRA |= 0b01000000;
+				while (ADCSRA & 0b01000000)
+				{}
+				
+				x = ADCW;
+				uart.SendInteger(x);
+				uart.SendString("/");
+				
+			
+						
 				moenster4 = bit3;
 				moenster3 = bit2;
 				moenster2 = bit1;
@@ -64,6 +80,7 @@ int main(void)
 				moenster3 = (bit3 << 2);
 				moenster2 = (bit2 << 1);*/
 			}
+		}
 		
 		int adresselaengde = 0;
 		
@@ -165,87 +182,89 @@ int main(void)
 		PORTB = kommando;				//
 		
     }
+	
 }
 
 
 ISR(INT0_vect)
 {
-	//if (PINF0 > 15)
-	//{
-		//nyesteBit = 1;
-	//}								Dette er ikke testet, men virker måske
-	//else
-	//{
-		//nyesteBit = 0;
-	//}
-	
-	switch(laengde)				// Switchen bliver brugt til at teste
+	PORTB = PINB ^ 0b10000000;
+	if (PINF0 > 900)
 	{
-	case 0:
 		nyesteBit = 1;
-		break;
-	case 1:
-	nyesteBit = 1;
-	break;	
-	case 2:
-	nyesteBit = 1;
-	break;	
-	case 3:
-	nyesteBit = 0;
-	break;
-	case 4:
-	nyesteBit = 0;
-	break;
-	case 5:
-	nyesteBit = 1;
-	break;
-	case 6:
-	nyesteBit = 0;
-	break;
-	case 7:
-	nyesteBit = 1;
-	break;
-	case 8:
-	nyesteBit = 0;
-	break;
-	case 9:
-	nyesteBit = 1;
-	break;
-	case 10:
-	nyesteBit = 1;
-	break;
-	case 11:
-	nyesteBit = 0;
-	break;
-	case 12:
-	nyesteBit = 1;
-	break;
-	case 13:
-	nyesteBit = 0;
-	break;
-	case 14:
-	nyesteBit = 1;
-	break;
-	case 15:
-	nyesteBit = 0;
-	break;
-	case 16:
-	nyesteBit = 1;
-	break;
-	case 17:
-	nyesteBit = 0;
-	break;
-	case 18:
-	nyesteBit = 1;
-	break;
-	case 19:
-	nyesteBit = 1;
-	break;
+	}								//Dette er ikke testet, men virker måske
+	else
+	{
+		nyesteBit = 0;
 	}
-	laengde++;
-	PORTB ^= (1<<7);
 	
 	zerocross = true;			// Bliver sat true hver gang der har været et cross
+	
+	//switch(laengde)				// Switchen bliver brugt til at teste
+	//{
+	//case 0:
+		//nyesteBit = 1;
+		//break;
+	//case 1:
+	//nyesteBit = 1;
+	//break;	
+	//case 2:
+	//nyesteBit = 1;
+	//break;	
+	//case 3:
+	//nyesteBit = 0;
+	//break;
+	//case 4:
+	//nyesteBit = 0;
+	//break;
+	//case 5:
+	//nyesteBit = 1;
+	//break;
+	//case 6:
+	//nyesteBit = 0;
+	//break;
+	//case 7:
+	//nyesteBit = 1;
+	//break;
+	//case 8:
+	//nyesteBit = 0;
+	//break;
+	//case 9:
+	//nyesteBit = 1;
+	//break;
+	//case 10:
+	//nyesteBit = 1;
+	//break;
+	//case 11:
+	//nyesteBit = 0;
+	//break;
+	//case 12:
+	//nyesteBit = 1;
+	//break;
+	//case 13:
+	//nyesteBit = 0;
+	//break;
+	//case 14:
+	//nyesteBit = 1;
+	//break;
+	//case 15:
+	//nyesteBit = 0;
+	//break;
+	//case 16:
+	//nyesteBit = 1;
+	//break;
+	//case 17:
+	//nyesteBit = 0;
+	//break;
+	//case 18:
+	//nyesteBit = 1;
+	//break;
+	//case 19:
+	//nyesteBit = 1;
+	//break;
+	//}
+	//laengde++;
+	//PORTB ^= (1<<7);
 }
 
 void initInterupt0()				// Int0 Gøres klar
@@ -253,5 +272,13 @@ void initInterupt0()				// Int0 Gøres klar
 	sei();
 	EIMSK |= 0b00000001;
 	EICRA |= 0b00000001;
+	
+}
+
+void initADC()						// ADC bliver klar gjordt 
+{
+	ADCSRA = 0b10000111;
+	ADMUX = 0b01000000;
+	ADCSRB = 0b00000000;
 	
 }

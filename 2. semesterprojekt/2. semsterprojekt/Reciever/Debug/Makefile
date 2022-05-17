@@ -37,7 +37,9 @@ SUBDIRS :=
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
-../main.cpp
+../main.cpp \
+../RecieverLamp.cpp \
+../UART.cpp
 
 
 PREPROCESSING_SRCS += 
@@ -47,16 +49,24 @@ ASM_SRCS +=
 
 
 OBJS +=  \
-main.o
+main.o \
+RecieverLamp.o \
+UART.o
 
 OBJS_AS_ARGS +=  \
-main.o
+main.o \
+RecieverLamp.o \
+UART.o
 
 C_DEPS +=  \
-main.d
+main.d \
+RecieverLamp.d \
+UART.d
 
 C_DEPS_AS_ARGS +=  \
-main.d
+main.d \
+RecieverLamp.d \
+UART.d
 
 OUTPUT_FILE_PATH +=Reciever.elf
 
@@ -73,6 +83,20 @@ LINKER_SCRIPT_DEP+=
 
 # AVR32/GNU C Compiler
 ./main.o: .././main.cpp
+	@echo Building file: $<
+	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\1.6.364\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\1.6.364\gcc\dev\atmega2560" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+./RecieverLamp.o: .././RecieverLamp.cpp
+	@echo Building file: $<
+	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\1.6.364\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\1.6.364\gcc\dev\atmega2560" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+./UART.o: .././UART.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\1.6.364\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\1.6.364\gcc\dev\atmega2560" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
