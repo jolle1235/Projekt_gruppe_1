@@ -10,26 +10,36 @@
 #define __RECIEVER_H__
 
 
-//class RecieverLamp
-//{
-//public:
-	//RecieverLamp();
-	//~RecieverLamp();
-	//int getZeroCross();
-	//void setZeroCross(int x);
-	//int readStartBits();
-	//int readAdresseBits();
-	//int readDataBits();
-	//int readStopBits();
-//private:
-	//int zeroCross;
-	//int startBits[];
-	//int stopBits[];
-	//int adresseBits[];
-	//int dataBits[];	
-	//RecieverLamp( const Reciever &c );
-	//RecieverLamp& operator=( const Reciever &c );
-//
-//}; //RecieverLamp
-//
-//#endif //__RECIEVER_H__
+class RecieverLamp
+{
+public:
+	RecieverLamp();
+	~RecieverLamp();
+	int getZeroCross();
+	void setZeroCross(int zeroCross);
+	int getNyesteBit();
+	void setNyesteBit(int nyestebit);
+	int readStartBits();
+	int readAdresseBits();
+	int readDataBits();
+	int readStopBits();
+	void readADC();
+	void turnOnLight();
+	
+private:
+	int zeroCross_;
+	int nyesteBit_;
+	int seneste6Bits_;
+	int startBits_;
+	int stopBits_;
+	int adresseBits_;
+	int kommandoBits_;	
+	int x;
+	UART* uart_;
+	RecieverLamp( const RecieverLamp &c );
+	RecieverLamp& operator=( const RecieverLamp &c );
+
+}; //RecieverLamp
+
+
+#endif //__RECIEVER_H__
