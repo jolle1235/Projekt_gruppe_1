@@ -36,8 +36,7 @@ int main(void)
     /* Replace with your application code */
     while (1) 
     {
-			uart0.SendString("Ingen kommando");
-			_delay_ms(1000);
+			
 			
 			if ((modtaget == 'a') || (modtaget == 'b') || (modtaget == 'c') || (modtaget == 'd'))
 			{
@@ -107,9 +106,11 @@ int main(void)
 					TIFR0 = 0b00000001;
 					sender.setZeroCross(0);
 				}							
+				PORTB = 0b11111111;
 
 			}
 		modtaget = '0';
+		
     }
 }
 

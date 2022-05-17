@@ -37,13 +37,13 @@ void Transmitter::sendStartBits()
 	for (int i = 0; i < 4; i++)
 	{
 		while (zeroCross==0)
-		{}
+		{PORTB = PINB | 0b00000001;}
 		PORTC = startbit[i];
 		TCCR0A |= 0b00000000;
 		TCCR0B |= 0b00000010;
 		while ((TIFR0 & (1<<0)) == 0)
 		{}
-		PORTC = 0;
+		//PORTC = 0;
 		TCCR0B |= 0b00000000;
 		TIFR0 = 0b00000001;
 		zeroCross = 0;
