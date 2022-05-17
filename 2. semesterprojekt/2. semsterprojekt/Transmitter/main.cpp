@@ -10,8 +10,10 @@
 #include <stdlib.h>
 #define F_CPU 16000000
 #include <util/delay.h>
+#include "UART.h"
 
 ISR(INT0_vect);
+ISR(USART0_RX_vect);
 void initInterupt0();
 void initIOpins();
 
@@ -19,20 +21,64 @@ void initIOpins();
 int startbit[4] = {1,1,1,0};
 int stopbit[4] = {0,1,1,1};
 volatile int zeroCross = 0;
+volatile char modtaget;
 
 int main(void)
 {
 
 	initIOpins();
 	initInterupt0();
+	UART uart0;
+	int adresse[6];
+	int kommando[6];
 	
     /* Replace with your application code */
     while (1) 
     {
+		//char streng[] = "abcde";
+		//while (streng != 0)
+		//{
+			//while((0b00100000 & UCSR0A) == 0)
+			//{}
+			//UDR0 = streng;
+			//streng++;
+		//}
+		while (1)
+		{
+			if ((modtaget == 'a') || (modtaget == 'b') || (modtaget == 'c') || (modtaget == 'd'))
+			{
+				switch (modtaget)
+				{
+				case 'a':
+					uart0.SendString("Lampen er tændt");
+					adresse[0] = 0;
+					adresse[1] = 1;
+					adresse[2] = 0;
+					adresse[3] = 1;
+					adresse[4] = 0;
+					adresse[5] = 1;
+					kommando[0] = 1;
+					kommando[1] = 0;
+					kommando[2] = 1;
+					kommando[3] = 0;
+					kommando[4] = 1;
+					kommando[5] = 0;
+					for (int i = 0; i < 6; i++)
+					{
+						UDR0 = adresse[i];
+						_delay_ms(500);
+						PORTB = PINB ^ (adresse[i]<<i);
+					}
+					break;
+				}
+				UDR0 = modtaget;
+				uart0.SendString("Hej");
+				_delay_ms(1000);
+			}
+		}
 		
 		
-		int adresse[6] = {0,1,0,1,0,1};
-		int kommando[6] = {1,0,1,0,1,0};
+
 		
 		for (int i = 0; i < 4; i++)
 		{
@@ -107,6 +153,11 @@ ISR(INT0_vect)
 {
 	zeroCross = 1;
 	PORTB = PINB ^ 0b10000000;
+}
+
+ISR(USART0_RX_vect)
+{
+	modtaget = UDR0;
 }
 
 void initInterupt0()
