@@ -73,7 +73,6 @@ int main(void)
 
 ISR(INT0_vect)
 {
-	UART uart;
 	RecieverLamp Reciever;
 	PORTB = PINB ^ 0b10000000;
 	
