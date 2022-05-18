@@ -128,7 +128,6 @@ void RecieverLamp::readADC(){
 	//uart_->SendString("/");
 	//uart_->SendInteger(x);
 	
-	
 	if (x > 800)
 	{
 		setNyesteBit(1);

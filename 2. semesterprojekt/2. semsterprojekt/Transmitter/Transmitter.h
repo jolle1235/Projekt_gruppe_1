@@ -24,14 +24,17 @@ class Transmitter
 private:
 	int zeroCross;
 	static int startbit[4];
+	static int stopbit[4];
+	int adresse[6];
 //functions
 public:
 	Transmitter();
 	int getZeroCross();
 	void setZeroCross(int x);
+	void setAdresse(int array[]);
 	void sendStartBits();
-	void sendAdresseBits();
-	void sendKommandoBits();
+	void sendAdresseBits(int array[]);
+	void sendKommandoBits(int array[]);
 	void sendStopBits();
 
 }; //Transmitter
