@@ -19,8 +19,6 @@ void initInterupt0();
 void initIOpins();
 
 
-//volatile int startbit[4] = {1,1,1,0};
-volatile int stopbit[4] = {0,1,1,1};
 //volatile int zeroCross = 0;
 volatile char modtaget;
 Transmitter sender;
@@ -33,23 +31,46 @@ int main(void)
 	int adresse[6];
 	int kommando[6];
 	
+	uart0.SendString("Program startet.\f\n\n\n\r");
+	uart0.SendString("____________________________________________\n\r");
+	uart0.SendString("      X         X         X                X X X X\n\r");
+	uart0.SendString("     X X        X         X                      X\n\r");
+	uart0.SendString("    X   X       X         X                      X  \n\r");
+	uart0.SendString("   X     X      X         X    X X X X X   X X X X\n\r");
+	uart0.SendString("  X X X X X     X         X                X\n\r");
+	uart0.SendString(" X         X     X       X                 X\n\r");
+	uart0.SendString("X           X     X X X X                  X X X X \n\r");
+	uart0.SendString("");
+	uart0.SendString("");
+	uart0.SendString("");
+	uart0.SendString("");
+	uart0.SendString("");
+	uart0.SendString("");
+	uart0.SendString("");
+	uart0.SendString("");
+	uart0.SendString("");
+	uart0.SendString("");
+	uart0.SendString("");
+	
+	
     /* Replace with your application code */
     while (1) 
     {
 			
 			
-			if ((modtaget == 'a') || (modtaget == 'b') || (modtaget == 'c') || (modtaget == 'd'))
+			if ((modtaget == '1') || (modtaget == 'b') || (modtaget == 'c') || (modtaget == 'd'))
 			{
 				switch (modtaget)
 				{
-				case 'a':
-					uart0.SendString("Lampen er tændt");
+				case '1':
+					uart0.SendString("\n\rLampen taendes.");
 					adresse[0] = 0;
 					adresse[1] = 1;
 					adresse[2] = 0;
 					adresse[3] = 1;
 					adresse[4] = 0;
 					adresse[5] = 1;
+					sender.setAdresse(adresse);
 					kommando[0] = 1;
 					kommando[1] = 0;
 					kommando[2] = 1;
@@ -57,56 +78,24 @@ int main(void)
 					kommando[4] = 1;
 					kommando[5] = 0;
 					break;
+				case 'b':
+					uart0.SendString("Lampen slukkes");
+					break;
 				}
 				
+				sender.setZeroCross(0);
 				sender.sendStartBits();
 				
-				for (int i = 0; i < 6; i++)
-				{
-					while (sender.getZeroCross()==0)
-					{}
-					PORTC = adresse[i];
-					TCCR0A |= 0b00000000;
-					TCCR0B |= 0b00000010;
-					while ((TIFR0 & (1<<0)) == 0)
-					{}
-					PORTC = 0;
-					TCCR0B |= 0b00000000;
-					TIFR0 = 0b00000001;
-					sender.setZeroCross(0);
-				}
+				sender.sendAdresseBits(adresse);
+				
+				sender.sendKommandoBits(kommando);
 
-				for (int i = 0; i < 6; i++)
-				{
-					while (sender.getZeroCross()==0)
-					{}
-					PORTC = kommando[i];
-					TCCR0A |= 0b00000000;
-					TCCR0B |= 0b00000010;
-					while ((TIFR0 & (1<<0)) == 0)
-					{}
-					PORTC = 0;
-					TCCR0B |= 0b00000000;
-					TIFR0 = 0b00000001;
-					sender.setZeroCross(0);
-				}
+				sender.sendStopBits();
 
 
-				for (int i = 0; i < 4; i++)
-				{
-					while (sender.getZeroCross()==0)
-					{}
-					PORTC = stopbit[i];
-					TCCR0A |= 0b00000000;
-					TCCR0B |= 0b00000010;
-					while ((TIFR0 & (1<<0)) == 0)
-					{}
-					PORTC = 0;
-					TCCR0B |= 0b00000000;
-					TIFR0 = 0b00000001;
-					sender.setZeroCross(0);
-				}							
-				PORTB = 0b11111111;
+
+						
+				PORTB = PINB ^ 0b11111111;
 
 			}
 		modtaget = '0';

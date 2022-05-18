@@ -9,6 +9,7 @@
 #include "Transmitter.h"
 
 int Transmitter::startbit[4] = {1,1,1,0};
+int Transmitter::stopbit[4] = {0,1,1,1};
 	
 
 // default constructor
@@ -32,6 +33,14 @@ void Transmitter::setZeroCross(int x)
 	}
 }
 
+void Transmitter::setAdresse(int array[])
+{
+	for (int i = 0; i < 6; i++)
+	{
+		adresse[i] = array[i];
+	}
+}
+
 void Transmitter::sendStartBits()
 {
 	for (int i = 0; i < 4; i++)
@@ -40,28 +49,67 @@ void Transmitter::sendStartBits()
 		{PORTB = PINB | 0b00000001;}
 		PORTC = startbit[i];
 		TCCR0A |= 0b00000000;
-		TCCR0B |= 0b00000010;
+		TCCR0B |= 0b00000100;
 		while ((TIFR0 & (1<<0)) == 0)
 		{}
-		//PORTC = 0;
-		TCCR0B |= 0b00000000;
+		PORTC = 0;
+		TCCR0B = 0b00000000;
 		TIFR0 = 0b00000001;
 		zeroCross = 0;
 	}
 }
 
 
-void Transmitter::sendAdresseBits()
+void Transmitter::sendAdresseBits(int array[])
 {
-	
+	for (int i = 0; i < 6; i++)
+	{
+		while (zeroCross==0)
+		{PORTB = PINB | 0b00000010;}
+		PORTC = array[i];
+		TCCR0A |= 0b00000000;
+		TCCR0B |= 0b00000100;
+		while ((TIFR0 & (1<<0)) == 0)
+		{}
+		PORTC = 0;
+		TCCR0B = 0b00000000;
+		TIFR0 = 0b00000001;
+		zeroCross = 0;
+	}
 }
 	
-void Transmitter::sendKommandoBits()
+void Transmitter::sendKommandoBits(int array[])
 {
-	
+	for (int i = 0; i < 6; i++)
+	{
+		while (zeroCross==0)
+		{PORTB = PINB | 0b00000100;}
+		PORTC = array[i];
+		TCCR0A |= 0b00000000;
+		TCCR0B |= 0b00000100;
+		while ((TIFR0 & (1<<0)) == 0)
+		{}
+		PORTC = 0;
+		TCCR0B = 0b00000000;
+		TIFR0 = 0b00000001;
+		zeroCross = 0;
+	}
 }
 
 void Transmitter::sendStopBits()
 {
-	
+	for (int i = 0; i < 4; i++)
+	{
+		while (zeroCross==0)
+		{PORTB = PINB | 0b00001000;}
+		PORTC = stopbit[i];
+		TCCR0A |= 0b00000000;
+		TCCR0B |= 0b00000100;
+		while ((TIFR0 & (1<<0)) == 0)
+		{}
+		PORTC = 0;
+		TCCR0B = 0b00000000;
+		TIFR0 = 0b00000001;
+		zeroCross = 0;
+	}
 }

@@ -173,8 +173,11 @@ void RecieverLamp::readADC(){
 	uart_->SendInteger(ADCread_);
 	uart_->SendString("\\");
 	
+
 	////sætter nyeste bit alt efter hvad adc giver af værdi
 	if ((ADCread_ > ADClastRead_) && (ADCread_> 5))
+=======
+	if (x > 800)
 	{
 		nyesteBit_ = 1;			
 	}								
