@@ -18,6 +18,8 @@
 ISR(INT0_vect);
 void initInterupt0();
 void initADC();
+RecieverLamp Reciever;
+UART uart_;
 
 void initInterupt0()				// Int0 Gøres klar
 {
@@ -38,12 +40,11 @@ void initADC()						// ADC bliver klar gjordt
 int main(void)
 {
 	UART uart;
-	RecieverLamp Reciever;
+	
 	DDRF = 0;
 	DDRD = 0;			//Sætter IO pins kan tilføjes i en funktion
 	DDRB = 0xFF;
 	PORTB = 0;
-	int x;
 	initInterupt0();
 	initADC();
 	
@@ -56,16 +57,11 @@ int main(void)
     {
 		if (Reciever.readStartBits() == 1)
 		{
-			if (Reciever.readAdresseBits() == 1)
-			{
-				if (Reciever.readDataBits() == 1)
-				{
-					if (Reciever.readStopBits() == 1)
-					{
-						Reciever.turnOnLight();
-					}
-				}
-			}
+			Reciever.readAdresseBits();
+			Reciever.readDataBits();
+			Reciever.readStopBits();
+			
+			
 		}		
 	}
 }
@@ -73,11 +69,8 @@ int main(void)
 
 ISR(INT0_vect)
 {
-	RecieverLamp Reciever;
-	PORTB = PINB ^ 0b10000000;
 	
 	Reciever.setZeroCross(1);			// Bliver sat true hver gang der har været et cross
-	
 	
 }
 

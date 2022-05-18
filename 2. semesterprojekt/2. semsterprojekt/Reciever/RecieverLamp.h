@@ -8,7 +8,12 @@
 
 #ifndef __RECIEVER_H__
 #define __RECIEVER_H__
-
+#include <avr/io.h>
+#include <avr/interrupt.h>
+#include <stdlib.h>
+#define F_CPU 16000000
+#include <util/delay.h>
+#include "UART.h"
 
 class RecieverLamp
 {
@@ -34,7 +39,12 @@ private:
 	int stopBits_;
 	int adresseBits_;
 	int kommandoBits_;	
-	int x;
+	int ADCread_;
+	int ADClastRead_;
+	int counter_;
+	int adresseBitsHolder_;
+	int kommandoBitsHolder_;
+	
 	UART* uart_;
 	RecieverLamp( const RecieverLamp &c );
 	RecieverLamp& operator=( const RecieverLamp &c );
