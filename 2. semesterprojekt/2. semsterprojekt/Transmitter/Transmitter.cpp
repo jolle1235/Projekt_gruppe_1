@@ -48,8 +48,9 @@ void Transmitter::sendStartBits()
 		while (zeroCross==0)
 		{PORTB = PINB | 0b00000001;}
 		PORTC = startbit[i];
+		TCNT0 = 240;
 		TCCR0A |= 0b00000000;
-		TCCR0B |= 0b00000100;
+		TCCR0B |= 0b00000101;
 		while ((TIFR0 & (1<<0)) == 0)
 		{}
 		PORTC = 0;
@@ -67,8 +68,9 @@ void Transmitter::sendAdresseBits(int array[])
 		while (zeroCross==0)
 		{PORTB = PINB | 0b00000010;}
 		PORTC = array[i];
+		TCNT0 = 240;
 		TCCR0A |= 0b00000000;
-		TCCR0B |= 0b00000100;
+		TCCR0B |= 0b00000101;
 		while ((TIFR0 & (1<<0)) == 0)
 		{}
 		PORTC = 0;
@@ -85,8 +87,9 @@ void Transmitter::sendKommandoBits(int array[])
 		while (zeroCross==0)
 		{PORTB = PINB | 0b00000100;}
 		PORTC = array[i];
+		TCNT0 = 240;
 		TCCR0A |= 0b00000000;
-		TCCR0B |= 0b00000100;
+		TCCR0B |= 0b00000101;
 		while ((TIFR0 & (1<<0)) == 0)
 		{}
 		PORTC = 0;
@@ -103,8 +106,9 @@ void Transmitter::sendStopBits()
 		while (zeroCross==0)
 		{PORTB = PINB | 0b00001000;}
 		PORTC = stopbit[i];
+		TCNT0 = 240;
 		TCCR0A |= 0b00000000;
-		TCCR0B |= 0b00000100;
+		TCCR0B |= 0b00000101;
 		while ((TIFR0 & (1<<0)) == 0)
 		{}
 		PORTC = 0;
