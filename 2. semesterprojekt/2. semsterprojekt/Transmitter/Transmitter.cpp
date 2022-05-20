@@ -8,8 +8,8 @@
 
 #include "Transmitter.h"
 
-int Transmitter::startbit[4] = {1,1,1,0};
-int Transmitter::stopbit[4] = {0,1,1,1};
+int Transmitter::startbit_[4] = {1,1,1,0};
+int Transmitter::stopbit_[4] = {0,1,1,1};
 	
 
 // default constructor
@@ -37,7 +37,15 @@ void Transmitter::setAdresse(int array[])
 {
 	for (int i = 0; i < 6; i++)
 	{
-		adresse[i] = array[i];
+		adresse_[i] = array[i];
+	}
+}
+
+void Transmitter::setKommando(int array[])
+{
+	for (int i = 0; i < 6; i++)
+	{
+		kommando_[i] = array[i];
 	}
 }
 
@@ -47,54 +55,39 @@ void Transmitter::sendStartBits()
 	{
 		while (zeroCross==0)
 		{PORTB = PINB | 0b00000001;}
-		PORTC = startbit[i];
-		TCNT0 = 240;
-		TCCR0A |= 0b00000000;
-		TCCR0B |= 0b00000101;
-		while ((TIFR0 & (1<<0)) == 0)
-		{}
+		PORTC = startbit_[i];
+		start1msDelay();
 		PORTC = 0;
-		TCCR0B = 0b00000000;
-		TIFR0 = 0b00000001;
+		stop1msDelay();
 		zeroCross = 0;
 	}
 }
 
 
-void Transmitter::sendAdresseBits(int array[])
+void Transmitter::sendAdresseBits()
 {
 	for (int i = 0; i < 6; i++)
 	{
 		while (zeroCross==0)
 		{PORTB = PINB | 0b00000010;}
-		PORTC = array[i];
-		TCNT0 = 240;
-		TCCR0A |= 0b00000000;
-		TCCR0B |= 0b00000101;
-		while ((TIFR0 & (1<<0)) == 0)
-		{}
+		PORTC = adresse_[i];
+		start1msDelay();
 		PORTC = 0;
-		TCCR0B = 0b00000000;
-		TIFR0 = 0b00000001;
+		stop1msDelay();
 		zeroCross = 0;
 	}
 }
 	
-void Transmitter::sendKommandoBits(int array[])
+void Transmitter::sendKommandoBits()
 {
 	for (int i = 0; i < 6; i++)
 	{
 		while (zeroCross==0)
 		{PORTB = PINB | 0b00000100;}
-		PORTC = array[i];
-		TCNT0 = 240;
-		TCCR0A |= 0b00000000;
-		TCCR0B |= 0b00000101;
-		while ((TIFR0 & (1<<0)) == 0)
-		{}
+		PORTC = kommando_[i];
+		start1msDelay();
 		PORTC = 0;
-		TCCR0B = 0b00000000;
-		TIFR0 = 0b00000001;
+		stop1msDelay();
 		zeroCross = 0;
 	}
 }
@@ -105,15 +98,25 @@ void Transmitter::sendStopBits()
 	{
 		while (zeroCross==0)
 		{PORTB = PINB | 0b00001000;}
-		PORTC = stopbit[i];
-		TCNT0 = 240;
-		TCCR0A |= 0b00000000;
-		TCCR0B |= 0b00000101;
-		while ((TIFR0 & (1<<0)) == 0)
-		{}
+		PORTC = stopbit_[i];
+		start1msDelay();
 		PORTC = 0;
-		TCCR0B = 0b00000000;
-		TIFR0 = 0b00000001;
+		stop1msDelay();
 		zeroCross = 0;
 	}
+}
+
+void Transmitter::start1msDelay()
+{
+	TCNT0 = 240;
+	TCCR0A |= 0b00000000;
+	TCCR0B |= 0b00000101;
+	while ((TIFR0 & (1<<0)) == 0)
+	{}
+}
+
+void Transmitter::stop1msDelay()
+{
+	TCCR0B = 0b00000000;
+	TIFR0 = 0b00000001;
 }

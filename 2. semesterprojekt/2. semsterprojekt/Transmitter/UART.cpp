@@ -23,7 +23,6 @@ UART::UART()
 
 void UART::SendChar(char Tegn)
 {
-	// <---- Skriv din kode her
 	while((0b00100000 & UCSR0A) == 0)
 	{}
 	UDR0 = Tegn;

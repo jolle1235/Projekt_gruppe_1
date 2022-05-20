@@ -23,19 +23,23 @@ class Transmitter
 //variables
 private:
 	int zeroCross;
-	static int startbit[4];
-	static int stopbit[4];
-	int adresse[6];
+	static int startbit_[4];
+	static int stopbit_[4];
+	int adresse_[6];
+	int kommando_[6];
 //functions
 public:
 	Transmitter();
 	int getZeroCross();
 	void setZeroCross(int x);
 	void setAdresse(int array[]);
+	void setKommando(int array[]);
 	void sendStartBits();
-	void sendAdresseBits(int array[]);
-	void sendKommandoBits(int array[]);
+	void sendAdresseBits();
+	void sendKommandoBits();
 	void sendStopBits();
+	void start1msDelay();
+	void stop1msDelay();
 
 }; //Transmitter
 

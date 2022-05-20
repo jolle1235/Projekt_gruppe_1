@@ -28,8 +28,6 @@ int main(void)
 	initIOpins();
 	initInterupt0();
 	UART uart0;
-	int adresse[6];
-	int kommando[6];
 	
 	uart0.SendString("Program startet.\f\n\n\n\r");
 	uart0.SendString("____________________________________________\n\r");
@@ -58,42 +56,59 @@ int main(void)
     {
 			
 			
-			if ((modtaget == '1') || (modtaget == 'b') || (modtaget == 'c') || (modtaget == 'd'))
+			if ((modtaget == '1') || (modtaget == '2') || (modtaget == '3') || (modtaget == '4'))
 			{
 				switch (modtaget)
 				{
 				case '1':
+				{
 					uart0.SendString("\n\rLampen taendes.");
-					adresse[0] = 0;
-					adresse[1] = 1;
-					adresse[2] = 0;
-					adresse[3] = 1;
-					adresse[4] = 0;
-					adresse[5] = 1;
+					int adresse[6] = {0,1,0,1,0,1};
 					sender.setAdresse(adresse);
-					kommando[0] = 1;
-					kommando[1] = 0;
-					kommando[2] = 1;
-					kommando[3] = 0;
-					kommando[4] = 1;
-					kommando[5] = 0;
+					int kommando[6] = {1,0,1,0,1,0};
+					sender.setKommando(kommando);
+				}
 					break;
-				case 'b':
+					
+				case '2':
+				{
 					uart0.SendString("Lampen slukkes");
+					int adresse[6] = {0,1,0,1,0,1};
+					sender.setAdresse(adresse);
+					int kommando[6] = {0,1,0,1,0,1};
+					sender.setKommando(kommando);	
+				}
+					break;
+				case '3':
+				{
+					uart0.SendString("Gardin rulles op");
+					int adresse[6] = {1,0,1,0,1,0};
+					sender.setAdresse(adresse);
+					int kommando[6] = {1,0,1,0,1,0};
+					sender.setKommando(kommando);
+				}
+				break;
+				case '4':
+				{
+					uart0.SendString("Gardin rulles ned");
+					int adresse[6] = {1,0,1,0,1,0};
+					sender.setAdresse(adresse);
+					int kommando[6] = {0,1,0,1,0,1};
+					sender.setKommando(kommando);
+				}
+				break;
+				default:
 					break;
 				}
 				
 				sender.setZeroCross(0);
 				sender.sendStartBits();
 				
-				sender.sendAdresseBits(adresse);
+				sender.sendAdresseBits();
 				
-				sender.sendKommandoBits(kommando);
+				sender.sendKommandoBits();
 
 				sender.sendStopBits();
-
-
-
 						
 				PORTB = PINB ^ 0b11111111;
 
