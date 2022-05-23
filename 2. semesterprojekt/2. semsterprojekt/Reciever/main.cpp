@@ -51,6 +51,7 @@ int main(void)
 	Reciever.setAdresseBits();
 	
 	uart.SendInteger(Reciever.getAdresseBits());
+	uart.SendString("\n\r");
 	
 	
 	uart.SendString("program starter \n");

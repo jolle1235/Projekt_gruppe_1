@@ -138,10 +138,7 @@ void RecieverLamp::setAdresseBits()
 			PORTB = PINB ^ 0b00100000;
 		}
 	}
-	for (int i = 0; i << 6; i++)
-	{
-		adresseBits_;
-	}
+		adresseBits_ = PINB;
 }
 int RecieverLamp::getAdresseBits()
 {
