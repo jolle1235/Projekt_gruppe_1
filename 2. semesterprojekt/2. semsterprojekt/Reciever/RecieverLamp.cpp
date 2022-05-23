@@ -103,6 +103,50 @@ int RecieverLamp::readAdresseBits(){
 	return 1;
 	
 }
+void RecieverLamp::setAdresseBits()
+{
+	while (PINA & 0b01000000)
+	{
+		if ((PINA & 0b00000001) == 0)
+		{
+			_delay_ms(250);
+			PORTB = PINB ^ 0b00000001;
+		}
+		if ((PINA & 0b00000010) == 0)
+		{
+			_delay_ms(250);
+			PORTB = PINB ^ 0b00000010;
+		}
+		if ((PINA & 0b00000100) == 0)
+		{
+			_delay_ms(250);
+			PORTB = PINB ^ 0b00000100;
+		}
+		if ((PINA & 0b00001000) == 0)
+		{
+			_delay_ms(250);
+			PORTB = PINB ^ 0b00001000;
+		}
+		if ((PINA & 0b00010000) == 0)
+		{
+			_delay_ms(250);
+			PORTB = PINB ^ 0b00010000;
+		}
+		if ((PINA & 0b00100000) == 0)
+		{
+			_delay_ms(250);
+			PORTB = PINB ^ 0b00100000;
+		}
+	}
+	for (int i = 0; i << 6; i++)
+	{
+		adresseBits_;
+	}
+}
+int RecieverLamp::getAdresseBits()
+{
+	return adresseBits_;
+}
 int RecieverLamp::readDataBits(){
 	seneste6Bits_ = 0;
 	counter_ = 0;
@@ -176,8 +220,6 @@ void RecieverLamp::readADC(){
 
 	////sætter nyeste bit alt efter hvad adc giver af værdi
 	if ((ADCread_ > ADClastRead_) && (ADCread_> 5))
-=======
-	if (x > 800)
 	{
 		nyesteBit_ = 1;			
 	}								

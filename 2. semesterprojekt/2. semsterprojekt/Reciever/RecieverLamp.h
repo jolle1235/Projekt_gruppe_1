@@ -26,6 +26,8 @@ public:
 	void setNyesteBit(int nyestebit);
 	int readStartBits();
 	int readAdresseBits();
+	void setAdresseBits();
+	int getAdresseBits();
 	int readDataBits();
 	int readStopBits();
 	void readADC();

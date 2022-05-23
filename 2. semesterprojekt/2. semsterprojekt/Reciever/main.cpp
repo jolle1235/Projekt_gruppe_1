@@ -48,6 +48,9 @@ int main(void)
 	initInterupt0();
 	initADC();
 	
+	Reciever.setAdresseBits();
+	
+	uart.SendInteger(Reciever.getAdresseBits());
 	
 	
 	uart.SendString("program starter \n");
