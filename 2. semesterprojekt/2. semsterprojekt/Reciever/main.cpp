@@ -63,12 +63,8 @@ int main(void)
     {
 		if (Reciever.readStartBits() == 1)
 		{
-			PORTB = 0b11000000;
 			adresse = Reciever.readAdresseBits();
-			uart.SendInteger(adresse);
-			uart.SendString("\n\r");
 			data = Reciever.readDataBits();
-			uart.SendInteger(data);
 			Reciever.readStopBits();
 			
 			if (adresse == Reciever.getAdresseBits())
@@ -76,10 +72,10 @@ int main(void)
 				uart.SendString("\n\rAdressen passede");
 				switch(data)
 				{
-					case 0b101010:
+					case 42:
 						PORTB = 0xFF;
 						break;
-					case 0b010101:
+					case 21:
 						PORTB = 0;
 						break;
 					default:
@@ -87,8 +83,11 @@ int main(void)
 						break;
 				}
 			}
-					
+			
+	
 		}
+		data = 0;
+		adresse = 0;
 		
 	}
 }

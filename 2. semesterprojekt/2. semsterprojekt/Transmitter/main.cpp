@@ -31,13 +31,11 @@ int main(void)
 	
 	uart0.SendString("Program startet.\f\n\n\n\r");
 	uart0.SendString("____________________________________________\n\r");
-	uart0.SendString("      X         X         X                X X X X\n\r");
-	uart0.SendString("     X X        X         X                      X\n\r");
-	uart0.SendString("    X   X       X         X                      X  \n\r");
-	uart0.SendString("   X     X      X         X    X X X X X   X X X X\n\r");
-	uart0.SendString("  X X X X X     X         X                X\n\r");
-	uart0.SendString(" X         X     X       X                 X\n\r");
-	uart0.SendString("X           X     X X X X                  X X X X \n\r");
+	uart0.SendString("    X        X       X                  X X X\n\r");
+	uart0.SendString("   X X       X       X                      X\n\r");
+	uart0.SendString("  X X X      X       X    X X X X X X   X X X \n\r");
+	uart0.SendString(" X     X      X     X                   X     \n\r");
+	uart0.SendString("X       X      X X X                    X X X  \n\r");
 	uart0.SendString("");
 	uart0.SendString("");
 	uart0.SendString("");
