@@ -100,7 +100,7 @@ int RecieverLamp::readAdresseBits(){
 		}
 	}
 	
-	return 1;
+	return seneste6Bits_;
 	
 }
 void RecieverLamp::setAdresseBits()
@@ -165,7 +165,7 @@ int RecieverLamp::readDataBits(){
 			}
 	}
 	
-	return 1;
+	return seneste6Bits_;
 	
 }
 int RecieverLamp::readStopBits(){

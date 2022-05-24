@@ -45,6 +45,8 @@ int main(void)
 	DDRD = 0;			//Sætter IO pins kan tilføjes i en funktion
 	DDRB = 0xFF;
 	PORTB = 0;
+	int adresse;
+	int data;
 	initInterupt0();
 	initADC();
 	
@@ -61,12 +63,33 @@ int main(void)
     {
 		if (Reciever.readStartBits() == 1)
 		{
-			Reciever.readAdresseBits();
-			Reciever.readDataBits();
+			PORTB = 0b11000000;
+			adresse = Reciever.readAdresseBits();
+			uart.SendInteger(adresse);
+			uart.SendString("\n\r");
+			data = Reciever.readDataBits();
+			uart.SendInteger(data);
 			Reciever.readStopBits();
 			
-			
-		}		
+			if (adresse == Reciever.getAdresseBits())
+			{
+				uart.SendString("\n\rAdressen passede");
+				switch(data)
+				{
+					case 0b101010:
+						PORTB = 0xFF;
+						break;
+					case 0b010101:
+						PORTB = 0;
+						break;
+					default:
+						uart.SendString("Den gik i default\n\r");
+						break;
+				}
+			}
+					
+		}
+		
 	}
 }
 
