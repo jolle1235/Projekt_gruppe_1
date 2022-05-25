@@ -137,6 +137,10 @@ int main(void)
 ISR(INT0_vect)
 {
 	sender.setZeroCross(1);
+<<<<<<< Updated upstream
+=======
+	PORTB = PINB ^ 0b10000000;
+>>>>>>> Stashed changes
 	
 }
 

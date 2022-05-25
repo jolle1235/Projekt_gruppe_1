@@ -243,7 +243,7 @@ void RecieverLamp::readADC(){
 
 void RecieverLamp::turnOnLight()
 {
-	PORTB = 0b11111111;
+	PORTB = 0xFF;
 }
 
 void RecieverLamp::turnOffLight()
