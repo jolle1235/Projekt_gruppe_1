@@ -32,6 +32,7 @@ public:
 	int readStopBits();
 	void readADC();
 	void turnOnLight();
+	void turnOffLight();
 	
 private:
 	int zeroCross_;
@@ -44,8 +45,6 @@ private:
 	int ADCread_;
 	int ADClastRead_;
 	int counter_;
-	int adresseBitsHolder_;
-	int kommandoBitsHolder_;
 	
 	UART* uart_;
 	RecieverLamp( const RecieverLamp &c );
