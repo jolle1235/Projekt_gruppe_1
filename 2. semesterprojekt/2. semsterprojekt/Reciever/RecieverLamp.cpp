@@ -77,18 +77,6 @@ int RecieverLamp::readAdresseBits(){
 	seneste6Bits_ = 0;
 	counter_ = 0;
 	
-	//for (int i=0; i<6; i++)
-	//{
-		//while (zeroCross_ != 1)
-		//{
-			//// DO NOTHING
-		//}
-		//readADC();
-		//seneste6Bits_ = seneste6Bits_ << 1;
-		//seneste6Bits_ |= nyesteBit_;
-		//zeroCross_ = 0;
-	//}
-	
 	while(adresseBits_ != seneste6Bits_){
 		if (zeroCross_ == 1)
 		{
@@ -97,10 +85,8 @@ int RecieverLamp::readAdresseBits(){
 			
 			seneste6Bits_ = seneste6Bits_ << 1;
 			seneste6Bits_ |= nyesteBit_;
-			//PORTB = seneste6Bits_;
 			
 			zeroCross_ = 0;
-			// PORTB ^= (1<<6);		bruges til at teste
 			counter_++;
 			}
 			else
@@ -149,6 +135,7 @@ void RecieverLamp::setAdresseBits()
 		}
 	}
 		adresseBits_ = PINB;
+		PORTB |= 0b01000000
 }
 int RecieverLamp::getAdresseBits()
 {
@@ -159,18 +146,6 @@ int RecieverLamp::readDataBits()
 {
 	seneste6Bits_ = 0;
 	counter_ = 0;
-	//for (int i=0; i<6; i++)
-	//{
-		//while (zeroCross_ == 0)
-		//{
-			//// DO NOTHING
-		//}
-		//readADC();
-		//seneste6Bits_ = seneste6Bits_ << 1;
-		//seneste6Bits_ |= nyesteBit_;		
-		//zeroCross_ = 0;
-	//}
-	//return seneste6Bits_;
 	
 	while(kommandoBits_ != seneste6Bits_)      // Går ud fra at denne lykke vare 6bit, altså det er lykken som hvor afkoden sker.
 	{				
@@ -182,10 +157,8 @@ int RecieverLamp::readDataBits()
 			
 			seneste6Bits_ = seneste6Bits_ << 1;
 			seneste6Bits_ |= nyesteBit_;
-			//PORTB = seneste6Bits_;
 			
 			zeroCross_ = 0;
-			// PORTB ^= (1<<6);		bruges til at teste
 			counter_++;
 			}
 			else
@@ -255,8 +228,6 @@ void RecieverLamp::readADC(){
 
 	////sætter nyeste bit alt efter hvad adc giver af værdi
 	if (((ADCread_ > ADClastRead_) && (ADCread_> 10)) || (ADCread_ > 50))
-	//if (ADCread_ > 10)
-	//if(PINF0 == 0)
 	{
 		nyesteBit_ = 1;			
 	}								
@@ -273,4 +244,9 @@ void RecieverLamp::readADC(){
 void RecieverLamp::turnOnLight()
 {
 	PORTB = 0b11111111;
+}
+
+void RecieverLamp::turnOffLight()
+{
+	PORTB = 0;	
 }

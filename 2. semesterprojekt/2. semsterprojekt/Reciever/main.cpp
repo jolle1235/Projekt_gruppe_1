@@ -73,10 +73,10 @@ int main(void)
 				switch(data)
 				{
 					case 42:
-						PORTB = 0xFF;
+						Reciever.turnOnLight();
 						break;
 					case 21:
-						PORTB = 0;
+						Reciever.turnOffLight();
 						break;
 					default:
 						uart.SendString("Den gik i default\n\r");
