@@ -231,9 +231,9 @@ int RecieverLamp::readStopBits()
 void RecieverLamp::readADC(){
 	
 	//// timer
-	TCNT0 = 240;
-	TCCR0A |= 0b00000000; // starter timer
-	TCCR0B |= 0b00000101;
+	TCNT0 = 240;			// timer på 1 ms	
+	TCCR0A |= 0b00000000;	// starter timer
+	TCCR0B |= 0b00000101;	// Prescale på 1024
 	while((TIFR0 & (1<<0)) == 0)
 	{}
 	TCCR0B = 0b00000000; // slut timer
