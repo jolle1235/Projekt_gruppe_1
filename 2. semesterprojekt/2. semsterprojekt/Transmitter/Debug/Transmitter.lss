@@ -3,31 +3,31 @@ Transmitter.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000440  00800200  00000756  000007ea  2**0
+  0 .data         00000440  00800200  00000750  000007e4  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000756  00000000  00000000  00000094  2**1
+  1 .text         00000750  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          0000001b  00800640  00800640  00000c2a  2**0
+  2 .bss          0000001b  00800640  00800640  00000c24  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000c2a  2**0
+  3 .comment      00000030  00000000  00000000  00000c24  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000c5c  2**2
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000c54  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 000000e8  00000000  00000000  00000c9c  2**0
+  5 .debug_aranges 000000e8  00000000  00000000  00000c94  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00001ee6  00000000  00000000  00000d84  2**0
+  6 .debug_info   00001ee6  00000000  00000000  00000d7c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00001006  00000000  00000000  00002c6a  2**0
+  7 .debug_abbrev 00001006  00000000  00000000  00002c62  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000872  00000000  00000000  00003c70  2**0
+  8 .debug_line   0000086c  00000000  00000000  00003c68  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000288  00000000  00000000  000044e4  2**2
+  9 .debug_frame  00000288  00000000  00000000  000044d4  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000996  00000000  00000000  0000476c  2**0
+ 10 .debug_str    00000996  00000000  00000000  0000475c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000006dc  00000000  00000000  00005102  2**0
+ 11 .debug_loc    000006dc  00000000  00000000  000050f2  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000118  00000000  00000000  000057de  2**0
+ 12 .debug_ranges 00000118  00000000  00000000  000057ce  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -83,7 +83,7 @@ Disassembly of section .text:
   5e:	00 00       	nop
   60:	70 c0       	rjmp	.+224    	; 0x142 <__bad_interrupt>
   62:	00 00       	nop
-  64:	9d c0       	rjmp	.+314    	; 0x1a0 <__vector_25>
+  64:	9a c0       	rjmp	.+308    	; 0x19a <__vector_25>
   66:	00 00       	nop
   68:	6c c0       	rjmp	.+216    	; 0x142 <__bad_interrupt>
   6a:	00 00       	nop
@@ -149,7 +149,7 @@ Disassembly of section .text:
 	...
 
 000000e4 <__ctors_start>:
-  e4:	79 02       	muls	r23, r25
+  e4:	76 02       	muls	r23, r22
 
 000000e6 <__ctors_end>:
   e6:	11 24       	eor	r1, r1
@@ -165,7 +165,7 @@ Disassembly of section .text:
   f6:	16 e0       	ldi	r17, 0x06	; 6
   f8:	a0 e0       	ldi	r26, 0x00	; 0
   fa:	b2 e0       	ldi	r27, 0x02	; 2
-  fc:	e6 e5       	ldi	r30, 0x56	; 86
+  fc:	e0 e5       	ldi	r30, 0x50	; 80
   fe:	f7 e0       	ldi	r31, 0x07	; 7
  100:	00 e0       	ldi	r16, 0x00	; 0
  102:	0b bf       	out	0x3b, r16	; 59
@@ -200,14 +200,14 @@ Disassembly of section .text:
  12c:	01 09       	sbc	r16, r1
  12e:	80 2f       	mov	r24, r16
  130:	fe 01       	movw	r30, r28
- 132:	07 d3       	rcall	.+1550   	; 0x742 <__tablejump2__>
+ 132:	04 d3       	rcall	.+1544   	; 0x73c <__tablejump2__>
  134:	c2 37       	cpi	r28, 0x72	; 114
  136:	d1 07       	cpc	r29, r17
  138:	80 e0       	ldi	r24, 0x00	; 0
  13a:	08 07       	cpc	r16, r24
  13c:	b1 f7       	brne	.-20     	; 0x12a <__do_global_ctors+0xa>
- 13e:	50 d0       	rcall	.+160    	; 0x1e0 <main>
- 140:	08 c3       	rjmp	.+1552   	; 0x752 <_exit>
+ 13e:	4d d0       	rcall	.+154    	; 0x1da <main>
+ 140:	05 c3       	rjmp	.+1546   	; 0x74c <_exit>
 
 00000142 <__bad_interrupt>:
  142:	5e cf       	rjmp	.-324    	; 0x0 <__vectors>
@@ -238,1231 +238,1227 @@ ISR(INT0_vect)
  164:	bf 93       	push	r27
  166:	ef 93       	push	r30
  168:	ff 93       	push	r31
-	sender.setZeroCross(1);
+	sender.setZeroCross(1);			// Sætter zeroCross_ til 1
  16a:	61 e0       	ldi	r22, 0x01	; 1
  16c:	70 e0       	ldi	r23, 0x00	; 0
  16e:	80 e4       	ldi	r24, 0x40	; 64
  170:	96 e0       	ldi	r25, 0x06	; 6
- 172:	c7 d1       	rcall	.+910    	; 0x502 <_ZN11Transmitter12setZeroCrossEi>
-	PORTB = PINB ^ 0b10000000;
- 174:	83 b1       	in	r24, 0x03	; 3
- 176:	80 58       	subi	r24, 0x80	; 128
- 178:	85 b9       	out	0x05, r24	; 5
+ 172:	c4 d1       	rcall	.+904    	; 0x4fc <_ZN11Transmitter12setZeroCrossEi>
 }
- 17a:	ff 91       	pop	r31
- 17c:	ef 91       	pop	r30
- 17e:	bf 91       	pop	r27
- 180:	af 91       	pop	r26
- 182:	9f 91       	pop	r25
- 184:	8f 91       	pop	r24
- 186:	7f 91       	pop	r23
- 188:	6f 91       	pop	r22
- 18a:	5f 91       	pop	r21
- 18c:	4f 91       	pop	r20
- 18e:	3f 91       	pop	r19
- 190:	2f 91       	pop	r18
- 192:	0f 90       	pop	r0
- 194:	0b be       	out	0x3b, r0	; 59
- 196:	0f 90       	pop	r0
- 198:	0f be       	out	0x3f, r0	; 63
- 19a:	0f 90       	pop	r0
- 19c:	1f 90       	pop	r1
- 19e:	18 95       	reti
+ 174:	ff 91       	pop	r31
+ 176:	ef 91       	pop	r30
+ 178:	bf 91       	pop	r27
+ 17a:	af 91       	pop	r26
+ 17c:	9f 91       	pop	r25
+ 17e:	8f 91       	pop	r24
+ 180:	7f 91       	pop	r23
+ 182:	6f 91       	pop	r22
+ 184:	5f 91       	pop	r21
+ 186:	4f 91       	pop	r20
+ 188:	3f 91       	pop	r19
+ 18a:	2f 91       	pop	r18
+ 18c:	0f 90       	pop	r0
+ 18e:	0b be       	out	0x3b, r0	; 59
+ 190:	0f 90       	pop	r0
+ 192:	0f be       	out	0x3f, r0	; 63
+ 194:	0f 90       	pop	r0
+ 196:	1f 90       	pop	r1
+ 198:	18 95       	reti
 
-000001a0 <__vector_25>:
+0000019a <__vector_25>:
 
 ISR(USART0_RX_vect)
 {
- 1a0:	1f 92       	push	r1
- 1a2:	0f 92       	push	r0
- 1a4:	0f b6       	in	r0, 0x3f	; 63
- 1a6:	0f 92       	push	r0
- 1a8:	11 24       	eor	r1, r1
- 1aa:	8f 93       	push	r24
+ 19a:	1f 92       	push	r1
+ 19c:	0f 92       	push	r0
+ 19e:	0f b6       	in	r0, 0x3f	; 63
+ 1a0:	0f 92       	push	r0
+ 1a2:	11 24       	eor	r1, r1
+ 1a4:	8f 93       	push	r24
 	modtaget = UDR0;
- 1ac:	80 91 c6 00 	lds	r24, 0x00C6	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7c00c6>
- 1b0:	80 93 5a 06 	sts	0x065A, r24	; 0x80065a <modtaget>
+ 1a6:	80 91 c6 00 	lds	r24, 0x00C6	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7c00c6>
+ 1aa:	80 93 5a 06 	sts	0x065A, r24	; 0x80065a <modtaget>
 }
- 1b4:	8f 91       	pop	r24
- 1b6:	0f 90       	pop	r0
- 1b8:	0f be       	out	0x3f, r0	; 63
- 1ba:	0f 90       	pop	r0
- 1bc:	1f 90       	pop	r1
- 1be:	18 95       	reti
+ 1ae:	8f 91       	pop	r24
+ 1b0:	0f 90       	pop	r0
+ 1b2:	0f be       	out	0x3f, r0	; 63
+ 1b4:	0f 90       	pop	r0
+ 1b6:	1f 90       	pop	r1
+ 1b8:	18 95       	reti
 
-000001c0 <_Z13initInterupt0v>:
+000001ba <_Z13initInterupt0v>:
 
 void initInterupt0()
 {
-	sei();
- 1c0:	78 94       	sei
-	EIMSK |= 0b00000001;
- 1c2:	e8 9a       	sbi	0x1d, 0	; 29
-	EICRA |= 0b00000001;
- 1c4:	e9 e6       	ldi	r30, 0x69	; 105
- 1c6:	f0 e0       	ldi	r31, 0x00	; 0
- 1c8:	80 81       	ld	r24, Z
- 1ca:	81 60       	ori	r24, 0x01	; 1
- 1cc:	80 83       	st	Z, r24
- 1ce:	08 95       	ret
+	sei();					// Enable global interupt
+ 1ba:	78 94       	sei
+	EIMSK |= 0b00000001;	// Enabler interupt 0
+ 1bc:	e8 9a       	sbi	0x1d, 0	; 29
+	EICRA |= 0b00000001;	// Enabler interupt 1 ved falling og rising edge
+ 1be:	e9 e6       	ldi	r30, 0x69	; 105
+ 1c0:	f0 e0       	ldi	r31, 0x00	; 0
+ 1c2:	80 81       	ld	r24, Z
+ 1c4:	81 60       	ori	r24, 0x01	; 1
+ 1c6:	80 83       	st	Z, r24
+ 1c8:	08 95       	ret
 
-000001d0 <_Z10initIOpinsv>:
+000001ca <_Z10initIOpinsv>:
 }
 
 void initIOpins()
 {
-		DDRB = 0xFF;
- 1d0:	8f ef       	ldi	r24, 0xFF	; 255
- 1d2:	84 b9       	out	0x04, r24	; 4
-		DDRC = 0xFF;
- 1d4:	87 b9       	out	0x07, r24	; 7
-		DDRD = 0;
- 1d6:	1a b8       	out	0x0a, r1	; 10
-		PORTB = 0;
- 1d8:	15 b8       	out	0x05, r1	; 5
-		PORTC = 0;
- 1da:	18 b8       	out	0x08, r1	; 8
-		PORTD = 0;
- 1dc:	1b b8       	out	0x0b, r1	; 11
- 1de:	08 95       	ret
+		DDRB = 0xFF;		// Udgang
+ 1ca:	8f ef       	ldi	r24, 0xFF	; 255
+ 1cc:	84 b9       	out	0x04, r24	; 4
+		DDRC = 0xFF;		// Udgang
+ 1ce:	87 b9       	out	0x07, r24	; 7
+		DDRD = 0;			// Indgang
+ 1d0:	1a b8       	out	0x0a, r1	; 10
+		PORTB = 0;			// Nulstiller PortB
+ 1d2:	15 b8       	out	0x05, r1	; 5
+		PORTC = 0;			// Nulstiller PortC
+ 1d4:	18 b8       	out	0x08, r1	; 8
+		PORTD = 0;			// Nulstiller PortD
+ 1d6:	1b b8       	out	0x0b, r1	; 11
+ 1d8:	08 95       	ret
 
-000001e0 <main>:
-//volatile int zeroCross = 0;
+000001da <main>:
+
 volatile char modtaget;
 Transmitter sender;
 
 int main(void)
 {
- 1e0:	cf 93       	push	r28
- 1e2:	df 93       	push	r29
- 1e4:	cd b7       	in	r28, 0x3d	; 61
- 1e6:	de b7       	in	r29, 0x3e	; 62
- 1e8:	69 97       	sbiw	r28, 0x19	; 25
- 1ea:	0f b6       	in	r0, 0x3f	; 63
- 1ec:	f8 94       	cli
- 1ee:	de bf       	out	0x3e, r29	; 62
- 1f0:	0f be       	out	0x3f, r0	; 63
- 1f2:	cd bf       	out	0x3d, r28	; 61
+ 1da:	cf 93       	push	r28
+ 1dc:	df 93       	push	r29
+ 1de:	cd b7       	in	r28, 0x3d	; 61
+ 1e0:	de b7       	in	r29, 0x3e	; 62
+ 1e2:	69 97       	sbiw	r28, 0x19	; 25
+ 1e4:	0f b6       	in	r0, 0x3f	; 63
+ 1e6:	f8 94       	cli
+ 1e8:	de bf       	out	0x3e, r29	; 62
+ 1ea:	0f be       	out	0x3f, r0	; 63
+ 1ec:	cd bf       	out	0x3d, r28	; 61
 	initIOpins();
- 1f4:	ed df       	rcall	.-38     	; 0x1d0 <_Z10initIOpinsv>
+ 1ee:	ed df       	rcall	.-38     	; 0x1ca <_Z10initIOpinsv>
 	initInterupt0();
- 1f6:	e4 df       	rcall	.-56     	; 0x1c0 <_Z13initInterupt0v>
- 1f8:	ce 01       	movw	r24, r28
+ 1f0:	e4 df       	rcall	.-56     	; 0x1ba <_Z13initInterupt0v>
+ 1f2:	ce 01       	movw	r24, r28
 	UART uart0;
- 1fa:	01 96       	adiw	r24, 0x01	; 1
- 1fc:	79 d2       	rcall	.+1266   	; 0x6f0 <_ZN4UARTC1Ev>
- 1fe:	64 e3       	ldi	r22, 0x34	; 52
+ 1f4:	01 96       	adiw	r24, 0x01	; 1
+ 1f6:	79 d2       	rcall	.+1266   	; 0x6ea <_ZN4UARTC1Ev>
+ 1f8:	64 e3       	ldi	r22, 0x34	; 52
 	
 	uart0.SendString("Program startet.\f\n\n\n\r");
- 200:	72 e0       	ldi	r23, 0x02	; 2
- 202:	ce 01       	movw	r24, r28
- 204:	01 96       	adiw	r24, 0x01	; 1
- 206:	89 d2       	rcall	.+1298   	; 0x71a <_ZN4UART10SendStringEPc>
- 208:	6a e4       	ldi	r22, 0x4A	; 74
+ 1fa:	72 e0       	ldi	r23, 0x02	; 2
+ 1fc:	ce 01       	movw	r24, r28
+ 1fe:	01 96       	adiw	r24, 0x01	; 1
+ 200:	89 d2       	rcall	.+1298   	; 0x714 <_ZN4UART10SendStringEPc>
+ 202:	6a e4       	ldi	r22, 0x4A	; 74
 	uart0.SendString("_________________________________________________  \n\n\r");
- 20a:	72 e0       	ldi	r23, 0x02	; 2
- 20c:	ce 01       	movw	r24, r28
- 20e:	01 96       	adiw	r24, 0x01	; 1
- 210:	84 d2       	rcall	.+1288   	; 0x71a <_ZN4UART10SendStringEPc>
- 212:	61 e8       	ldi	r22, 0x81	; 129
+ 204:	72 e0       	ldi	r23, 0x02	; 2
+ 206:	ce 01       	movw	r24, r28
+ 208:	01 96       	adiw	r24, 0x01	; 1
+ 20a:	84 d2       	rcall	.+1288   	; 0x714 <_ZN4UART10SendStringEPc>
+ 20c:	61 e8       	ldi	r22, 0x81	; 129
 	uart0.SendString("    X         X       X                  X X X X   \n\r");
- 214:	72 e0       	ldi	r23, 0x02	; 2
- 216:	ce 01       	movw	r24, r28
- 218:	01 96       	adiw	r24, 0x01	; 1
- 21a:	7f d2       	rcall	.+1278   	; 0x71a <_ZN4UART10SendStringEPc>
- 21c:	67 eb       	ldi	r22, 0xB7	; 183
+ 20e:	72 e0       	ldi	r23, 0x02	; 2
+ 210:	ce 01       	movw	r24, r28
+ 212:	01 96       	adiw	r24, 0x01	; 1
+ 214:	7f d2       	rcall	.+1278   	; 0x714 <_ZN4UART10SendStringEPc>
+ 216:	67 eb       	ldi	r22, 0xB7	; 183
 	uart0.SendString("   X X        X       X                        X   \n\r");
- 21e:	72 e0       	ldi	r23, 0x02	; 2
- 220:	ce 01       	movw	r24, r28
- 222:	01 96       	adiw	r24, 0x01	; 1
- 224:	7a d2       	rcall	.+1268   	; 0x71a <_ZN4UART10SendStringEPc>
- 226:	6d ee       	ldi	r22, 0xED	; 237
+ 218:	72 e0       	ldi	r23, 0x02	; 2
+ 21a:	ce 01       	movw	r24, r28
+ 21c:	01 96       	adiw	r24, 0x01	; 1
+ 21e:	7a d2       	rcall	.+1268   	; 0x714 <_ZN4UART10SendStringEPc>
+ 220:	6d ee       	ldi	r22, 0xED	; 237
 	uart0.SendString("  X   X       X       X    X X X X X     X X X X   \n\r");
- 228:	72 e0       	ldi	r23, 0x02	; 2
- 22a:	ce 01       	movw	r24, r28
- 22c:	01 96       	adiw	r24, 0x01	; 1
- 22e:	75 d2       	rcall	.+1258   	; 0x71a <_ZN4UART10SendStringEPc>
- 230:	63 e2       	ldi	r22, 0x23	; 35
+ 222:	72 e0       	ldi	r23, 0x02	; 2
+ 224:	ce 01       	movw	r24, r28
+ 226:	01 96       	adiw	r24, 0x01	; 1
+ 228:	75 d2       	rcall	.+1258   	; 0x714 <_ZN4UART10SendStringEPc>
+ 22a:	63 e2       	ldi	r22, 0x23	; 35
 	uart0.SendString(" X X X X       X     X                   X         \n\r");
- 232:	73 e0       	ldi	r23, 0x03	; 3
- 234:	ce 01       	movw	r24, r28
- 236:	01 96       	adiw	r24, 0x01	; 1
- 238:	70 d2       	rcall	.+1248   	; 0x71a <_ZN4UART10SendStringEPc>
- 23a:	69 e5       	ldi	r22, 0x59	; 89
+ 22c:	73 e0       	ldi	r23, 0x03	; 3
+ 22e:	ce 01       	movw	r24, r28
+ 230:	01 96       	adiw	r24, 0x01	; 1
+ 232:	70 d2       	rcall	.+1248   	; 0x714 <_ZN4UART10SendStringEPc>
+ 234:	69 e5       	ldi	r22, 0x59	; 89
 	uart0.SendString("X       X       X X X                    X X X X   \n\n\n\r");
- 23c:	73 e0       	ldi	r23, 0x03	; 3
- 23e:	ce 01       	movw	r24, r28
- 240:	01 96       	adiw	r24, 0x01	; 1
- 242:	6b d2       	rcall	.+1238   	; 0x71a <_ZN4UART10SendStringEPc>
- 244:	69 e4       	ldi	r22, 0x49	; 73
+ 236:	73 e0       	ldi	r23, 0x03	; 3
+ 238:	ce 01       	movw	r24, r28
+ 23a:	01 96       	adiw	r24, 0x01	; 1
+ 23c:	6b d2       	rcall	.+1238   	; 0x714 <_ZN4UART10SendStringEPc>
+ 23e:	69 e4       	ldi	r22, 0x49	; 73
 	uart0.SendString("");
- 246:	72 e0       	ldi	r23, 0x02	; 2
- 248:	ce 01       	movw	r24, r28
- 24a:	01 96       	adiw	r24, 0x01	; 1
- 24c:	66 d2       	rcall	.+1228   	; 0x71a <_ZN4UART10SendStringEPc>
- 24e:	61 e9       	ldi	r22, 0x91	; 145
+ 240:	72 e0       	ldi	r23, 0x02	; 2
+ 242:	ce 01       	movw	r24, r28
+ 244:	01 96       	adiw	r24, 0x01	; 1
+ 246:	66 d2       	rcall	.+1228   	; 0x714 <_ZN4UART10SendStringEPc>
+ 248:	61 e9       	ldi	r22, 0x91	; 145
 	uart0.SendString("X       X      X X X      X        X      X X X X  \n\r");
- 250:	73 e0       	ldi	r23, 0x03	; 3
- 252:	ce 01       	movw	r24, r28
- 254:	01 96       	adiw	r24, 0x01	; 1
- 256:	61 d2       	rcall	.+1218   	; 0x71a <_ZN4UART10SendStringEPc>
- 258:	67 ec       	ldi	r22, 0xC7	; 199
+ 24a:	73 e0       	ldi	r23, 0x03	; 3
+ 24c:	ce 01       	movw	r24, r28
+ 24e:	01 96       	adiw	r24, 0x01	; 1
+ 250:	61 d2       	rcall	.+1218   	; 0x714 <_ZN4UART10SendStringEPc>
+ 252:	67 ec       	ldi	r22, 0xC7	; 199
 	uart0.SendString("X       X     X     X     X X    X X      X        \n\r");
- 25a:	73 e0       	ldi	r23, 0x03	; 3
- 25c:	ce 01       	movw	r24, r28
- 25e:	01 96       	adiw	r24, 0x01	; 1
- 260:	5c d2       	rcall	.+1208   	; 0x71a <_ZN4UART10SendStringEPc>
- 262:	6d ef       	ldi	r22, 0xFD	; 253
+ 254:	73 e0       	ldi	r23, 0x03	; 3
+ 256:	ce 01       	movw	r24, r28
+ 258:	01 96       	adiw	r24, 0x01	; 1
+ 25a:	5c d2       	rcall	.+1208   	; 0x714 <_ZN4UART10SendStringEPc>
+ 25c:	6d ef       	ldi	r22, 0xFD	; 253
 	uart0.SendString("X X X X X    X       X    X  X  X  X      X X X    \n\r");
- 264:	73 e0       	ldi	r23, 0x03	; 3
- 266:	ce 01       	movw	r24, r28
- 268:	01 96       	adiw	r24, 0x01	; 1
- 26a:	57 d2       	rcall	.+1198   	; 0x71a <_ZN4UART10SendStringEPc>
- 26c:	63 e3       	ldi	r22, 0x33	; 51
+ 25e:	73 e0       	ldi	r23, 0x03	; 3
+ 260:	ce 01       	movw	r24, r28
+ 262:	01 96       	adiw	r24, 0x01	; 1
+ 264:	57 d2       	rcall	.+1198   	; 0x714 <_ZN4UART10SendStringEPc>
+ 266:	63 e3       	ldi	r22, 0x33	; 51
 	uart0.SendString("X       X     X     X     X   XX   X      X        \n\r");
- 26e:	74 e0       	ldi	r23, 0x04	; 4
- 270:	ce 01       	movw	r24, r28
- 272:	01 96       	adiw	r24, 0x01	; 1
- 274:	52 d2       	rcall	.+1188   	; 0x71a <_ZN4UART10SendStringEPc>
- 276:	61 e9       	ldi	r22, 0x91	; 145
+ 268:	74 e0       	ldi	r23, 0x04	; 4
+ 26a:	ce 01       	movw	r24, r28
+ 26c:	01 96       	adiw	r24, 0x01	; 1
+ 26e:	52 d2       	rcall	.+1188   	; 0x714 <_ZN4UART10SendStringEPc>
+ 270:	61 e9       	ldi	r22, 0x91	; 145
 	uart0.SendString("X       X      X X X      X        X      X X X X  \n\r");
- 278:	73 e0       	ldi	r23, 0x03	; 3
- 27a:	ce 01       	movw	r24, r28
- 27c:	01 96       	adiw	r24, 0x01	; 1
- 27e:	4d d2       	rcall	.+1178   	; 0x71a <_ZN4UART10SendStringEPc>
- 280:	69 e6       	ldi	r22, 0x69	; 105
+ 272:	73 e0       	ldi	r23, 0x03	; 3
+ 274:	ce 01       	movw	r24, r28
+ 276:	01 96       	adiw	r24, 0x01	; 1
+ 278:	4d d2       	rcall	.+1178   	; 0x714 <_ZN4UART10SendStringEPc>
+ 27a:	69 e6       	ldi	r22, 0x69	; 105
 	uart0.SendString("__________________________________________________ \n\n\r");
- 282:	74 e0       	ldi	r23, 0x04	; 4
- 284:	ce 01       	movw	r24, r28
- 286:	01 96       	adiw	r24, 0x01	; 1
- 288:	48 d2       	rcall	.+1168   	; 0x71a <_ZN4UART10SendStringEPc>
- 28a:	60 ea       	ldi	r22, 0xA0	; 160
+ 27c:	74 e0       	ldi	r23, 0x04	; 4
+ 27e:	ce 01       	movw	r24, r28
+ 280:	01 96       	adiw	r24, 0x01	; 1
+ 282:	48 d2       	rcall	.+1168   	; 0x714 <_ZN4UART10SendStringEPc>
+ 284:	60 ea       	ldi	r22, 0xA0	; 160
 	uart0.SendString("Taend lys:      Tast '1'                           \n\r");
- 28c:	74 e0       	ldi	r23, 0x04	; 4
- 28e:	ce 01       	movw	r24, r28
- 290:	01 96       	adiw	r24, 0x01	; 1
- 292:	43 d2       	rcall	.+1158   	; 0x71a <_ZN4UART10SendStringEPc>
- 294:	66 ed       	ldi	r22, 0xD6	; 214
+ 286:	74 e0       	ldi	r23, 0x04	; 4
+ 288:	ce 01       	movw	r24, r28
+ 28a:	01 96       	adiw	r24, 0x01	; 1
+ 28c:	43 d2       	rcall	.+1158   	; 0x714 <_ZN4UART10SendStringEPc>
+ 28e:	66 ed       	ldi	r22, 0xD6	; 214
 	uart0.SendString("Sluk lys:       Tast '2'                           \n\r");
- 296:	74 e0       	ldi	r23, 0x04	; 4
- 298:	ce 01       	movw	r24, r28
- 29a:	01 96       	adiw	r24, 0x01	; 1
- 29c:	3e d2       	rcall	.+1148   	; 0x71a <_ZN4UART10SendStringEPc>
- 29e:	6c e0       	ldi	r22, 0x0C	; 12
+ 290:	74 e0       	ldi	r23, 0x04	; 4
+ 292:	ce 01       	movw	r24, r28
+ 294:	01 96       	adiw	r24, 0x01	; 1
+ 296:	3e d2       	rcall	.+1148   	; 0x714 <_ZN4UART10SendStringEPc>
+ 298:	6c e0       	ldi	r22, 0x0C	; 12
 	uart0.SendString("Rul gardin op:  Tast '3'                           \n\r");
- 2a0:	75 e0       	ldi	r23, 0x05	; 5
- 2a2:	ce 01       	movw	r24, r28
- 2a4:	01 96       	adiw	r24, 0x01	; 1
- 2a6:	39 d2       	rcall	.+1138   	; 0x71a <_ZN4UART10SendStringEPc>
- 2a8:	62 e4       	ldi	r22, 0x42	; 66
+ 29a:	75 e0       	ldi	r23, 0x05	; 5
+ 29c:	ce 01       	movw	r24, r28
+ 29e:	01 96       	adiw	r24, 0x01	; 1
+ 2a0:	39 d2       	rcall	.+1138   	; 0x714 <_ZN4UART10SendStringEPc>
+ 2a2:	62 e4       	ldi	r22, 0x42	; 66
 	uart0.SendString("Rul gardin ned: Tast '4'                           \n\r");
- 2aa:	75 e0       	ldi	r23, 0x05	; 5
- 2ac:	ce 01       	movw	r24, r28
- 2ae:	01 96       	adiw	r24, 0x01	; 1
- 2b0:	34 d2       	rcall	.+1128   	; 0x71a <_ZN4UART10SendStringEPc>
- 2b2:	68 e7       	ldi	r22, 0x78	; 120
- 2b4:	75 e0       	ldi	r23, 0x05	; 5
+ 2a4:	75 e0       	ldi	r23, 0x05	; 5
+ 2a6:	ce 01       	movw	r24, r28
+ 2a8:	01 96       	adiw	r24, 0x01	; 1
+ 2aa:	34 d2       	rcall	.+1128   	; 0x714 <_ZN4UART10SendStringEPc>
+ 2ac:	68 e7       	ldi	r22, 0x78	; 120
+ 2ae:	75 e0       	ldi	r23, 0x05	; 5
 	uart0.SendString("Sluk Hjem:      Tast '5'                           \n\r");
- 2b6:	ce 01       	movw	r24, r28
- 2b8:	01 96       	adiw	r24, 0x01	; 1
- 2ba:	2f d2       	rcall	.+1118   	; 0x71a <_ZN4UART10SendStringEPc>
- 2bc:	6e ea       	ldi	r22, 0xAE	; 174
- 2be:	75 e0       	ldi	r23, 0x05	; 5
- 2c0:	ce 01       	movw	r24, r28
+ 2b0:	ce 01       	movw	r24, r28
+ 2b2:	01 96       	adiw	r24, 0x01	; 1
+ 2b4:	2f d2       	rcall	.+1118   	; 0x714 <_ZN4UART10SendStringEPc>
+ 2b6:	6e ea       	ldi	r22, 0xAE	; 174
+ 2b8:	75 e0       	ldi	r23, 0x05	; 5
+ 2ba:	ce 01       	movw	r24, r28
 	uart0.SendString("__________________________________________________ \n\r");	
- 2c2:	01 96       	adiw	r24, 0x01	; 1
- 2c4:	2a d2       	rcall	.+1108   	; 0x71a <_ZN4UART10SendStringEPc>
- 2c6:	10 e3       	ldi	r17, 0x30	; 48
- 2c8:	80 91 5a 06 	lds	r24, 0x065A	; 0x80065a <modtaget>
- 2cc:	81 33       	cpi	r24, 0x31	; 49
+ 2bc:	01 96       	adiw	r24, 0x01	; 1
+ 2be:	2a d2       	rcall	.+1108   	; 0x714 <_ZN4UART10SendStringEPc>
+ 2c0:	10 e3       	ldi	r17, 0x30	; 48
+ 2c2:	80 91 5a 06 	lds	r24, 0x065A	; 0x80065a <modtaget>
+ 2c6:	81 33       	cpi	r24, 0x31	; 49
 				}
 						
 				PORTB = PINB ^ 0b11111111;
 
 			}
 		modtaget = '0';
- 2ce:	89 f0       	breq	.+34     	; 0x2f2 <main+0x112>
+ 2c8:	89 f0       	breq	.+34     	; 0x2ec <main+0x112>
     /* Replace with your application code */
     while (1) 
     {
 			
 			
 			if ((modtaget == '1') || (modtaget == '2') || (modtaget == '3') || (modtaget == '4') || (modtaget == '5'))
- 2d0:	80 91 5a 06 	lds	r24, 0x065A	; 0x80065a <modtaget>
- 2d4:	82 33       	cpi	r24, 0x32	; 50
- 2d6:	69 f0       	breq	.+26     	; 0x2f2 <main+0x112>
- 2d8:	80 91 5a 06 	lds	r24, 0x065A	; 0x80065a <modtaget>
- 2dc:	83 33       	cpi	r24, 0x33	; 51
- 2de:	49 f0       	breq	.+18     	; 0x2f2 <main+0x112>
- 2e0:	80 91 5a 06 	lds	r24, 0x065A	; 0x80065a <modtaget>
- 2e4:	84 33       	cpi	r24, 0x34	; 52
- 2e6:	29 f0       	breq	.+10     	; 0x2f2 <main+0x112>
- 2e8:	80 91 5a 06 	lds	r24, 0x065A	; 0x80065a <modtaget>
- 2ec:	85 33       	cpi	r24, 0x35	; 53
- 2ee:	09 f0       	breq	.+2      	; 0x2f2 <main+0x112>
- 2f0:	fd c0       	rjmp	.+506    	; 0x4ec <__LOCK_REGION_LENGTH__+0xec>
- 2f2:	80 91 5a 06 	lds	r24, 0x065A	; 0x80065a <modtaget>
- 2f6:	83 33       	cpi	r24, 0x33	; 51
+ 2ca:	80 91 5a 06 	lds	r24, 0x065A	; 0x80065a <modtaget>
+ 2ce:	82 33       	cpi	r24, 0x32	; 50
+ 2d0:	69 f0       	breq	.+26     	; 0x2ec <main+0x112>
+ 2d2:	80 91 5a 06 	lds	r24, 0x065A	; 0x80065a <modtaget>
+ 2d6:	83 33       	cpi	r24, 0x33	; 51
+ 2d8:	49 f0       	breq	.+18     	; 0x2ec <main+0x112>
+ 2da:	80 91 5a 06 	lds	r24, 0x065A	; 0x80065a <modtaget>
+ 2de:	84 33       	cpi	r24, 0x34	; 52
+ 2e0:	29 f0       	breq	.+10     	; 0x2ec <main+0x112>
+ 2e2:	80 91 5a 06 	lds	r24, 0x065A	; 0x80065a <modtaget>
+ 2e6:	85 33       	cpi	r24, 0x35	; 53
+ 2e8:	09 f0       	breq	.+2      	; 0x2ec <main+0x112>
+ 2ea:	fd c0       	rjmp	.+506    	; 0x4e6 <__LOCK_REGION_LENGTH__+0xe6>
+ 2ec:	80 91 5a 06 	lds	r24, 0x065A	; 0x80065a <modtaget>
+ 2f0:	83 33       	cpi	r24, 0x33	; 51
 			{
 				switch (modtaget)
- 2f8:	09 f4       	brne	.+2      	; 0x2fc <main+0x11c>
- 2fa:	55 c0       	rjmp	.+170    	; 0x3a6 <main+0x1c6>
- 2fc:	28 f4       	brcc	.+10     	; 0x308 <main+0x128>
- 2fe:	81 33       	cpi	r24, 0x31	; 49
- 300:	51 f0       	breq	.+20     	; 0x316 <main+0x136>
- 302:	82 33       	cpi	r24, 0x32	; 50
- 304:	61 f1       	breq	.+88     	; 0x35e <main+0x17e>
- 306:	ba c0       	rjmp	.+372    	; 0x47c <__LOCK_REGION_LENGTH__+0x7c>
- 308:	84 33       	cpi	r24, 0x34	; 52
- 30a:	09 f4       	brne	.+2      	; 0x30e <main+0x12e>
- 30c:	70 c0       	rjmp	.+224    	; 0x3ee <main+0x20e>
- 30e:	85 33       	cpi	r24, 0x35	; 53
- 310:	09 f4       	brne	.+2      	; 0x314 <main+0x134>
- 312:	91 c0       	rjmp	.+290    	; 0x436 <__LOCK_REGION_LENGTH__+0x36>
- 314:	b3 c0       	rjmp	.+358    	; 0x47c <__LOCK_REGION_LENGTH__+0x7c>
- 316:	64 ee       	ldi	r22, 0xE4	; 228
- 318:	75 e0       	ldi	r23, 0x05	; 5
+ 2f2:	09 f4       	brne	.+2      	; 0x2f6 <main+0x11c>
+ 2f4:	55 c0       	rjmp	.+170    	; 0x3a0 <main+0x1c6>
+ 2f6:	28 f4       	brcc	.+10     	; 0x302 <main+0x128>
+ 2f8:	81 33       	cpi	r24, 0x31	; 49
+ 2fa:	51 f0       	breq	.+20     	; 0x310 <main+0x136>
+ 2fc:	82 33       	cpi	r24, 0x32	; 50
+ 2fe:	61 f1       	breq	.+88     	; 0x358 <main+0x17e>
+ 300:	ba c0       	rjmp	.+372    	; 0x476 <__LOCK_REGION_LENGTH__+0x76>
+ 302:	84 33       	cpi	r24, 0x34	; 52
+ 304:	09 f4       	brne	.+2      	; 0x308 <main+0x12e>
+ 306:	70 c0       	rjmp	.+224    	; 0x3e8 <main+0x20e>
+ 308:	85 33       	cpi	r24, 0x35	; 53
+ 30a:	09 f4       	brne	.+2      	; 0x30e <main+0x134>
+ 30c:	91 c0       	rjmp	.+290    	; 0x430 <__LOCK_REGION_LENGTH__+0x30>
+ 30e:	b3 c0       	rjmp	.+358    	; 0x476 <__LOCK_REGION_LENGTH__+0x76>
+ 310:	64 ee       	ldi	r22, 0xE4	; 228
+ 312:	75 e0       	ldi	r23, 0x05	; 5
 				{
 				case '1':
 				{
 					uart0.SendString("Lampen taendes.\n\r");
- 31a:	ce 01       	movw	r24, r28
- 31c:	01 96       	adiw	r24, 0x01	; 1
- 31e:	fd d1       	rcall	.+1018   	; 0x71a <_ZN4UART10SendStringEPc>
- 320:	8c e0       	ldi	r24, 0x0C	; 12
- 322:	e0 e1       	ldi	r30, 0x10	; 16
- 324:	f2 e0       	ldi	r31, 0x02	; 2
+ 314:	ce 01       	movw	r24, r28
+ 316:	01 96       	adiw	r24, 0x01	; 1
+ 318:	fd d1       	rcall	.+1018   	; 0x714 <_ZN4UART10SendStringEPc>
+ 31a:	8c e0       	ldi	r24, 0x0C	; 12
+ 31c:	e0 e1       	ldi	r30, 0x10	; 16
+ 31e:	f2 e0       	ldi	r31, 0x02	; 2
 					int adresse[6] = {0,1,0,1,0,1};
- 326:	de 01       	movw	r26, r28
- 328:	1e 96       	adiw	r26, 0x0e	; 14
- 32a:	01 90       	ld	r0, Z+
- 32c:	0d 92       	st	X+, r0
- 32e:	8a 95       	dec	r24
- 330:	e1 f7       	brne	.-8      	; 0x32a <main+0x14a>
- 332:	be 01       	movw	r22, r28
- 334:	62 5f       	subi	r22, 0xF2	; 242
+ 320:	de 01       	movw	r26, r28
+ 322:	1e 96       	adiw	r26, 0x0e	; 14
+ 324:	01 90       	ld	r0, Z+
+ 326:	0d 92       	st	X+, r0
+ 328:	8a 95       	dec	r24
+ 32a:	e1 f7       	brne	.-8      	; 0x324 <main+0x14a>
+ 32c:	be 01       	movw	r22, r28
+ 32e:	62 5f       	subi	r22, 0xF2	; 242
 					sender.setAdresse(adresse);
- 336:	7f 4f       	sbci	r23, 0xFF	; 255
- 338:	80 e4       	ldi	r24, 0x40	; 64
- 33a:	96 e0       	ldi	r25, 0x06	; 6
- 33c:	e9 d0       	rcall	.+466    	; 0x510 <_ZN11Transmitter10setAdresseEPi>
- 33e:	8c e0       	ldi	r24, 0x0C	; 12
- 340:	ec e1       	ldi	r30, 0x1C	; 28
+ 330:	7f 4f       	sbci	r23, 0xFF	; 255
+ 332:	80 e4       	ldi	r24, 0x40	; 64
+ 334:	96 e0       	ldi	r25, 0x06	; 6
+ 336:	e9 d0       	rcall	.+466    	; 0x50a <_ZN11Transmitter10setAdresseEPi>
+ 338:	8c e0       	ldi	r24, 0x0C	; 12
+ 33a:	ec e1       	ldi	r30, 0x1C	; 28
 					int kommando[6] = {1,0,1,0,1,0};
- 342:	f2 e0       	ldi	r31, 0x02	; 2
- 344:	de 01       	movw	r26, r28
- 346:	12 96       	adiw	r26, 0x02	; 2
- 348:	01 90       	ld	r0, Z+
- 34a:	0d 92       	st	X+, r0
- 34c:	8a 95       	dec	r24
- 34e:	e1 f7       	brne	.-8      	; 0x348 <main+0x168>
- 350:	be 01       	movw	r22, r28
- 352:	6e 5f       	subi	r22, 0xFE	; 254
+ 33c:	f2 e0       	ldi	r31, 0x02	; 2
+ 33e:	de 01       	movw	r26, r28
+ 340:	12 96       	adiw	r26, 0x02	; 2
+ 342:	01 90       	ld	r0, Z+
+ 344:	0d 92       	st	X+, r0
+ 346:	8a 95       	dec	r24
+ 348:	e1 f7       	brne	.-8      	; 0x342 <main+0x168>
+ 34a:	be 01       	movw	r22, r28
+ 34c:	6e 5f       	subi	r22, 0xFE	; 254
 					sender.setKommando(kommando);
- 354:	7f 4f       	sbci	r23, 0xFF	; 255
- 356:	80 e4       	ldi	r24, 0x40	; 64
- 358:	96 e0       	ldi	r25, 0x06	; 6
- 35a:	e6 d0       	rcall	.+460    	; 0x528 <_ZN11Transmitter11setKommandoEPi>
- 35c:	8f c0       	rjmp	.+286    	; 0x47c <__LOCK_REGION_LENGTH__+0x7c>
- 35e:	66 ef       	ldi	r22, 0xF6	; 246
+ 34e:	7f 4f       	sbci	r23, 0xFF	; 255
+ 350:	80 e4       	ldi	r24, 0x40	; 64
+ 352:	96 e0       	ldi	r25, 0x06	; 6
+ 354:	e6 d0       	rcall	.+460    	; 0x522 <_ZN11Transmitter11setKommandoEPi>
+ 356:	8f c0       	rjmp	.+286    	; 0x476 <__LOCK_REGION_LENGTH__+0x76>
+ 358:	66 ef       	ldi	r22, 0xF6	; 246
 				}
 					break;
- 360:	75 e0       	ldi	r23, 0x05	; 5
+ 35a:	75 e0       	ldi	r23, 0x05	; 5
 					
 				case '2':
 				{
 					uart0.SendString("Lampen slukkes\n\r");
- 362:	ce 01       	movw	r24, r28
- 364:	01 96       	adiw	r24, 0x01	; 1
- 366:	d9 d1       	rcall	.+946    	; 0x71a <_ZN4UART10SendStringEPc>
- 368:	8c e0       	ldi	r24, 0x0C	; 12
- 36a:	e0 e1       	ldi	r30, 0x10	; 16
- 36c:	f2 e0       	ldi	r31, 0x02	; 2
+ 35c:	ce 01       	movw	r24, r28
+ 35e:	01 96       	adiw	r24, 0x01	; 1
+ 360:	d9 d1       	rcall	.+946    	; 0x714 <_ZN4UART10SendStringEPc>
+ 362:	8c e0       	ldi	r24, 0x0C	; 12
+ 364:	e0 e1       	ldi	r30, 0x10	; 16
+ 366:	f2 e0       	ldi	r31, 0x02	; 2
 					int adresse[6] = {0,1,0,1,0,1};
- 36e:	de 01       	movw	r26, r28
- 370:	1e 96       	adiw	r26, 0x0e	; 14
- 372:	01 90       	ld	r0, Z+
- 374:	0d 92       	st	X+, r0
- 376:	8a 95       	dec	r24
- 378:	e1 f7       	brne	.-8      	; 0x372 <main+0x192>
- 37a:	be 01       	movw	r22, r28
- 37c:	62 5f       	subi	r22, 0xF2	; 242
+ 368:	de 01       	movw	r26, r28
+ 36a:	1e 96       	adiw	r26, 0x0e	; 14
+ 36c:	01 90       	ld	r0, Z+
+ 36e:	0d 92       	st	X+, r0
+ 370:	8a 95       	dec	r24
+ 372:	e1 f7       	brne	.-8      	; 0x36c <main+0x192>
+ 374:	be 01       	movw	r22, r28
+ 376:	62 5f       	subi	r22, 0xF2	; 242
 					sender.setAdresse(adresse);
- 37e:	7f 4f       	sbci	r23, 0xFF	; 255
- 380:	80 e4       	ldi	r24, 0x40	; 64
- 382:	96 e0       	ldi	r25, 0x06	; 6
- 384:	c5 d0       	rcall	.+394    	; 0x510 <_ZN11Transmitter10setAdresseEPi>
- 386:	8c e0       	ldi	r24, 0x0C	; 12
- 388:	e0 e1       	ldi	r30, 0x10	; 16
- 38a:	f2 e0       	ldi	r31, 0x02	; 2
+ 378:	7f 4f       	sbci	r23, 0xFF	; 255
+ 37a:	80 e4       	ldi	r24, 0x40	; 64
+ 37c:	96 e0       	ldi	r25, 0x06	; 6
+ 37e:	c5 d0       	rcall	.+394    	; 0x50a <_ZN11Transmitter10setAdresseEPi>
+ 380:	8c e0       	ldi	r24, 0x0C	; 12
+ 382:	e0 e1       	ldi	r30, 0x10	; 16
+ 384:	f2 e0       	ldi	r31, 0x02	; 2
 					int kommando[6] = {0,1,0,1,0,1};
- 38c:	de 01       	movw	r26, r28
- 38e:	12 96       	adiw	r26, 0x02	; 2
- 390:	01 90       	ld	r0, Z+
- 392:	0d 92       	st	X+, r0
- 394:	8a 95       	dec	r24
- 396:	e1 f7       	brne	.-8      	; 0x390 <main+0x1b0>
- 398:	be 01       	movw	r22, r28
- 39a:	6e 5f       	subi	r22, 0xFE	; 254
+ 386:	de 01       	movw	r26, r28
+ 388:	12 96       	adiw	r26, 0x02	; 2
+ 38a:	01 90       	ld	r0, Z+
+ 38c:	0d 92       	st	X+, r0
+ 38e:	8a 95       	dec	r24
+ 390:	e1 f7       	brne	.-8      	; 0x38a <main+0x1b0>
+ 392:	be 01       	movw	r22, r28
+ 394:	6e 5f       	subi	r22, 0xFE	; 254
 					sender.setKommando(kommando);	
- 39c:	7f 4f       	sbci	r23, 0xFF	; 255
- 39e:	80 e4       	ldi	r24, 0x40	; 64
- 3a0:	96 e0       	ldi	r25, 0x06	; 6
- 3a2:	c2 d0       	rcall	.+388    	; 0x528 <_ZN11Transmitter11setKommandoEPi>
- 3a4:	6b c0       	rjmp	.+214    	; 0x47c <__LOCK_REGION_LENGTH__+0x7c>
- 3a6:	67 e0       	ldi	r22, 0x07	; 7
- 3a8:	76 e0       	ldi	r23, 0x06	; 6
+ 396:	7f 4f       	sbci	r23, 0xFF	; 255
+ 398:	80 e4       	ldi	r24, 0x40	; 64
+ 39a:	96 e0       	ldi	r25, 0x06	; 6
+ 39c:	c2 d0       	rcall	.+388    	; 0x522 <_ZN11Transmitter11setKommandoEPi>
+ 39e:	6b c0       	rjmp	.+214    	; 0x476 <__LOCK_REGION_LENGTH__+0x76>
+ 3a0:	67 e0       	ldi	r22, 0x07	; 7
+ 3a2:	76 e0       	ldi	r23, 0x06	; 6
 				}
 					break;
- 3aa:	ce 01       	movw	r24, r28
+ 3a4:	ce 01       	movw	r24, r28
 				case '3':
 				{
 					uart0.SendString("Gardin rulles op\n\r");
- 3ac:	01 96       	adiw	r24, 0x01	; 1
- 3ae:	b5 d1       	rcall	.+874    	; 0x71a <_ZN4UART10SendStringEPc>
- 3b0:	8c e0       	ldi	r24, 0x0C	; 12
- 3b2:	e8 e2       	ldi	r30, 0x28	; 40
- 3b4:	f2 e0       	ldi	r31, 0x02	; 2
+ 3a6:	01 96       	adiw	r24, 0x01	; 1
+ 3a8:	b5 d1       	rcall	.+874    	; 0x714 <_ZN4UART10SendStringEPc>
+ 3aa:	8c e0       	ldi	r24, 0x0C	; 12
+ 3ac:	e8 e2       	ldi	r30, 0x28	; 40
+ 3ae:	f2 e0       	ldi	r31, 0x02	; 2
 					int adresse[6] = {1,0,0,1,1,0};
- 3b6:	de 01       	movw	r26, r28
- 3b8:	1e 96       	adiw	r26, 0x0e	; 14
- 3ba:	01 90       	ld	r0, Z+
- 3bc:	0d 92       	st	X+, r0
- 3be:	8a 95       	dec	r24
- 3c0:	e1 f7       	brne	.-8      	; 0x3ba <main+0x1da>
- 3c2:	be 01       	movw	r22, r28
- 3c4:	62 5f       	subi	r22, 0xF2	; 242
+ 3b0:	de 01       	movw	r26, r28
+ 3b2:	1e 96       	adiw	r26, 0x0e	; 14
+ 3b4:	01 90       	ld	r0, Z+
+ 3b6:	0d 92       	st	X+, r0
+ 3b8:	8a 95       	dec	r24
+ 3ba:	e1 f7       	brne	.-8      	; 0x3b4 <main+0x1da>
+ 3bc:	be 01       	movw	r22, r28
+ 3be:	62 5f       	subi	r22, 0xF2	; 242
 					sender.setAdresse(adresse);
- 3c6:	7f 4f       	sbci	r23, 0xFF	; 255
- 3c8:	80 e4       	ldi	r24, 0x40	; 64
- 3ca:	96 e0       	ldi	r25, 0x06	; 6
- 3cc:	a1 d0       	rcall	.+322    	; 0x510 <_ZN11Transmitter10setAdresseEPi>
- 3ce:	8c e0       	ldi	r24, 0x0C	; 12
- 3d0:	ec e1       	ldi	r30, 0x1C	; 28
- 3d2:	f2 e0       	ldi	r31, 0x02	; 2
+ 3c0:	7f 4f       	sbci	r23, 0xFF	; 255
+ 3c2:	80 e4       	ldi	r24, 0x40	; 64
+ 3c4:	96 e0       	ldi	r25, 0x06	; 6
+ 3c6:	a1 d0       	rcall	.+322    	; 0x50a <_ZN11Transmitter10setAdresseEPi>
+ 3c8:	8c e0       	ldi	r24, 0x0C	; 12
+ 3ca:	ec e1       	ldi	r30, 0x1C	; 28
+ 3cc:	f2 e0       	ldi	r31, 0x02	; 2
 					int kommando[6] = {1,0,1,0,1,0};
- 3d4:	de 01       	movw	r26, r28
- 3d6:	12 96       	adiw	r26, 0x02	; 2
- 3d8:	01 90       	ld	r0, Z+
- 3da:	0d 92       	st	X+, r0
- 3dc:	8a 95       	dec	r24
- 3de:	e1 f7       	brne	.-8      	; 0x3d8 <main+0x1f8>
- 3e0:	be 01       	movw	r22, r28
- 3e2:	6e 5f       	subi	r22, 0xFE	; 254
+ 3ce:	de 01       	movw	r26, r28
+ 3d0:	12 96       	adiw	r26, 0x02	; 2
+ 3d2:	01 90       	ld	r0, Z+
+ 3d4:	0d 92       	st	X+, r0
+ 3d6:	8a 95       	dec	r24
+ 3d8:	e1 f7       	brne	.-8      	; 0x3d2 <main+0x1f8>
+ 3da:	be 01       	movw	r22, r28
+ 3dc:	6e 5f       	subi	r22, 0xFE	; 254
 					sender.setKommando(kommando);
- 3e4:	7f 4f       	sbci	r23, 0xFF	; 255
- 3e6:	80 e4       	ldi	r24, 0x40	; 64
- 3e8:	96 e0       	ldi	r25, 0x06	; 6
- 3ea:	9e d0       	rcall	.+316    	; 0x528 <_ZN11Transmitter11setKommandoEPi>
- 3ec:	47 c0       	rjmp	.+142    	; 0x47c <__LOCK_REGION_LENGTH__+0x7c>
- 3ee:	6a e1       	ldi	r22, 0x1A	; 26
- 3f0:	76 e0       	ldi	r23, 0x06	; 6
+ 3de:	7f 4f       	sbci	r23, 0xFF	; 255
+ 3e0:	80 e4       	ldi	r24, 0x40	; 64
+ 3e2:	96 e0       	ldi	r25, 0x06	; 6
+ 3e4:	9e d0       	rcall	.+316    	; 0x522 <_ZN11Transmitter11setKommandoEPi>
+ 3e6:	47 c0       	rjmp	.+142    	; 0x476 <__LOCK_REGION_LENGTH__+0x76>
+ 3e8:	6a e1       	ldi	r22, 0x1A	; 26
+ 3ea:	76 e0       	ldi	r23, 0x06	; 6
 				}
 				break;
- 3f2:	ce 01       	movw	r24, r28
+ 3ec:	ce 01       	movw	r24, r28
 				case '4':
 				{
 					uart0.SendString("Gardin rulles ned\n\r");
- 3f4:	01 96       	adiw	r24, 0x01	; 1
- 3f6:	91 d1       	rcall	.+802    	; 0x71a <_ZN4UART10SendStringEPc>
- 3f8:	8c e0       	ldi	r24, 0x0C	; 12
- 3fa:	e8 e2       	ldi	r30, 0x28	; 40
- 3fc:	f2 e0       	ldi	r31, 0x02	; 2
+ 3ee:	01 96       	adiw	r24, 0x01	; 1
+ 3f0:	91 d1       	rcall	.+802    	; 0x714 <_ZN4UART10SendStringEPc>
+ 3f2:	8c e0       	ldi	r24, 0x0C	; 12
+ 3f4:	e8 e2       	ldi	r30, 0x28	; 40
+ 3f6:	f2 e0       	ldi	r31, 0x02	; 2
 					int adresse[6] = {1,0,0,1,1,0};
- 3fe:	de 01       	movw	r26, r28
- 400:	1e 96       	adiw	r26, 0x0e	; 14
- 402:	01 90       	ld	r0, Z+
- 404:	0d 92       	st	X+, r0
- 406:	8a 95       	dec	r24
- 408:	e1 f7       	brne	.-8      	; 0x402 <__LOCK_REGION_LENGTH__+0x2>
- 40a:	be 01       	movw	r22, r28
- 40c:	62 5f       	subi	r22, 0xF2	; 242
+ 3f8:	de 01       	movw	r26, r28
+ 3fa:	1e 96       	adiw	r26, 0x0e	; 14
+ 3fc:	01 90       	ld	r0, Z+
+ 3fe:	0d 92       	st	X+, r0
+ 400:	8a 95       	dec	r24
+ 402:	e1 f7       	brne	.-8      	; 0x3fc <main+0x222>
+ 404:	be 01       	movw	r22, r28
+ 406:	62 5f       	subi	r22, 0xF2	; 242
 					sender.setAdresse(adresse);
- 40e:	7f 4f       	sbci	r23, 0xFF	; 255
- 410:	80 e4       	ldi	r24, 0x40	; 64
- 412:	96 e0       	ldi	r25, 0x06	; 6
- 414:	7d d0       	rcall	.+250    	; 0x510 <_ZN11Transmitter10setAdresseEPi>
- 416:	8c e0       	ldi	r24, 0x0C	; 12
- 418:	e0 e1       	ldi	r30, 0x10	; 16
- 41a:	f2 e0       	ldi	r31, 0x02	; 2
+ 408:	7f 4f       	sbci	r23, 0xFF	; 255
+ 40a:	80 e4       	ldi	r24, 0x40	; 64
+ 40c:	96 e0       	ldi	r25, 0x06	; 6
+ 40e:	7d d0       	rcall	.+250    	; 0x50a <_ZN11Transmitter10setAdresseEPi>
+ 410:	8c e0       	ldi	r24, 0x0C	; 12
+ 412:	e0 e1       	ldi	r30, 0x10	; 16
+ 414:	f2 e0       	ldi	r31, 0x02	; 2
 					int kommando[6] = {0,1,0,1,0,1};
- 41c:	de 01       	movw	r26, r28
- 41e:	12 96       	adiw	r26, 0x02	; 2
- 420:	01 90       	ld	r0, Z+
- 422:	0d 92       	st	X+, r0
- 424:	8a 95       	dec	r24
- 426:	e1 f7       	brne	.-8      	; 0x420 <__LOCK_REGION_LENGTH__+0x20>
- 428:	be 01       	movw	r22, r28
- 42a:	6e 5f       	subi	r22, 0xFE	; 254
+ 416:	de 01       	movw	r26, r28
+ 418:	12 96       	adiw	r26, 0x02	; 2
+ 41a:	01 90       	ld	r0, Z+
+ 41c:	0d 92       	st	X+, r0
+ 41e:	8a 95       	dec	r24
+ 420:	e1 f7       	brne	.-8      	; 0x41a <__LOCK_REGION_LENGTH__+0x1a>
+ 422:	be 01       	movw	r22, r28
+ 424:	6e 5f       	subi	r22, 0xFE	; 254
 					sender.setKommando(kommando);
- 42c:	7f 4f       	sbci	r23, 0xFF	; 255
- 42e:	80 e4       	ldi	r24, 0x40	; 64
- 430:	96 e0       	ldi	r25, 0x06	; 6
- 432:	7a d0       	rcall	.+244    	; 0x528 <_ZN11Transmitter11setKommandoEPi>
- 434:	23 c0       	rjmp	.+70     	; 0x47c <__LOCK_REGION_LENGTH__+0x7c>
- 436:	6e e2       	ldi	r22, 0x2E	; 46
- 438:	76 e0       	ldi	r23, 0x06	; 6
+ 426:	7f 4f       	sbci	r23, 0xFF	; 255
+ 428:	80 e4       	ldi	r24, 0x40	; 64
+ 42a:	96 e0       	ldi	r25, 0x06	; 6
+ 42c:	7a d0       	rcall	.+244    	; 0x522 <_ZN11Transmitter11setKommandoEPi>
+ 42e:	23 c0       	rjmp	.+70     	; 0x476 <__LOCK_REGION_LENGTH__+0x76>
+ 430:	6e e2       	ldi	r22, 0x2E	; 46
+ 432:	76 e0       	ldi	r23, 0x06	; 6
 				}
 				break;
 				case '5':
 				{
 					uart0.SendString("Hjem lukkes ned\n\r");
- 43a:	ce 01       	movw	r24, r28
- 43c:	01 96       	adiw	r24, 0x01	; 1
- 43e:	6d d1       	rcall	.+730    	; 0x71a <_ZN4UART10SendStringEPc>
- 440:	8c e0       	ldi	r24, 0x0C	; 12
- 442:	e8 e2       	ldi	r30, 0x28	; 40
+ 434:	ce 01       	movw	r24, r28
+ 436:	01 96       	adiw	r24, 0x01	; 1
+ 438:	6d d1       	rcall	.+730    	; 0x714 <_ZN4UART10SendStringEPc>
+ 43a:	8c e0       	ldi	r24, 0x0C	; 12
+ 43c:	e8 e2       	ldi	r30, 0x28	; 40
 					int adresse[6] = {1,0,0,1,1,0};
- 444:	f2 e0       	ldi	r31, 0x02	; 2
- 446:	de 01       	movw	r26, r28
- 448:	1e 96       	adiw	r26, 0x0e	; 14
- 44a:	01 90       	ld	r0, Z+
- 44c:	0d 92       	st	X+, r0
- 44e:	8a 95       	dec	r24
- 450:	e1 f7       	brne	.-8      	; 0x44a <__LOCK_REGION_LENGTH__+0x4a>
+ 43e:	f2 e0       	ldi	r31, 0x02	; 2
+ 440:	de 01       	movw	r26, r28
+ 442:	1e 96       	adiw	r26, 0x0e	; 14
+ 444:	01 90       	ld	r0, Z+
+ 446:	0d 92       	st	X+, r0
+ 448:	8a 95       	dec	r24
+ 44a:	e1 f7       	brne	.-8      	; 0x444 <__LOCK_REGION_LENGTH__+0x44>
 					sender.setAdresse(adresse);
- 452:	be 01       	movw	r22, r28
- 454:	62 5f       	subi	r22, 0xF2	; 242
- 456:	7f 4f       	sbci	r23, 0xFF	; 255
- 458:	80 e4       	ldi	r24, 0x40	; 64
- 45a:	96 e0       	ldi	r25, 0x06	; 6
- 45c:	59 d0       	rcall	.+178    	; 0x510 <_ZN11Transmitter10setAdresseEPi>
+ 44c:	be 01       	movw	r22, r28
+ 44e:	62 5f       	subi	r22, 0xF2	; 242
+ 450:	7f 4f       	sbci	r23, 0xFF	; 255
+ 452:	80 e4       	ldi	r24, 0x40	; 64
+ 454:	96 e0       	ldi	r25, 0x06	; 6
+ 456:	59 d0       	rcall	.+178    	; 0x50a <_ZN11Transmitter10setAdresseEPi>
 					int kommando[6] = {0,1,0,1,0,1};
- 45e:	8c e0       	ldi	r24, 0x0C	; 12
- 460:	e0 e1       	ldi	r30, 0x10	; 16
- 462:	f2 e0       	ldi	r31, 0x02	; 2
- 464:	de 01       	movw	r26, r28
- 466:	12 96       	adiw	r26, 0x02	; 2
- 468:	01 90       	ld	r0, Z+
- 46a:	0d 92       	st	X+, r0
- 46c:	8a 95       	dec	r24
+ 458:	8c e0       	ldi	r24, 0x0C	; 12
+ 45a:	e0 e1       	ldi	r30, 0x10	; 16
+ 45c:	f2 e0       	ldi	r31, 0x02	; 2
+ 45e:	de 01       	movw	r26, r28
+ 460:	12 96       	adiw	r26, 0x02	; 2
+ 462:	01 90       	ld	r0, Z+
+ 464:	0d 92       	st	X+, r0
+ 466:	8a 95       	dec	r24
 					sender.setKommando(kommando);
- 46e:	e1 f7       	brne	.-8      	; 0x468 <__LOCK_REGION_LENGTH__+0x68>
- 470:	be 01       	movw	r22, r28
- 472:	6e 5f       	subi	r22, 0xFE	; 254
- 474:	7f 4f       	sbci	r23, 0xFF	; 255
- 476:	80 e4       	ldi	r24, 0x40	; 64
- 478:	96 e0       	ldi	r25, 0x06	; 6
- 47a:	56 d0       	rcall	.+172    	; 0x528 <_ZN11Transmitter11setKommandoEPi>
+ 468:	e1 f7       	brne	.-8      	; 0x462 <__LOCK_REGION_LENGTH__+0x62>
+ 46a:	be 01       	movw	r22, r28
+ 46c:	6e 5f       	subi	r22, 0xFE	; 254
+ 46e:	7f 4f       	sbci	r23, 0xFF	; 255
+ 470:	80 e4       	ldi	r24, 0x40	; 64
+ 472:	96 e0       	ldi	r25, 0x06	; 6
+ 474:	56 d0       	rcall	.+172    	; 0x522 <_ZN11Transmitter11setKommandoEPi>
 				}				
 				default:
 					break;
 				}
 				
 				sender.setZeroCross(0);
- 47c:	60 e0       	ldi	r22, 0x00	; 0
- 47e:	70 e0       	ldi	r23, 0x00	; 0
- 480:	80 e4       	ldi	r24, 0x40	; 64
- 482:	96 e0       	ldi	r25, 0x06	; 6
- 484:	3e d0       	rcall	.+124    	; 0x502 <_ZN11Transmitter12setZeroCrossEi>
+ 476:	60 e0       	ldi	r22, 0x00	; 0
+ 478:	70 e0       	ldi	r23, 0x00	; 0
+ 47a:	80 e4       	ldi	r24, 0x40	; 64
+ 47c:	96 e0       	ldi	r25, 0x06	; 6
+ 47e:	3e d0       	rcall	.+124    	; 0x4fc <_ZN11Transmitter12setZeroCrossEi>
 				
 				sender.sendStartBits();
+ 480:	80 e4       	ldi	r24, 0x40	; 64
+ 482:	96 e0       	ldi	r25, 0x06	; 6
+ 484:	64 d0       	rcall	.+200    	; 0x54e <_ZN11Transmitter13sendStartBitsEv>
+				sender.sendAdresseBits();
  486:	80 e4       	ldi	r24, 0x40	; 64
  488:	96 e0       	ldi	r25, 0x06	; 6
- 48a:	64 d0       	rcall	.+200    	; 0x554 <_ZN11Transmitter13sendStartBitsEv>
-				sender.sendAdresseBits();
+ 48a:	95 d0       	rcall	.+298    	; 0x5b6 <_ZN11Transmitter15sendAdresseBitsEv>
+				sender.sendKommandoBits();
  48c:	80 e4       	ldi	r24, 0x40	; 64
  48e:	96 e0       	ldi	r25, 0x06	; 6
- 490:	95 d0       	rcall	.+298    	; 0x5bc <_ZN11Transmitter15sendAdresseBitsEv>
-				sender.sendKommandoBits();
+ 490:	c5 d0       	rcall	.+394    	; 0x61c <_ZN11Transmitter16sendKommandoBitsEv>
+				sender.sendStopBits();
  492:	80 e4       	ldi	r24, 0x40	; 64
  494:	96 e0       	ldi	r25, 0x06	; 6
- 496:	c5 d0       	rcall	.+394    	; 0x622 <_ZN11Transmitter16sendKommandoBitsEv>
-				sender.sendStopBits();
- 498:	80 e4       	ldi	r24, 0x40	; 64
- 49a:	96 e0       	ldi	r25, 0x06	; 6
- 49c:	f5 d0       	rcall	.+490    	; 0x688 <_ZN11Transmitter12sendStopBitsEv>
- 49e:	80 91 5a 06 	lds	r24, 0x065A	; 0x80065a <modtaget>
+ 496:	f5 d0       	rcall	.+490    	; 0x682 <_ZN11Transmitter12sendStopBitsEv>
+ 498:	80 91 5a 06 	lds	r24, 0x065A	; 0x80065a <modtaget>
 				
 				if (modtaget == '5')
- 4a2:	85 33       	cpi	r24, 0x35	; 53
- 4a4:	01 f5       	brne	.+64     	; 0x4e6 <__LOCK_REGION_LENGTH__+0xe6>
- 4a6:	60 e0       	ldi	r22, 0x00	; 0
+ 49c:	85 33       	cpi	r24, 0x35	; 53
+ 49e:	01 f5       	brne	.+64     	; 0x4e0 <__LOCK_REGION_LENGTH__+0xe0>
+ 4a0:	60 e0       	ldi	r22, 0x00	; 0
 				{
 					sender.setZeroCross(0);
- 4a8:	70 e0       	ldi	r23, 0x00	; 0
- 4aa:	80 e4       	ldi	r24, 0x40	; 64
- 4ac:	96 e0       	ldi	r25, 0x06	; 6
- 4ae:	29 d0       	rcall	.+82     	; 0x502 <_ZN11Transmitter12setZeroCrossEi>
- 4b0:	8c e0       	ldi	r24, 0x0C	; 12
- 4b2:	e0 e1       	ldi	r30, 0x10	; 16
+ 4a2:	70 e0       	ldi	r23, 0x00	; 0
+ 4a4:	80 e4       	ldi	r24, 0x40	; 64
+ 4a6:	96 e0       	ldi	r25, 0x06	; 6
+ 4a8:	29 d0       	rcall	.+82     	; 0x4fc <_ZN11Transmitter12setZeroCrossEi>
+ 4aa:	8c e0       	ldi	r24, 0x0C	; 12
+ 4ac:	e0 e1       	ldi	r30, 0x10	; 16
 					
 					int adresse[6] = {0,1,0,1,0,1};
- 4b4:	f2 e0       	ldi	r31, 0x02	; 2
- 4b6:	de 01       	movw	r26, r28
- 4b8:	12 96       	adiw	r26, 0x02	; 2
- 4ba:	01 90       	ld	r0, Z+
- 4bc:	0d 92       	st	X+, r0
- 4be:	8a 95       	dec	r24
- 4c0:	e1 f7       	brne	.-8      	; 0x4ba <__LOCK_REGION_LENGTH__+0xba>
- 4c2:	be 01       	movw	r22, r28
- 4c4:	6e 5f       	subi	r22, 0xFE	; 254
+ 4ae:	f2 e0       	ldi	r31, 0x02	; 2
+ 4b0:	de 01       	movw	r26, r28
+ 4b2:	12 96       	adiw	r26, 0x02	; 2
+ 4b4:	01 90       	ld	r0, Z+
+ 4b6:	0d 92       	st	X+, r0
+ 4b8:	8a 95       	dec	r24
+ 4ba:	e1 f7       	brne	.-8      	; 0x4b4 <__LOCK_REGION_LENGTH__+0xb4>
+ 4bc:	be 01       	movw	r22, r28
+ 4be:	6e 5f       	subi	r22, 0xFE	; 254
 					sender.setAdresse(adresse);
- 4c6:	7f 4f       	sbci	r23, 0xFF	; 255
+ 4c0:	7f 4f       	sbci	r23, 0xFF	; 255
+ 4c2:	80 e4       	ldi	r24, 0x40	; 64
+ 4c4:	96 e0       	ldi	r25, 0x06	; 6
+ 4c6:	21 d0       	rcall	.+66     	; 0x50a <_ZN11Transmitter10setAdresseEPi>
  4c8:	80 e4       	ldi	r24, 0x40	; 64
  4ca:	96 e0       	ldi	r25, 0x06	; 6
- 4cc:	21 d0       	rcall	.+66     	; 0x510 <_ZN11Transmitter10setAdresseEPi>
+ 4cc:	40 d0       	rcall	.+128    	; 0x54e <_ZN11Transmitter13sendStartBitsEv>
+					sender.sendStartBits();									
  4ce:	80 e4       	ldi	r24, 0x40	; 64
  4d0:	96 e0       	ldi	r25, 0x06	; 6
- 4d2:	40 d0       	rcall	.+128    	; 0x554 <_ZN11Transmitter13sendStartBitsEv>
-					sender.sendStartBits();									
+ 4d2:	71 d0       	rcall	.+226    	; 0x5b6 <_ZN11Transmitter15sendAdresseBitsEv>
  4d4:	80 e4       	ldi	r24, 0x40	; 64
- 4d6:	96 e0       	ldi	r25, 0x06	; 6
- 4d8:	71 d0       	rcall	.+226    	; 0x5bc <_ZN11Transmitter15sendAdresseBitsEv>
- 4da:	80 e4       	ldi	r24, 0x40	; 64
 					sender.sendAdresseBits();									
+ 4d6:	96 e0       	ldi	r25, 0x06	; 6
+ 4d8:	a1 d0       	rcall	.+322    	; 0x61c <_ZN11Transmitter16sendKommandoBitsEv>
+ 4da:	80 e4       	ldi	r24, 0x40	; 64
  4dc:	96 e0       	ldi	r25, 0x06	; 6
- 4de:	a1 d0       	rcall	.+322    	; 0x622 <_ZN11Transmitter16sendKommandoBitsEv>
- 4e0:	80 e4       	ldi	r24, 0x40	; 64
- 4e2:	96 e0       	ldi	r25, 0x06	; 6
 					sender.sendKommandoBits();
- 4e4:	d1 d0       	rcall	.+418    	; 0x688 <_ZN11Transmitter12sendStopBitsEv>
- 4e6:	83 b1       	in	r24, 0x03	; 3
- 4e8:	80 95       	com	r24
- 4ea:	85 b9       	out	0x05, r24	; 5
+ 4de:	d1 d0       	rcall	.+418    	; 0x682 <_ZN11Transmitter12sendStopBitsEv>
+ 4e0:	83 b1       	in	r24, 0x03	; 3
+ 4e2:	80 95       	com	r24
+ 4e4:	85 b9       	out	0x05, r24	; 5
 					sender.sendStopBits();
- 4ec:	10 93 5a 06 	sts	0x065A, r17	; 0x80065a <modtaget>
- 4f0:	eb ce       	rjmp	.-554    	; 0x2c8 <main+0xe8>
+ 4e6:	10 93 5a 06 	sts	0x065A, r17	; 0x80065a <modtaget>
+ 4ea:	eb ce       	rjmp	.-554    	; 0x2c2 <main+0xe8>
 
-000004f2 <_GLOBAL__sub_I_modtaget>:
- 4f2:	80 e4       	ldi	r24, 0x40	; 64
+000004ec <_GLOBAL__sub_I_modtaget>:
+ 4ec:	80 e4       	ldi	r24, 0x40	; 64
 				}
 						
 				PORTB = PINB ^ 0b11111111;
- 4f4:	96 e0       	ldi	r25, 0x06	; 6
- 4f6:	01 c0       	rjmp	.+2      	; 0x4fa <_ZN11TransmitterC1Ev>
- 4f8:	08 95       	ret
+ 4ee:	96 e0       	ldi	r25, 0x06	; 6
+ 4f0:	01 c0       	rjmp	.+2      	; 0x4f4 <_ZN11TransmitterC1Ev>
+ 4f2:	08 95       	ret
 
-000004fa <_ZN11TransmitterC1Ev>:
+000004f4 <_ZN11TransmitterC1Ev>:
 
 			}
 		modtaget = '0';
- 4fa:	fc 01       	movw	r30, r24
- 4fc:	11 82       	std	Z+1, r1	; 0x01
+ 4f4:	fc 01       	movw	r30, r24
+ 4f6:	11 82       	std	Z+1, r1	; 0x01
 	uart0.SendString("Rul gardin ned: Tast '4'                           \n\r");
 	uart0.SendString("Sluk Hjem:      Tast '5'                           \n\r");
 	uart0.SendString("__________________________________________________ \n\r");	
 	
     /* Replace with your application code */
     while (1) 
- 4fe:	10 82       	st	Z, r1
+ 4f8:	10 82       	st	Z, r1
 
 
 int Transmitter::getZeroCross()
 {
 	return zeroCross;
 }
- 500:	08 95       	ret
+ 4fa:	08 95       	ret
 
-00000502 <_ZN11Transmitter12setZeroCrossEi>:
+000004fc <_ZN11Transmitter12setZeroCrossEi>:
 
 void Transmitter::setZeroCross(int x)
 {
-	if (x == 1 || x == 0)
- 502:	62 30       	cpi	r22, 0x02	; 2
- 504:	71 05       	cpc	r23, r1
- 506:	18 f4       	brcc	.+6      	; 0x50e <_ZN11Transmitter12setZeroCrossEi+0xc>
+	if (x == 1 || x == 0)		//Dette er lavet så zeroCross kun kan blive 1 eller 0
+ 4fc:	62 30       	cpi	r22, 0x02	; 2
+ 4fe:	71 05       	cpc	r23, r1
+ 500:	18 f4       	brcc	.+6      	; 0x508 <_ZN11Transmitter12setZeroCrossEi+0xc>
 	{
 		zeroCross = x;
- 508:	fc 01       	movw	r30, r24
- 50a:	71 83       	std	Z+1, r23	; 0x01
- 50c:	60 83       	st	Z, r22
- 50e:	08 95       	ret
+ 502:	fc 01       	movw	r30, r24
+ 504:	71 83       	std	Z+1, r23	; 0x01
+ 506:	60 83       	st	Z, r22
+ 508:	08 95       	ret
 
-00000510 <_ZN11Transmitter10setAdresseEPi>:
+0000050a <_ZN11Transmitter10setAdresseEPi>:
 	}
 }
 
 void Transmitter::setAdresse(int array[])
 {
- 510:	db 01       	movw	r26, r22
- 512:	fc 01       	movw	r30, r24
- 514:	32 96       	adiw	r30, 0x02	; 2
- 516:	0e 96       	adiw	r24, 0x0e	; 14
-	for (int i = 0; i < 6; i++)
+ 50a:	db 01       	movw	r26, r22
+ 50c:	fc 01       	movw	r30, r24
+ 50e:	32 96       	adiw	r30, 0x02	; 2
+ 510:	0e 96       	adiw	r24, 0x0e	; 14
+	for (int i = 0; i < 6; i++)		// Sætter adressebits
 	{
 		adresse_[i] = array[i];
- 518:	2d 91       	ld	r18, X+
- 51a:	3d 91       	ld	r19, X+
- 51c:	21 93       	st	Z+, r18
- 51e:	31 93       	st	Z+, r19
+ 512:	2d 91       	ld	r18, X+
+ 514:	3d 91       	ld	r19, X+
+ 516:	21 93       	st	Z+, r18
+ 518:	31 93       	st	Z+, r19
 	}
 }
 
 void Transmitter::setAdresse(int array[])
 {
-	for (int i = 0; i < 6; i++)
- 520:	e8 17       	cp	r30, r24
- 522:	f9 07       	cpc	r31, r25
- 524:	c9 f7       	brne	.-14     	; 0x518 <_ZN11Transmitter10setAdresseEPi+0x8>
+	for (int i = 0; i < 6; i++)		// Sætter adressebits
+ 51a:	e8 17       	cp	r30, r24
+ 51c:	f9 07       	cpc	r31, r25
+ 51e:	c9 f7       	brne	.-14     	; 0x512 <_ZN11Transmitter10setAdresseEPi+0x8>
 	{
 		adresse_[i] = array[i];
 	}
 }
- 526:	08 95       	ret
+ 520:	08 95       	ret
 
-00000528 <_ZN11Transmitter11setKommandoEPi>:
+00000522 <_ZN11Transmitter11setKommandoEPi>:
 
 void Transmitter::setKommando(int array[])
 {
- 528:	db 01       	movw	r26, r22
- 52a:	fc 01       	movw	r30, r24
- 52c:	3e 96       	adiw	r30, 0x0e	; 14
- 52e:	4a 96       	adiw	r24, 0x1a	; 26
-	for (int i = 0; i < 6; i++)
+ 522:	db 01       	movw	r26, r22
+ 524:	fc 01       	movw	r30, r24
+ 526:	3e 96       	adiw	r30, 0x0e	; 14
+ 528:	4a 96       	adiw	r24, 0x1a	; 26
+	for (int i = 0; i < 6; i++)		// Sætter kommandobits
 	{
 		kommando_[i] = array[i];
- 530:	2d 91       	ld	r18, X+
- 532:	3d 91       	ld	r19, X+
- 534:	21 93       	st	Z+, r18
- 536:	31 93       	st	Z+, r19
+ 52a:	2d 91       	ld	r18, X+
+ 52c:	3d 91       	ld	r19, X+
+ 52e:	21 93       	st	Z+, r18
+ 530:	31 93       	st	Z+, r19
 	}
 }
 
 void Transmitter::setKommando(int array[])
 {
-	for (int i = 0; i < 6; i++)
- 538:	e8 17       	cp	r30, r24
- 53a:	f9 07       	cpc	r31, r25
- 53c:	c9 f7       	brne	.-14     	; 0x530 <_ZN11Transmitter11setKommandoEPi+0x8>
+	for (int i = 0; i < 6; i++)		// Sætter kommandobits
+ 532:	e8 17       	cp	r30, r24
+ 534:	f9 07       	cpc	r31, r25
+ 536:	c9 f7       	brne	.-14     	; 0x52a <_ZN11Transmitter11setKommandoEPi+0x8>
 	{
 		kommando_[i] = array[i];
 	}
 }
- 53e:	08 95       	ret
+ 538:	08 95       	ret
 
-00000540 <_ZN11Transmitter13start1msDelayEv>:
+0000053a <_ZN11Transmitter13start1msDelayEv>:
 	}
 }
 
 void Transmitter::start1msDelay()
 {
-	TCNT0 = 240;
- 540:	80 ef       	ldi	r24, 0xF0	; 240
- 542:	86 bd       	out	0x26, r24	; 38
-	TCCR0A |= 0b00000000;
- 544:	84 b5       	in	r24, 0x24	; 36
- 546:	84 bd       	out	0x24, r24	; 36
-	TCCR0B |= 0b00000101;
- 548:	85 b5       	in	r24, 0x25	; 37
- 54a:	85 60       	ori	r24, 0x05	; 5
- 54c:	85 bd       	out	0x25, r24	; 37
-	while ((TIFR0 & (1<<0)) == 0)
- 54e:	a8 9b       	sbis	0x15, 0	; 21
- 550:	fe cf       	rjmp	.-4      	; 0x54e <_ZN11Transmitter13start1msDelayEv+0xe>
+	TCNT0 = 240;						// Sætter en værdi så det vil tage 1 ms at lave overflow
+ 53a:	80 ef       	ldi	r24, 0xF0	; 240
+ 53c:	86 bd       	out	0x26, r24	; 38
+	TCCR0A |= 0b00000000;				// Sætter timeren til normalmode
+ 53e:	84 b5       	in	r24, 0x24	; 36
+ 540:	84 bd       	out	0x24, r24	; 36
+	TCCR0B |= 0b00000101;				// Sætter prescalleren til 1024
+ 542:	85 b5       	in	r24, 0x25	; 37
+ 544:	85 60       	ori	r24, 0x05	; 5
+ 546:	85 bd       	out	0x25, r24	; 37
+	while ((TIFR0 & (1<<0)) == 0)		// Venter på at timeren laver overflow
+ 548:	a8 9b       	sbis	0x15, 0	; 21
+ 54a:	fe cf       	rjmp	.-4      	; 0x548 <_ZN11Transmitter13start1msDelayEv+0xe>
 	{}
 }
- 552:	08 95       	ret
+ 54c:	08 95       	ret
 
-00000554 <_ZN11Transmitter13sendStartBitsEv>:
+0000054e <_ZN11Transmitter13sendStartBitsEv>:
 		kommando_[i] = array[i];
 	}
 }
 
 void Transmitter::sendStartBits()
 {
- 554:	df 92       	push	r13
- 556:	ef 92       	push	r14
- 558:	ff 92       	push	r15
- 55a:	0f 93       	push	r16
- 55c:	1f 93       	push	r17
- 55e:	cf 93       	push	r28
- 560:	df 93       	push	r29
- 562:	ec 01       	movw	r28, r24
- 564:	08 e0       	ldi	r16, 0x08	; 8
- 566:	12 e0       	ldi	r17, 0x02	; 2
- 568:	0f 2e       	mov	r0, r31
- 56a:	f0 e1       	ldi	r31, 0x10	; 16
- 56c:	ef 2e       	mov	r14, r31
- 56e:	f2 e0       	ldi	r31, 0x02	; 2
- 570:	ff 2e       	mov	r15, r31
- 572:	f0 2d       	mov	r31, r0
+ 54e:	df 92       	push	r13
+ 550:	ef 92       	push	r14
+ 552:	ff 92       	push	r15
+ 554:	0f 93       	push	r16
+ 556:	1f 93       	push	r17
+ 558:	cf 93       	push	r28
+ 55a:	df 93       	push	r29
+ 55c:	ec 01       	movw	r28, r24
+ 55e:	08 e0       	ldi	r16, 0x08	; 8
+ 560:	12 e0       	ldi	r17, 0x02	; 2
+ 562:	0f 2e       	mov	r0, r31
+ 564:	f0 e1       	ldi	r31, 0x10	; 16
+ 566:	ef 2e       	mov	r14, r31
+ 568:	f2 e0       	ldi	r31, 0x02	; 2
+ 56a:	ff 2e       	mov	r15, r31
+ 56c:	f0 2d       	mov	r31, r0
 }
 
-void Transmitter::stop1msDelay()
+void Transmitter::stop1msDelay()		// Slukker for timeren
 {
 	TCCR0B = 0b00000000;
 	TIFR0 = 0b00000001;
- 574:	dd 24       	eor	r13, r13
- 576:	d3 94       	inc	r13
+ 56e:	dd 24       	eor	r13, r13
+ 570:	d3 94       	inc	r13
 
 void Transmitter::sendStartBits()
 {
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 4; i++)			// Sender 4 bits (Startbit)
 	{
-		while (zeroCross==0)
- 578:	88 81       	ld	r24, Y
- 57a:	99 81       	ldd	r25, Y+1	; 0x01
- 57c:	89 2b       	or	r24, r25
- 57e:	39 f4       	brne	.+14     	; 0x58e <_ZN11Transmitter13sendStartBitsEv+0x3a>
+		while (zeroCross==0)			// Venter på at der kommer et zerocross
+ 572:	88 81       	ld	r24, Y
+ 574:	99 81       	ldd	r25, Y+1	; 0x01
+ 576:	89 2b       	or	r24, r25
+ 578:	39 f4       	brne	.+14     	; 0x588 <_ZN11Transmitter13sendStartBitsEv+0x3a>
 		{PORTB = PINB | 0b00000001;}
- 580:	83 b1       	in	r24, 0x03	; 3
- 582:	81 60       	ori	r24, 0x01	; 1
- 584:	85 b9       	out	0x05, r24	; 5
+ 57a:	83 b1       	in	r24, 0x03	; 3
+ 57c:	81 60       	ori	r24, 0x01	; 1
+ 57e:	85 b9       	out	0x05, r24	; 5
 
 void Transmitter::sendStartBits()
 {
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 4; i++)			// Sender 4 bits (Startbit)
 	{
-		while (zeroCross==0)
- 586:	88 81       	ld	r24, Y
- 588:	99 81       	ldd	r25, Y+1	; 0x01
- 58a:	89 2b       	or	r24, r25
- 58c:	c9 f3       	breq	.-14     	; 0x580 <_ZN11Transmitter13sendStartBitsEv+0x2c>
+		while (zeroCross==0)			// Venter på at der kommer et zerocross
+ 580:	88 81       	ld	r24, Y
+ 582:	99 81       	ldd	r25, Y+1	; 0x01
+ 584:	89 2b       	or	r24, r25
+ 586:	c9 f3       	breq	.-14     	; 0x57a <_ZN11Transmitter13sendStartBitsEv+0x2c>
 		{PORTB = PINB | 0b00000001;}
-		PORTC = startbit_[i];
- 58e:	f8 01       	movw	r30, r16
- 590:	80 81       	ld	r24, Z
- 592:	0e 5f       	subi	r16, 0xFE	; 254
- 594:	1f 4f       	sbci	r17, 0xFF	; 255
- 596:	88 b9       	out	0x08, r24	; 8
-		start1msDelay();
- 598:	ce 01       	movw	r24, r28
- 59a:	d2 df       	rcall	.-92     	; 0x540 <_ZN11Transmitter13start1msDelayEv>
-		PORTC = 0;
- 59c:	18 b8       	out	0x08, r1	; 8
+		PORTC = startbit_[i];			// Sender den næste værdi ud på PORTC
+ 588:	f8 01       	movw	r30, r16
+ 58a:	80 81       	ld	r24, Z
+ 58c:	0e 5f       	subi	r16, 0xFE	; 254
+ 58e:	1f 4f       	sbci	r17, 0xFF	; 255
+ 590:	88 b9       	out	0x08, r24	; 8
+		start1msDelay();				// Venter 1 ms, skaber burst i 1ms
+ 592:	ce 01       	movw	r24, r28
+ 594:	d2 df       	rcall	.-92     	; 0x53a <_ZN11Transmitter13start1msDelayEv>
+		PORTC = 0;						// Slukker for burst
+ 596:	18 b8       	out	0x08, r1	; 8
 	{}
 }
 
-void Transmitter::stop1msDelay()
+void Transmitter::stop1msDelay()		// Slukker for timeren
 {
 	TCCR0B = 0b00000000;
- 59e:	15 bc       	out	0x25, r1	; 37
+ 598:	15 bc       	out	0x25, r1	; 37
 	TIFR0 = 0b00000001;
- 5a0:	d5 ba       	out	0x15, r13	; 21
+ 59a:	d5 ba       	out	0x15, r13	; 21
 		{PORTB = PINB | 0b00000001;}
-		PORTC = startbit_[i];
-		start1msDelay();
-		PORTC = 0;
-		stop1msDelay();
-		zeroCross = 0;
- 5a2:	19 82       	std	Y+1, r1	; 0x01
- 5a4:	18 82       	st	Y, r1
+		PORTC = startbit_[i];			// Sender den næste værdi ud på PORTC
+		start1msDelay();				// Venter 1 ms, skaber burst i 1ms
+		PORTC = 0;						// Slukker for burst
+		stop1msDelay();					// Stopper timeren der står for at lave delay
+		zeroCross = 0;					// Nulstiller zeroCross, så den er klar til næste interrupt
+ 59c:	19 82       	std	Y+1, r1	; 0x01
+ 59e:	18 82       	st	Y, r1
 	}
 }
 
 void Transmitter::sendStartBits()
 {
-	for (int i = 0; i < 4; i++)
- 5a6:	0e 15       	cp	r16, r14
- 5a8:	1f 05       	cpc	r17, r15
- 5aa:	31 f7       	brne	.-52     	; 0x578 <_ZN11Transmitter13sendStartBitsEv+0x24>
-		start1msDelay();
-		PORTC = 0;
-		stop1msDelay();
-		zeroCross = 0;
+	for (int i = 0; i < 4; i++)			// Sender 4 bits (Startbit)
+ 5a0:	0e 15       	cp	r16, r14
+ 5a2:	1f 05       	cpc	r17, r15
+ 5a4:	31 f7       	brne	.-52     	; 0x572 <_ZN11Transmitter13sendStartBitsEv+0x24>
+		start1msDelay();				// Venter 1 ms, skaber burst i 1ms
+		PORTC = 0;						// Slukker for burst
+		stop1msDelay();					// Stopper timeren der står for at lave delay
+		zeroCross = 0;					// Nulstiller zeroCross, så den er klar til næste interrupt
 	}
 }
- 5ac:	df 91       	pop	r29
- 5ae:	cf 91       	pop	r28
- 5b0:	1f 91       	pop	r17
- 5b2:	0f 91       	pop	r16
- 5b4:	ff 90       	pop	r15
- 5b6:	ef 90       	pop	r14
- 5b8:	df 90       	pop	r13
- 5ba:	08 95       	ret
+ 5a6:	df 91       	pop	r29
+ 5a8:	cf 91       	pop	r28
+ 5aa:	1f 91       	pop	r17
+ 5ac:	0f 91       	pop	r16
+ 5ae:	ff 90       	pop	r15
+ 5b0:	ef 90       	pop	r14
+ 5b2:	df 90       	pop	r13
+ 5b4:	08 95       	ret
 
-000005bc <_ZN11Transmitter15sendAdresseBitsEv>:
+000005b6 <_ZN11Transmitter15sendAdresseBitsEv>:
 
 
 void Transmitter::sendAdresseBits()
 {
- 5bc:	df 92       	push	r13
- 5be:	ef 92       	push	r14
- 5c0:	ff 92       	push	r15
- 5c2:	0f 93       	push	r16
- 5c4:	1f 93       	push	r17
- 5c6:	cf 93       	push	r28
- 5c8:	df 93       	push	r29
- 5ca:	ec 01       	movw	r28, r24
- 5cc:	8c 01       	movw	r16, r24
- 5ce:	0e 5f       	subi	r16, 0xFE	; 254
- 5d0:	1f 4f       	sbci	r17, 0xFF	; 255
- 5d2:	7c 01       	movw	r14, r24
- 5d4:	8e e0       	ldi	r24, 0x0E	; 14
- 5d6:	e8 0e       	add	r14, r24
- 5d8:	f1 1c       	adc	r15, r1
+ 5b6:	df 92       	push	r13
+ 5b8:	ef 92       	push	r14
+ 5ba:	ff 92       	push	r15
+ 5bc:	0f 93       	push	r16
+ 5be:	1f 93       	push	r17
+ 5c0:	cf 93       	push	r28
+ 5c2:	df 93       	push	r29
+ 5c4:	ec 01       	movw	r28, r24
+ 5c6:	8c 01       	movw	r16, r24
+ 5c8:	0e 5f       	subi	r16, 0xFE	; 254
+ 5ca:	1f 4f       	sbci	r17, 0xFF	; 255
+ 5cc:	7c 01       	movw	r14, r24
+ 5ce:	8e e0       	ldi	r24, 0x0E	; 14
+ 5d0:	e8 0e       	add	r14, r24
+ 5d2:	f1 1c       	adc	r15, r1
 }
 
-void Transmitter::stop1msDelay()
+void Transmitter::stop1msDelay()		// Slukker for timeren
 {
 	TCCR0B = 0b00000000;
 	TIFR0 = 0b00000001;
- 5da:	dd 24       	eor	r13, r13
- 5dc:	d3 94       	inc	r13
+ 5d4:	dd 24       	eor	r13, r13
+ 5d6:	d3 94       	inc	r13
 
 void Transmitter::sendAdresseBits()
 {
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 6; i++)			// Sender 6 bits (Adressen)
 	{
-		while (zeroCross==0)
- 5de:	88 81       	ld	r24, Y
- 5e0:	99 81       	ldd	r25, Y+1	; 0x01
- 5e2:	89 2b       	or	r24, r25
- 5e4:	39 f4       	brne	.+14     	; 0x5f4 <_ZN11Transmitter15sendAdresseBitsEv+0x38>
+		while (zeroCross==0)			// Venter på at der kommer et zerocross
+ 5d8:	88 81       	ld	r24, Y
+ 5da:	99 81       	ldd	r25, Y+1	; 0x01
+ 5dc:	89 2b       	or	r24, r25
+ 5de:	39 f4       	brne	.+14     	; 0x5ee <_ZN11Transmitter15sendAdresseBitsEv+0x38>
 		{PORTB = PINB | 0b00000010;}
- 5e6:	83 b1       	in	r24, 0x03	; 3
- 5e8:	82 60       	ori	r24, 0x02	; 2
- 5ea:	85 b9       	out	0x05, r24	; 5
+ 5e0:	83 b1       	in	r24, 0x03	; 3
+ 5e2:	82 60       	ori	r24, 0x02	; 2
+ 5e4:	85 b9       	out	0x05, r24	; 5
 
 void Transmitter::sendAdresseBits()
 {
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 6; i++)			// Sender 6 bits (Adressen)
 	{
-		while (zeroCross==0)
- 5ec:	88 81       	ld	r24, Y
- 5ee:	99 81       	ldd	r25, Y+1	; 0x01
- 5f0:	89 2b       	or	r24, r25
- 5f2:	c9 f3       	breq	.-14     	; 0x5e6 <_ZN11Transmitter15sendAdresseBitsEv+0x2a>
+		while (zeroCross==0)			// Venter på at der kommer et zerocross
+ 5e6:	88 81       	ld	r24, Y
+ 5e8:	99 81       	ldd	r25, Y+1	; 0x01
+ 5ea:	89 2b       	or	r24, r25
+ 5ec:	c9 f3       	breq	.-14     	; 0x5e0 <_ZN11Transmitter15sendAdresseBitsEv+0x2a>
 		{PORTB = PINB | 0b00000010;}
-		PORTC = adresse_[i];
- 5f4:	f8 01       	movw	r30, r16
- 5f6:	80 81       	ld	r24, Z
- 5f8:	0e 5f       	subi	r16, 0xFE	; 254
- 5fa:	1f 4f       	sbci	r17, 0xFF	; 255
- 5fc:	88 b9       	out	0x08, r24	; 8
-		start1msDelay();
- 5fe:	ce 01       	movw	r24, r28
- 600:	9f df       	rcall	.-194    	; 0x540 <_ZN11Transmitter13start1msDelayEv>
-		PORTC = 0;
- 602:	18 b8       	out	0x08, r1	; 8
+		PORTC = adresse_[i];			// Sender den næste værdi ud på PORTC
+ 5ee:	f8 01       	movw	r30, r16
+ 5f0:	80 81       	ld	r24, Z
+ 5f2:	0e 5f       	subi	r16, 0xFE	; 254
+ 5f4:	1f 4f       	sbci	r17, 0xFF	; 255
+ 5f6:	88 b9       	out	0x08, r24	; 8
+		start1msDelay();				// Venter 1 ms, skaber burst i 1ms
+ 5f8:	ce 01       	movw	r24, r28
+ 5fa:	9f df       	rcall	.-194    	; 0x53a <_ZN11Transmitter13start1msDelayEv>
+		PORTC = 0;						// Slukker for burst
+ 5fc:	18 b8       	out	0x08, r1	; 8
 	{}
 }
 
-void Transmitter::stop1msDelay()
+void Transmitter::stop1msDelay()		// Slukker for timeren
 {
 	TCCR0B = 0b00000000;
- 604:	15 bc       	out	0x25, r1	; 37
+ 5fe:	15 bc       	out	0x25, r1	; 37
 	TIFR0 = 0b00000001;
- 606:	d5 ba       	out	0x15, r13	; 21
+ 600:	d5 ba       	out	0x15, r13	; 21
 		{PORTB = PINB | 0b00000010;}
-		PORTC = adresse_[i];
-		start1msDelay();
-		PORTC = 0;
-		stop1msDelay();
-		zeroCross = 0;
- 608:	19 82       	std	Y+1, r1	; 0x01
- 60a:	18 82       	st	Y, r1
+		PORTC = adresse_[i];			// Sender den næste værdi ud på PORTC
+		start1msDelay();				// Venter 1 ms, skaber burst i 1ms
+		PORTC = 0;						// Slukker for burst
+		stop1msDelay();					// Stopper timeren der står for at lave delay
+		zeroCross = 0;					// Nulstiller zeroCross, så den er klar til næste interrupt
+ 602:	19 82       	std	Y+1, r1	; 0x01
+ 604:	18 82       	st	Y, r1
 }
 
 
 void Transmitter::sendAdresseBits()
 {
-	for (int i = 0; i < 6; i++)
- 60c:	0e 15       	cp	r16, r14
- 60e:	1f 05       	cpc	r17, r15
- 610:	31 f7       	brne	.-52     	; 0x5de <_ZN11Transmitter15sendAdresseBitsEv+0x22>
-		start1msDelay();
-		PORTC = 0;
-		stop1msDelay();
-		zeroCross = 0;
+	for (int i = 0; i < 6; i++)			// Sender 6 bits (Adressen)
+ 606:	0e 15       	cp	r16, r14
+ 608:	1f 05       	cpc	r17, r15
+ 60a:	31 f7       	brne	.-52     	; 0x5d8 <_ZN11Transmitter15sendAdresseBitsEv+0x22>
+		start1msDelay();				// Venter 1 ms, skaber burst i 1ms
+		PORTC = 0;						// Slukker for burst
+		stop1msDelay();					// Stopper timeren der står for at lave delay
+		zeroCross = 0;					// Nulstiller zeroCross, så den er klar til næste interrupt
 	}
 }
- 612:	df 91       	pop	r29
- 614:	cf 91       	pop	r28
- 616:	1f 91       	pop	r17
- 618:	0f 91       	pop	r16
- 61a:	ff 90       	pop	r15
- 61c:	ef 90       	pop	r14
- 61e:	df 90       	pop	r13
- 620:	08 95       	ret
+ 60c:	df 91       	pop	r29
+ 60e:	cf 91       	pop	r28
+ 610:	1f 91       	pop	r17
+ 612:	0f 91       	pop	r16
+ 614:	ff 90       	pop	r15
+ 616:	ef 90       	pop	r14
+ 618:	df 90       	pop	r13
+ 61a:	08 95       	ret
 
-00000622 <_ZN11Transmitter16sendKommandoBitsEv>:
+0000061c <_ZN11Transmitter16sendKommandoBitsEv>:
 	
 void Transmitter::sendKommandoBits()
 {
- 622:	df 92       	push	r13
- 624:	ef 92       	push	r14
- 626:	ff 92       	push	r15
- 628:	0f 93       	push	r16
- 62a:	1f 93       	push	r17
- 62c:	cf 93       	push	r28
- 62e:	df 93       	push	r29
- 630:	ec 01       	movw	r28, r24
- 632:	8c 01       	movw	r16, r24
- 634:	02 5f       	subi	r16, 0xF2	; 242
- 636:	1f 4f       	sbci	r17, 0xFF	; 255
- 638:	7c 01       	movw	r14, r24
- 63a:	8a e1       	ldi	r24, 0x1A	; 26
- 63c:	e8 0e       	add	r14, r24
- 63e:	f1 1c       	adc	r15, r1
+ 61c:	df 92       	push	r13
+ 61e:	ef 92       	push	r14
+ 620:	ff 92       	push	r15
+ 622:	0f 93       	push	r16
+ 624:	1f 93       	push	r17
+ 626:	cf 93       	push	r28
+ 628:	df 93       	push	r29
+ 62a:	ec 01       	movw	r28, r24
+ 62c:	8c 01       	movw	r16, r24
+ 62e:	02 5f       	subi	r16, 0xF2	; 242
+ 630:	1f 4f       	sbci	r17, 0xFF	; 255
+ 632:	7c 01       	movw	r14, r24
+ 634:	8a e1       	ldi	r24, 0x1A	; 26
+ 636:	e8 0e       	add	r14, r24
+ 638:	f1 1c       	adc	r15, r1
 }
 
-void Transmitter::stop1msDelay()
+void Transmitter::stop1msDelay()		// Slukker for timeren
 {
 	TCCR0B = 0b00000000;
 	TIFR0 = 0b00000001;
- 640:	dd 24       	eor	r13, r13
- 642:	d3 94       	inc	r13
+ 63a:	dd 24       	eor	r13, r13
+ 63c:	d3 94       	inc	r13
 	
 void Transmitter::sendKommandoBits()
 {
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 6; i++)			// Sender 6 bits (Kommando)
 	{
-		while (zeroCross==0)
- 644:	88 81       	ld	r24, Y
- 646:	99 81       	ldd	r25, Y+1	; 0x01
- 648:	89 2b       	or	r24, r25
- 64a:	39 f4       	brne	.+14     	; 0x65a <_ZN11Transmitter16sendKommandoBitsEv+0x38>
+		while (zeroCross==0)			// Venter på at der kommer et zerocross
+ 63e:	88 81       	ld	r24, Y
+ 640:	99 81       	ldd	r25, Y+1	; 0x01
+ 642:	89 2b       	or	r24, r25
+ 644:	39 f4       	brne	.+14     	; 0x654 <_ZN11Transmitter16sendKommandoBitsEv+0x38>
 		{PORTB = PINB | 0b00000100;}
- 64c:	83 b1       	in	r24, 0x03	; 3
- 64e:	84 60       	ori	r24, 0x04	; 4
- 650:	85 b9       	out	0x05, r24	; 5
+ 646:	83 b1       	in	r24, 0x03	; 3
+ 648:	84 60       	ori	r24, 0x04	; 4
+ 64a:	85 b9       	out	0x05, r24	; 5
 	
 void Transmitter::sendKommandoBits()
 {
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 6; i++)			// Sender 6 bits (Kommando)
 	{
-		while (zeroCross==0)
- 652:	88 81       	ld	r24, Y
- 654:	99 81       	ldd	r25, Y+1	; 0x01
- 656:	89 2b       	or	r24, r25
- 658:	c9 f3       	breq	.-14     	; 0x64c <_ZN11Transmitter16sendKommandoBitsEv+0x2a>
+		while (zeroCross==0)			// Venter på at der kommer et zerocross
+ 64c:	88 81       	ld	r24, Y
+ 64e:	99 81       	ldd	r25, Y+1	; 0x01
+ 650:	89 2b       	or	r24, r25
+ 652:	c9 f3       	breq	.-14     	; 0x646 <_ZN11Transmitter16sendKommandoBitsEv+0x2a>
 		{PORTB = PINB | 0b00000100;}
-		PORTC = kommando_[i];
- 65a:	f8 01       	movw	r30, r16
- 65c:	80 81       	ld	r24, Z
- 65e:	0e 5f       	subi	r16, 0xFE	; 254
- 660:	1f 4f       	sbci	r17, 0xFF	; 255
- 662:	88 b9       	out	0x08, r24	; 8
-		start1msDelay();
- 664:	ce 01       	movw	r24, r28
- 666:	6c df       	rcall	.-296    	; 0x540 <_ZN11Transmitter13start1msDelayEv>
-		PORTC = 0;
- 668:	18 b8       	out	0x08, r1	; 8
+		PORTC = kommando_[i];			// Sender den næste værdi ud på PORTC
+ 654:	f8 01       	movw	r30, r16
+ 656:	80 81       	ld	r24, Z
+ 658:	0e 5f       	subi	r16, 0xFE	; 254
+ 65a:	1f 4f       	sbci	r17, 0xFF	; 255
+ 65c:	88 b9       	out	0x08, r24	; 8
+		start1msDelay();				// Venter 1 ms, skaber burst i 1ms
+ 65e:	ce 01       	movw	r24, r28
+ 660:	6c df       	rcall	.-296    	; 0x53a <_ZN11Transmitter13start1msDelayEv>
+		PORTC = 0;						// Slukker for burst
+ 662:	18 b8       	out	0x08, r1	; 8
 	{}
 }
 
-void Transmitter::stop1msDelay()
+void Transmitter::stop1msDelay()		// Slukker for timeren
 {
 	TCCR0B = 0b00000000;
- 66a:	15 bc       	out	0x25, r1	; 37
+ 664:	15 bc       	out	0x25, r1	; 37
 	TIFR0 = 0b00000001;
- 66c:	d5 ba       	out	0x15, r13	; 21
+ 666:	d5 ba       	out	0x15, r13	; 21
 		{PORTB = PINB | 0b00000100;}
-		PORTC = kommando_[i];
-		start1msDelay();
-		PORTC = 0;
-		stop1msDelay();
-		zeroCross = 0;
- 66e:	19 82       	std	Y+1, r1	; 0x01
- 670:	18 82       	st	Y, r1
+		PORTC = kommando_[i];			// Sender den næste værdi ud på PORTC
+		start1msDelay();				// Venter 1 ms, skaber burst i 1ms
+		PORTC = 0;						// Slukker for burst
+		stop1msDelay();					// Stopper timeren der står for at lave delay
+		zeroCross = 0;					// Nulstiller zeroCross, så den er klar til næste interrupt
+ 668:	19 82       	std	Y+1, r1	; 0x01
+ 66a:	18 82       	st	Y, r1
 	}
 }
 	
 void Transmitter::sendKommandoBits()
 {
-	for (int i = 0; i < 6; i++)
- 672:	0e 15       	cp	r16, r14
- 674:	1f 05       	cpc	r17, r15
- 676:	31 f7       	brne	.-52     	; 0x644 <_ZN11Transmitter16sendKommandoBitsEv+0x22>
-		start1msDelay();
-		PORTC = 0;
-		stop1msDelay();
-		zeroCross = 0;
+	for (int i = 0; i < 6; i++)			// Sender 6 bits (Kommando)
+ 66c:	0e 15       	cp	r16, r14
+ 66e:	1f 05       	cpc	r17, r15
+ 670:	31 f7       	brne	.-52     	; 0x63e <_ZN11Transmitter16sendKommandoBitsEv+0x22>
+		start1msDelay();				// Venter 1 ms, skaber burst i 1ms
+		PORTC = 0;						// Slukker for burst
+		stop1msDelay();					// Stopper timeren der står for at lave delay
+		zeroCross = 0;					// Nulstiller zeroCross, så den er klar til næste interrupt
 	}
 }
- 678:	df 91       	pop	r29
- 67a:	cf 91       	pop	r28
- 67c:	1f 91       	pop	r17
- 67e:	0f 91       	pop	r16
- 680:	ff 90       	pop	r15
- 682:	ef 90       	pop	r14
- 684:	df 90       	pop	r13
- 686:	08 95       	ret
+ 672:	df 91       	pop	r29
+ 674:	cf 91       	pop	r28
+ 676:	1f 91       	pop	r17
+ 678:	0f 91       	pop	r16
+ 67a:	ff 90       	pop	r15
+ 67c:	ef 90       	pop	r14
+ 67e:	df 90       	pop	r13
+ 680:	08 95       	ret
 
-00000688 <_ZN11Transmitter12sendStopBitsEv>:
+00000682 <_ZN11Transmitter12sendStopBitsEv>:
 
 void Transmitter::sendStopBits()
 {
- 688:	df 92       	push	r13
- 68a:	ef 92       	push	r14
- 68c:	ff 92       	push	r15
- 68e:	0f 93       	push	r16
- 690:	1f 93       	push	r17
- 692:	cf 93       	push	r28
- 694:	df 93       	push	r29
- 696:	ec 01       	movw	r28, r24
- 698:	00 e0       	ldi	r16, 0x00	; 0
- 69a:	12 e0       	ldi	r17, 0x02	; 2
- 69c:	0f 2e       	mov	r0, r31
- 69e:	f8 e0       	ldi	r31, 0x08	; 8
- 6a0:	ef 2e       	mov	r14, r31
- 6a2:	f2 e0       	ldi	r31, 0x02	; 2
- 6a4:	ff 2e       	mov	r15, r31
- 6a6:	f0 2d       	mov	r31, r0
+ 682:	df 92       	push	r13
+ 684:	ef 92       	push	r14
+ 686:	ff 92       	push	r15
+ 688:	0f 93       	push	r16
+ 68a:	1f 93       	push	r17
+ 68c:	cf 93       	push	r28
+ 68e:	df 93       	push	r29
+ 690:	ec 01       	movw	r28, r24
+ 692:	00 e0       	ldi	r16, 0x00	; 0
+ 694:	12 e0       	ldi	r17, 0x02	; 2
+ 696:	0f 2e       	mov	r0, r31
+ 698:	f8 e0       	ldi	r31, 0x08	; 8
+ 69a:	ef 2e       	mov	r14, r31
+ 69c:	f2 e0       	ldi	r31, 0x02	; 2
+ 69e:	ff 2e       	mov	r15, r31
+ 6a0:	f0 2d       	mov	r31, r0
 }
 
-void Transmitter::stop1msDelay()
+void Transmitter::stop1msDelay()		// Slukker for timeren
 {
 	TCCR0B = 0b00000000;
 	TIFR0 = 0b00000001;
- 6a8:	dd 24       	eor	r13, r13
- 6aa:	d3 94       	inc	r13
+ 6a2:	dd 24       	eor	r13, r13
+ 6a4:	d3 94       	inc	r13
 
 void Transmitter::sendStopBits()
 {
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 4; i++)			// Sender 4 bits (Stopbits)
 	{
-		while (zeroCross==0)
- 6ac:	88 81       	ld	r24, Y
- 6ae:	99 81       	ldd	r25, Y+1	; 0x01
- 6b0:	89 2b       	or	r24, r25
- 6b2:	39 f4       	brne	.+14     	; 0x6c2 <_ZN11Transmitter12sendStopBitsEv+0x3a>
+		while (zeroCross==0)			// Venter på at der kommer et zerrocross
+ 6a6:	88 81       	ld	r24, Y
+ 6a8:	99 81       	ldd	r25, Y+1	; 0x01
+ 6aa:	89 2b       	or	r24, r25
+ 6ac:	39 f4       	brne	.+14     	; 0x6bc <_ZN11Transmitter12sendStopBitsEv+0x3a>
 		{PORTB = PINB | 0b00001000;}
- 6b4:	83 b1       	in	r24, 0x03	; 3
- 6b6:	88 60       	ori	r24, 0x08	; 8
- 6b8:	85 b9       	out	0x05, r24	; 5
+ 6ae:	83 b1       	in	r24, 0x03	; 3
+ 6b0:	88 60       	ori	r24, 0x08	; 8
+ 6b2:	85 b9       	out	0x05, r24	; 5
 
 void Transmitter::sendStopBits()
 {
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 4; i++)			// Sender 4 bits (Stopbits)
 	{
-		while (zeroCross==0)
- 6ba:	88 81       	ld	r24, Y
- 6bc:	99 81       	ldd	r25, Y+1	; 0x01
- 6be:	89 2b       	or	r24, r25
- 6c0:	c9 f3       	breq	.-14     	; 0x6b4 <_ZN11Transmitter12sendStopBitsEv+0x2c>
+		while (zeroCross==0)			// Venter på at der kommer et zerrocross
+ 6b4:	88 81       	ld	r24, Y
+ 6b6:	99 81       	ldd	r25, Y+1	; 0x01
+ 6b8:	89 2b       	or	r24, r25
+ 6ba:	c9 f3       	breq	.-14     	; 0x6ae <_ZN11Transmitter12sendStopBitsEv+0x2c>
 		{PORTB = PINB | 0b00001000;}
-		PORTC = stopbit_[i];
- 6c2:	f8 01       	movw	r30, r16
- 6c4:	80 81       	ld	r24, Z
- 6c6:	0e 5f       	subi	r16, 0xFE	; 254
- 6c8:	1f 4f       	sbci	r17, 0xFF	; 255
- 6ca:	88 b9       	out	0x08, r24	; 8
-		start1msDelay();
- 6cc:	ce 01       	movw	r24, r28
- 6ce:	38 df       	rcall	.-400    	; 0x540 <_ZN11Transmitter13start1msDelayEv>
-		PORTC = 0;
- 6d0:	18 b8       	out	0x08, r1	; 8
+		PORTC = stopbit_[i];			// Sender den næste værdi ud på PORTC
+ 6bc:	f8 01       	movw	r30, r16
+ 6be:	80 81       	ld	r24, Z
+ 6c0:	0e 5f       	subi	r16, 0xFE	; 254
+ 6c2:	1f 4f       	sbci	r17, 0xFF	; 255
+ 6c4:	88 b9       	out	0x08, r24	; 8
+		start1msDelay();				// Venter 1 ms, skaber burst i 1ms
+ 6c6:	ce 01       	movw	r24, r28
+ 6c8:	38 df       	rcall	.-400    	; 0x53a <_ZN11Transmitter13start1msDelayEv>
+		PORTC = 0;						// Slukker for burst
+ 6ca:	18 b8       	out	0x08, r1	; 8
 	{}
 }
 
-void Transmitter::stop1msDelay()
+void Transmitter::stop1msDelay()		// Slukker for timeren
 {
 	TCCR0B = 0b00000000;
- 6d2:	15 bc       	out	0x25, r1	; 37
+ 6cc:	15 bc       	out	0x25, r1	; 37
 	TIFR0 = 0b00000001;
- 6d4:	d5 ba       	out	0x15, r13	; 21
+ 6ce:	d5 ba       	out	0x15, r13	; 21
 		{PORTB = PINB | 0b00001000;}
-		PORTC = stopbit_[i];
-		start1msDelay();
-		PORTC = 0;
-		stop1msDelay();
-		zeroCross = 0;
- 6d6:	19 82       	std	Y+1, r1	; 0x01
- 6d8:	18 82       	st	Y, r1
+		PORTC = stopbit_[i];			// Sender den næste værdi ud på PORTC
+		start1msDelay();				// Venter 1 ms, skaber burst i 1ms
+		PORTC = 0;						// Slukker for burst
+		stop1msDelay();					// Stopper timeren der står for at lave delay
+		zeroCross = 0;					// Nulstiller zeroCross, så den er klar til næste interrupt
+ 6d0:	19 82       	std	Y+1, r1	; 0x01
+ 6d2:	18 82       	st	Y, r1
 	}
 }
 
 void Transmitter::sendStopBits()
 {
-	for (int i = 0; i < 4; i++)
- 6da:	0e 15       	cp	r16, r14
- 6dc:	1f 05       	cpc	r17, r15
- 6de:	31 f7       	brne	.-52     	; 0x6ac <_ZN11Transmitter12sendStopBitsEv+0x24>
-		start1msDelay();
-		PORTC = 0;
-		stop1msDelay();
-		zeroCross = 0;
+	for (int i = 0; i < 4; i++)			// Sender 4 bits (Stopbits)
+ 6d4:	0e 15       	cp	r16, r14
+ 6d6:	1f 05       	cpc	r17, r15
+ 6d8:	31 f7       	brne	.-52     	; 0x6a6 <_ZN11Transmitter12sendStopBitsEv+0x24>
+		start1msDelay();				// Venter 1 ms, skaber burst i 1ms
+		PORTC = 0;						// Slukker for burst
+		stop1msDelay();					// Stopper timeren der står for at lave delay
+		zeroCross = 0;					// Nulstiller zeroCross, så den er klar til næste interrupt
 	}
 }
- 6e0:	df 91       	pop	r29
- 6e2:	cf 91       	pop	r28
- 6e4:	1f 91       	pop	r17
- 6e6:	0f 91       	pop	r16
- 6e8:	ff 90       	pop	r15
- 6ea:	ef 90       	pop	r14
- 6ec:	df 90       	pop	r13
- 6ee:	08 95       	ret
+ 6da:	df 91       	pop	r29
+ 6dc:	cf 91       	pop	r28
+ 6de:	1f 91       	pop	r17
+ 6e0:	0f 91       	pop	r16
+ 6e2:	ff 90       	pop	r15
+ 6e4:	ef 90       	pop	r14
+ 6e6:	df 90       	pop	r13
+ 6e8:	08 95       	ret
 
-000006f0 <_ZN4UARTC1Ev>:
+000006ea <_ZN4UARTC1Ev>:
 #include "UART.h"
 
 // default constructor
 UART::UART()
 {
 	UCSR0B = 0b10011000;			// Tænder for sender og modtager + enabler interupt ved modtagelse
- 6f0:	88 e9       	ldi	r24, 0x98	; 152
- 6f2:	80 93 c1 00 	sts	0x00C1, r24	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7c00c1>
+ 6ea:	88 e9       	ldi	r24, 0x98	; 152
+ 6ec:	80 93 c1 00 	sts	0x00C1, r24	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7c00c1>
 	UBRR0 = 103;					// Værdien gør at baud raten er 9600
- 6f6:	87 e6       	ldi	r24, 0x67	; 103
- 6f8:	90 e0       	ldi	r25, 0x00	; 0
- 6fa:	90 93 c5 00 	sts	0x00C5, r25	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7c00c5>
- 6fe:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7c00c4>
+ 6f0:	87 e6       	ldi	r24, 0x67	; 103
+ 6f2:	90 e0       	ldi	r25, 0x00	; 0
+ 6f4:	90 93 c5 00 	sts	0x00C5, r25	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7c00c5>
+ 6f8:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7c00c4>
 	UCSR0C = 0b00000110;			// bit 0 gør ingenting
- 702:	86 e0       	ldi	r24, 0x06	; 6
- 704:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7c00c2>
- 708:	08 95       	ret
+ 6fc:	86 e0       	ldi	r24, 0x06	; 6
+ 6fe:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7c00c2>
+ 702:	08 95       	ret
 
-0000070a <_ZN4UART8SendCharEc>:
+00000704 <_ZN4UART8SendCharEc>:
 									
 } //UART
 
 void UART::SendChar(char Tegn)
 {
 	while((0b00100000 & UCSR0A) == 0)
- 70a:	e0 ec       	ldi	r30, 0xC0	; 192
- 70c:	f0 e0       	ldi	r31, 0x00	; 0
- 70e:	80 81       	ld	r24, Z
- 710:	85 ff       	sbrs	r24, 5
- 712:	fd cf       	rjmp	.-6      	; 0x70e <_ZN4UART8SendCharEc+0x4>
+ 704:	e0 ec       	ldi	r30, 0xC0	; 192
+ 706:	f0 e0       	ldi	r31, 0x00	; 0
+ 708:	80 81       	ld	r24, Z
+ 70a:	85 ff       	sbrs	r24, 5
+ 70c:	fd cf       	rjmp	.-6      	; 0x708 <_ZN4UART8SendCharEc+0x4>
 	{}
 	UDR0 = Tegn;
- 714:	60 93 c6 00 	sts	0x00C6, r22	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7c00c6>
- 718:	08 95       	ret
+ 70e:	60 93 c6 00 	sts	0x00C6, r22	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7c00c6>
+ 712:	08 95       	ret
 
-0000071a <_ZN4UART10SendStringEPc>:
+00000714 <_ZN4UART10SendStringEPc>:
 }
 
 void UART::SendString(char* Streng)
 {
- 71a:	0f 93       	push	r16
- 71c:	1f 93       	push	r17
- 71e:	cf 93       	push	r28
- 720:	df 93       	push	r29
- 722:	eb 01       	movw	r28, r22
+ 714:	0f 93       	push	r16
+ 716:	1f 93       	push	r17
+ 718:	cf 93       	push	r28
+ 71a:	df 93       	push	r29
+ 71c:	eb 01       	movw	r28, r22
 	while (*Streng != 0)
- 724:	68 81       	ld	r22, Y
- 726:	66 23       	and	r22, r22
- 728:	39 f0       	breq	.+14     	; 0x738 <_ZN4UART10SendStringEPc+0x1e>
- 72a:	8c 01       	movw	r16, r24
- 72c:	21 96       	adiw	r28, 0x01	; 1
+ 71e:	68 81       	ld	r22, Y
+ 720:	66 23       	and	r22, r22
+ 722:	39 f0       	breq	.+14     	; 0x732 <_ZN4UART10SendStringEPc+0x1e>
+ 724:	8c 01       	movw	r16, r24
+ 726:	21 96       	adiw	r28, 0x01	; 1
 	{
 		SendChar(*Streng);
- 72e:	c8 01       	movw	r24, r16
- 730:	ec df       	rcall	.-40     	; 0x70a <_ZN4UART8SendCharEc>
+ 728:	c8 01       	movw	r24, r16
+ 72a:	ec df       	rcall	.-40     	; 0x704 <_ZN4UART8SendCharEc>
 	UDR0 = Tegn;
 }
 
 void UART::SendString(char* Streng)
 {
 	while (*Streng != 0)
- 732:	69 91       	ld	r22, Y+
- 734:	61 11       	cpse	r22, r1
- 736:	fb cf       	rjmp	.-10     	; 0x72e <_ZN4UART10SendStringEPc+0x14>
+ 72c:	69 91       	ld	r22, Y+
+ 72e:	61 11       	cpse	r22, r1
+ 730:	fb cf       	rjmp	.-10     	; 0x728 <_ZN4UART10SendStringEPc+0x14>
 	{
 		SendChar(*Streng);
 		Streng++;
 	}
- 738:	df 91       	pop	r29
- 73a:	cf 91       	pop	r28
- 73c:	1f 91       	pop	r17
- 73e:	0f 91       	pop	r16
- 740:	08 95       	ret
+ 732:	df 91       	pop	r29
+ 734:	cf 91       	pop	r28
+ 736:	1f 91       	pop	r17
+ 738:	0f 91       	pop	r16
+ 73a:	08 95       	ret
 
-00000742 <__tablejump2__>:
- 742:	ee 0f       	add	r30, r30
- 744:	ff 1f       	adc	r31, r31
- 746:	88 1f       	adc	r24, r24
- 748:	8b bf       	out	0x3b, r24	; 59
- 74a:	07 90       	elpm	r0, Z+
- 74c:	f6 91       	elpm	r31, Z
- 74e:	e0 2d       	mov	r30, r0
- 750:	19 94       	eijmp
+0000073c <__tablejump2__>:
+ 73c:	ee 0f       	add	r30, r30
+ 73e:	ff 1f       	adc	r31, r31
+ 740:	88 1f       	adc	r24, r24
+ 742:	8b bf       	out	0x3b, r24	; 59
+ 744:	07 90       	elpm	r0, Z+
+ 746:	f6 91       	elpm	r31, Z
+ 748:	e0 2d       	mov	r30, r0
+ 74a:	19 94       	eijmp
 
-00000752 <_exit>:
- 752:	f8 94       	cli
+0000074c <_exit>:
+ 74c:	f8 94       	cli
 
-00000754 <__stop_program>:
- 754:	ff cf       	rjmp	.-2      	; 0x754 <__stop_program>
+0000074e <__stop_program>:
+ 74e:	ff cf       	rjmp	.-2      	; 0x74e <__stop_program>

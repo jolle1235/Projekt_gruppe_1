@@ -236,7 +236,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x756
+.text           0x00000000      0x750
  *(.vectors)
  .vectors       0x00000000       0xe4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.6.364/gcc/dev/atmega2560/avr6/crtatmega2560.o
                 0x00000000                __vector_default
@@ -356,66 +356,66 @@ END GROUP
                 0x00000144                . = ALIGN (0x2)
  *(.text.*)
  .text.__vector_1
-                0x00000144       0x5c main.o
+                0x00000144       0x56 main.o
                 0x00000144                __vector_1
  .text.__vector_25
-                0x000001a0       0x20 main.o
-                0x000001a0                __vector_25
+                0x0000019a       0x20 main.o
+                0x0000019a                __vector_25
  .text._Z13initInterupt0v
-                0x000001c0       0x10 main.o
-                0x000001c0                _Z13initInterupt0v
+                0x000001ba       0x10 main.o
+                0x000001ba                _Z13initInterupt0v
  .text._Z10initIOpinsv
-                0x000001d0       0x10 main.o
-                0x000001d0                _Z10initIOpinsv
- .text.main     0x000001e0      0x312 main.o
-                0x000001e0                main
+                0x000001ca       0x10 main.o
+                0x000001ca                _Z10initIOpinsv
+ .text.main     0x000001da      0x312 main.o
+                0x000001da                main
  .text._GLOBAL__sub_I_modtaget
-                0x000004f2        0x8 main.o
+                0x000004ec        0x8 main.o
  .text._ZN11TransmitterC2Ev
-                0x000004fa        0x8 Transmitter.o
-                0x000004fa                _ZN11TransmitterC1Ev
-                0x000004fa                _ZN11TransmitterC2Ev
+                0x000004f4        0x8 Transmitter.o
+                0x000004f4                _ZN11TransmitterC1Ev
+                0x000004f4                _ZN11TransmitterC2Ev
  .text._ZN11Transmitter12setZeroCrossEi
-                0x00000502        0xe Transmitter.o
-                0x00000502                _ZN11Transmitter12setZeroCrossEi
+                0x000004fc        0xe Transmitter.o
+                0x000004fc                _ZN11Transmitter12setZeroCrossEi
  .text._ZN11Transmitter10setAdresseEPi
-                0x00000510       0x18 Transmitter.o
-                0x00000510                _ZN11Transmitter10setAdresseEPi
+                0x0000050a       0x18 Transmitter.o
+                0x0000050a                _ZN11Transmitter10setAdresseEPi
  .text._ZN11Transmitter11setKommandoEPi
-                0x00000528       0x18 Transmitter.o
-                0x00000528                _ZN11Transmitter11setKommandoEPi
+                0x00000522       0x18 Transmitter.o
+                0x00000522                _ZN11Transmitter11setKommandoEPi
  .text._ZN11Transmitter13start1msDelayEv
-                0x00000540       0x14 Transmitter.o
-                0x00000540                _ZN11Transmitter13start1msDelayEv
+                0x0000053a       0x14 Transmitter.o
+                0x0000053a                _ZN11Transmitter13start1msDelayEv
  .text._ZN11Transmitter13sendStartBitsEv
-                0x00000554       0x68 Transmitter.o
-                0x00000554                _ZN11Transmitter13sendStartBitsEv
+                0x0000054e       0x68 Transmitter.o
+                0x0000054e                _ZN11Transmitter13sendStartBitsEv
  .text._ZN11Transmitter15sendAdresseBitsEv
-                0x000005bc       0x66 Transmitter.o
-                0x000005bc                _ZN11Transmitter15sendAdresseBitsEv
+                0x000005b6       0x66 Transmitter.o
+                0x000005b6                _ZN11Transmitter15sendAdresseBitsEv
  .text._ZN11Transmitter16sendKommandoBitsEv
-                0x00000622       0x66 Transmitter.o
-                0x00000622                _ZN11Transmitter16sendKommandoBitsEv
+                0x0000061c       0x66 Transmitter.o
+                0x0000061c                _ZN11Transmitter16sendKommandoBitsEv
  .text._ZN11Transmitter12sendStopBitsEv
-                0x00000688       0x68 Transmitter.o
-                0x00000688                _ZN11Transmitter12sendStopBitsEv
+                0x00000682       0x68 Transmitter.o
+                0x00000682                _ZN11Transmitter12sendStopBitsEv
  .text._ZN4UARTC2Ev
-                0x000006f0       0x1a UART.o
-                0x000006f0                _ZN4UARTC1Ev
-                0x000006f0                _ZN4UARTC2Ev
+                0x000006ea       0x1a UART.o
+                0x000006ea                _ZN4UARTC1Ev
+                0x000006ea                _ZN4UARTC2Ev
  .text._ZN4UART8SendCharEc
-                0x0000070a       0x10 UART.o
-                0x0000070a                _ZN4UART8SendCharEc
+                0x00000704       0x10 UART.o
+                0x00000704                _ZN4UART8SendCharEc
  .text._ZN4UART10SendStringEPc
-                0x0000071a       0x28 UART.o
-                0x0000071a                _ZN4UART10SendStringEPc
- .text.libgcc   0x00000742       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_tablejump2.o)
-                0x00000742                __tablejump2__
-                0x00000752                . = ALIGN (0x2)
+                0x00000714       0x28 UART.o
+                0x00000714                _ZN4UART10SendStringEPc
+ .text.libgcc   0x0000073c       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_tablejump2.o)
+                0x0000073c                __tablejump2__
+                0x0000074c                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000752        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_exit.o)
-                0x00000752                _exit
-                0x00000752                exit
+ .fini9         0x0000074c        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_exit.o)
+                0x0000074c                _exit
+                0x0000074c                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -434,11 +434,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000752        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_exit.o)
+ .fini0         0x0000074c        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000756                _etext = .
+                0x00000750                _etext = .
 
-.data           0x00800200      0x440 load address 0x00000756
+.data           0x00800200      0x440 load address 0x00000750
                 0x00800200                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -470,8 +470,8 @@ END GROUP
                 0x0080065a                modtaget
  *(COMMON)
                 0x0080065b                PROVIDE (__bss_end, .)
-                0x00000756                __data_load_start = LOADADDR (.data)
-                0x00000b96                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00000750                __data_load_start = LOADADDR (.data)
+                0x00000b90                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x0080065b        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
@@ -570,12 +570,12 @@ END GROUP
  .debug_abbrev  0x00000d05      0x1d0 Transmitter.o
  .debug_abbrev  0x00000ed5      0x131 UART.o
 
-.debug_line     0x00000000      0x872
+.debug_line     0x00000000      0x86c
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x1fa C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.6.364/gcc/dev/atmega2560/avr6/crtatmega2560.o
- .debug_line    0x000001fa      0x2dd main.o
- .debug_line    0x000004d7      0x300 Transmitter.o
- .debug_line    0x000007d7       0x9b UART.o
+ .debug_line    0x000001fa      0x2d7 main.o
+ .debug_line    0x000004d1      0x300 Transmitter.o
+ .debug_line    0x000007d1       0x9b UART.o
 
 .debug_frame    0x00000000      0x288
  *(.debug_frame)

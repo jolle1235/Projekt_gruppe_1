@@ -54,11 +54,11 @@ int main(void)
     {
 			
 			
-			if ((modtaget == '1') || (modtaget == '2') || (modtaget == '3') || (modtaget == '4') || (modtaget == '5'))
+			if ((modtaget == '1') || (modtaget == '2') || (modtaget == '3') || (modtaget == '4') || (modtaget == '5'))	// Program reagerer kun hvis den modtager char 1-5 
 			{
 				switch (modtaget)
 				{
-				case '1':
+				case '1':		// Tænder lampen
 				{
 					uart0.SendString("Lampen taendes.\n\r");
 					int adresse[6] = {0,1,0,1,0,1};
@@ -68,7 +68,7 @@ int main(void)
 				}
 					break;
 					
-				case '2':
+				case '2':		// Slukker lampen
 				{
 					uart0.SendString("Lampen slukkes\n\r");
 					int adresse[6] = {0,1,0,1,0,1};
@@ -77,7 +77,7 @@ int main(void)
 					sender.setKommando(kommando);	
 				}
 					break;
-				case '3':
+				case '3':		// Gardin rulles op
 				{
 					uart0.SendString("Gardin rulles op\n\r");
 					int adresse[6] = {1,0,0,1,1,0};
@@ -86,7 +86,7 @@ int main(void)
 					sender.setKommando(kommando);
 				}
 				break;
-				case '4':
+				case '4':		// Gardin rulles ned
 				{
 					uart0.SendString("Gardin rulles ned\n\r");
 					int adresse[6] = {1,0,0,1,1,0};
@@ -95,7 +95,7 @@ int main(void)
 					sender.setKommando(kommando);
 				}
 				break;
-				case '5':
+				case '5':		// Slukker hjem
 				{
 					uart0.SendString("Hjem lukkes ned\n\r");
 					int adresse[6] = {1,0,0,1,1,0};
@@ -106,6 +106,7 @@ int main(void)
 				default:
 					break;
 				}
+				
 				
 				sender.setZeroCross(0);
 				
@@ -126,42 +127,37 @@ int main(void)
 					sender.sendStopBits();
 				}
 						
-				PORTB = PINB ^ 0b11111111;
+				PORTB = PINB ^ 0b11111111;		// Toggler port B når transmitteren er færdig med at sende
 
 			}
-		modtaget = '0';
+		modtaget = '0';			// Nulstiller modtager så den ikke udfører en kommando igen
 		
     }
 }
 
 ISR(INT0_vect)
 {
-	sender.setZeroCross(1);
-<<<<<<< Updated upstream
-=======
-	PORTB = PINB ^ 0b10000000;
->>>>>>> Stashed changes
-	
+	sender.setZeroCross(1);			// Sætter zeroCross_ til 1
 }
 
 ISR(USART0_RX_vect)
 {
-	modtaget = UDR0;
+	modtaget = UDR0;			// Den værdi UARTen modtager bliver gemt i modtaget
 }
 
 void initInterupt0()
 {
-	sei();
-	EIMSK |= 0b00000001;
-	EICRA |= 0b00000001;
+	sei();					// Enable global interupt
+	EIMSK |= 0b00000001;	// Enabler interupt 0
+	EICRA |= 0b00000001;	// Enabler interupt 1 ved falling og rising edge
 }
 
 void initIOpins()
 {
-		DDRB = 0xFF;
-		DDRC = 0xFF;
-		DDRD = 0;
-		PORTB = 0;
-		PORTC = 0;
-		PORTD = 0;
+		DDRB = 0xFF;		// Udgang
+		DDRC = 0xFF;		// Udgang
+		DDRD = 0;			// Indgang
+		PORTB = 0;			// Nulstiller PortB
+		PORTC = 0;			// Nulstiller PortC
+		PORTD = 0;			// Nulstiller PortD
 }
