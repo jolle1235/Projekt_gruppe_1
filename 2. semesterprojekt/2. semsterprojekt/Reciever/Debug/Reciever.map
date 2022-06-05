@@ -26,17 +26,15 @@ Discarded input sections
  .text          0x00000000        0x0 main.o
  .data          0x00000000        0x0 main.o
  .bss           0x00000000        0x0 main.o
- .text          0x00000000        0x0 RecieverLamp.o
- .data          0x00000000        0x0 RecieverLamp.o
- .bss           0x00000000        0x0 RecieverLamp.o
- .text._ZN12RecieverLamp12getZeroCrossEv
-                0x00000000        0x8 RecieverLamp.o
- .text._ZN12RecieverLamp12getNyesteBitEv
-                0x00000000        0x8 RecieverLamp.o
- .text._ZN12RecieverLamp12setNyesteBitEi
-                0x00000000        0x8 RecieverLamp.o
- .text._ZN12RecieverLamp11turnOnLightEv
-                0x00000000        0x6 RecieverLamp.o
+ .text          0x00000000        0x0 Reciever.o
+ .data          0x00000000        0x0 Reciever.o
+ .bss           0x00000000        0x0 Reciever.o
+ .text._ZN8Reciever12getZeroCrossEv
+                0x00000000        0x8 Reciever.o
+ .text._ZN8Reciever12getNyesteBitEv
+                0x00000000        0x8 Reciever.o
+ .text._ZN8Reciever12setNyesteBitEi
+                0x00000000        0x8 Reciever.o
  .text          0x00000000        0x0 UART.o
  .data          0x00000000        0x0 UART.o
  .bss           0x00000000        0x0 UART.o
@@ -162,7 +160,7 @@ Linker script and memory map
 Address of section .data set to 0x800200
 LOAD C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.6.364/gcc/dev/atmega2560/avr6/crtatmega2560.o
 LOAD main.o
-LOAD RecieverLamp.o
+LOAD Reciever.o
 LOAD UART.o
 START GROUP
 LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a
@@ -273,7 +271,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x6c0
+.text           0x00000000      0x6d0
  *(.vectors)
  .vectors       0x00000000       0xe4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.6.364/gcc/dev/atmega2560/avr6/crtatmega2560.o
                 0x00000000                __vector_default
@@ -400,85 +398,91 @@ END GROUP
  .text._Z7initADCv
                 0x00000156       0x12 main.o
                 0x00000156                _Z7initADCv
- .text.main     0x00000168       0xa4 main.o
+ .text.main     0x00000168       0xa8 main.o
                 0x00000168                main
  .text.__vector_1
-                0x0000020c       0x56 main.o
-                0x0000020c                __vector_1
+                0x00000210       0x56 main.o
+                0x00000210                __vector_1
  .text._GLOBAL__sub_I_Reciever
-                0x00000262        0xe main.o
+                0x00000266        0xe main.o
  .text._GLOBAL__sub_D_Reciever
-                0x00000270        0x8 main.o
- .text._ZN12RecieverLampC2Ev
-                0x00000278       0x4e RecieverLamp.o
-                0x00000278                _ZN12RecieverLampC2Ev
-                0x00000278                _ZN12RecieverLampC1Ev
- .text._ZN12RecieverLampD2Ev
-                0x000002c6        0x2 RecieverLamp.o
-                0x000002c6                _ZN12RecieverLampD1Ev
-                0x000002c6                _ZN12RecieverLampD2Ev
- .text._ZN12RecieverLamp12setZeroCrossEi
-                0x000002c8        0x8 RecieverLamp.o
-                0x000002c8                _ZN12RecieverLamp12setZeroCrossEi
- .text._ZN12RecieverLamp14setAdresseBitsEv
-                0x000002d0       0xc6 RecieverLamp.o
-                0x000002d0                _ZN12RecieverLamp14setAdresseBitsEv
- .text._ZN12RecieverLamp14getAdresseBitsEv
-                0x00000396        0x8 RecieverLamp.o
-                0x00000396                _ZN12RecieverLamp14getAdresseBitsEv
- .text._ZN12RecieverLamp7readADCEv
-                0x0000039e       0x90 RecieverLamp.o
-                0x0000039e                _ZN12RecieverLamp7readADCEv
- .text._ZN12RecieverLamp13readStartBitsEv
-                0x0000042e       0x4c RecieverLamp.o
-                0x0000042e                _ZN12RecieverLamp13readStartBitsEv
- .text._ZN12RecieverLamp15readAdresseBitsEv
-                0x0000047a       0x5e RecieverLamp.o
-                0x0000047a                _ZN12RecieverLamp15readAdresseBitsEv
- .text._ZN12RecieverLamp12readDataBitsEv
-                0x000004d8       0x5e RecieverLamp.o
-                0x000004d8                _ZN12RecieverLamp12readDataBitsEv
- .text._ZN12RecieverLamp12readStopBitsEv
-                0x00000536       0x5a RecieverLamp.o
-                0x00000536                _ZN12RecieverLamp12readStopBitsEv
+                0x00000274        0x8 main.o
+ .text._ZN8RecieverC2Ev
+                0x0000027c       0x4e Reciever.o
+                0x0000027c                _ZN8RecieverC2Ev
+                0x0000027c                _ZN8RecieverC1Ev
+ .text._ZN8RecieverD2Ev
+                0x000002ca        0x2 Reciever.o
+                0x000002ca                _ZN8RecieverD2Ev
+                0x000002ca                _ZN8RecieverD1Ev
+ .text._ZN8Reciever12setZeroCrossEi
+                0x000002cc        0x8 Reciever.o
+                0x000002cc                _ZN8Reciever12setZeroCrossEi
+ .text._ZN8Reciever14setAdresseBitsEv
+                0x000002d4       0xc8 Reciever.o
+                0x000002d4                _ZN8Reciever14setAdresseBitsEv
+ .text._ZN8Reciever14getAdresseBitsEv
+                0x0000039c        0x8 Reciever.o
+                0x0000039c                _ZN8Reciever14getAdresseBitsEv
+ .text._ZN8Reciever7readADCEv
+                0x000003a4       0x90 Reciever.o
+                0x000003a4                _ZN8Reciever7readADCEv
+ .text._ZN8Reciever13readStartBitsEv
+                0x00000434       0x4c Reciever.o
+                0x00000434                _ZN8Reciever13readStartBitsEv
+ .text._ZN8Reciever15readAdresseBitsEv
+                0x00000480       0x5e Reciever.o
+                0x00000480                _ZN8Reciever15readAdresseBitsEv
+ .text._ZN8Reciever12readDataBitsEv
+                0x000004de       0x5e Reciever.o
+                0x000004de                _ZN8Reciever12readDataBitsEv
+ .text._ZN8Reciever12readStopBitsEv
+                0x0000053c       0x5a Reciever.o
+                0x0000053c                _ZN8Reciever12readStopBitsEv
+ .text._ZN8Reciever11turnOnLightEv
+                0x00000596        0x6 Reciever.o
+                0x00000596                _ZN8Reciever11turnOnLightEv
+ .text._ZN8Reciever12turnOffLightEv
+                0x0000059c        0x4 Reciever.o
+                0x0000059c                _ZN8Reciever12turnOffLightEv
  .text._ZN4UARTC2Ev
-                0x00000590       0x1a UART.o
-                0x00000590                _ZN4UARTC1Ev
-                0x00000590                _ZN4UARTC2Ev
+                0x000005a0       0x1a UART.o
+                0x000005a0                _ZN4UARTC1Ev
+                0x000005a0                _ZN4UARTC2Ev
  .text._ZN4UART8SendCharEc
-                0x000005aa       0x10 UART.o
-                0x000005aa                _ZN4UART8SendCharEc
+                0x000005ba       0x10 UART.o
+                0x000005ba                _ZN4UART8SendCharEc
  .text._ZN4UART10SendStringEPc
-                0x000005ba       0x28 UART.o
-                0x000005ba                _ZN4UART10SendStringEPc
+                0x000005ca       0x28 UART.o
+                0x000005ca                _ZN4UART10SendStringEPc
  .text._ZN4UART11SendIntegerEi
-                0x000005e2       0x46 UART.o
-                0x000005e2                _ZN4UART11SendIntegerEi
- .text.libgcc   0x00000628       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_tablejump2.o)
-                0x00000628                __tablejump2__
+                0x000005f2       0x46 UART.o
+                0x000005f2                _ZN4UART11SendIntegerEi
+ .text.libgcc   0x00000638       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_tablejump2.o)
+                0x00000638                __tablejump2__
  .text.avr-libc
-                0x00000638       0x14 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(itoa_ncheck.o)
-                0x00000638                __itoa_ncheck
+                0x00000648       0x14 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(itoa_ncheck.o)
+                0x00000648                __itoa_ncheck
  .text.avr-libc
-                0x0000064c       0x32 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(utoa_ncheck.o)
-                0x0000064c                __utoa_ncheck
-                0x0000064e                __utoa_common
+                0x0000065c       0x32 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(utoa_ncheck.o)
+                0x0000065c                __utoa_ncheck
+                0x0000065e                __utoa_common
  .text.avr-libc
-                0x0000067e       0x20 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(strrev.o)
-                0x0000067e                strrev
-                0x0000069e                . = ALIGN (0x2)
+                0x0000068e       0x20 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(strrev.o)
+                0x0000068e                strrev
+                0x000006ae                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000069e        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_exit.o)
-                0x0000069e                _exit
-                0x0000069e                exit
+ .fini9         0x000006ae        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_exit.o)
+                0x000006ae                _exit
+                0x000006ae                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
  *(.fini7)
  *(.fini7)
  *(.fini6)
- .fini6         0x0000069e       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_dtors.o)
-                0x0000069e                __do_global_dtors
+ .fini6         0x000006ae       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_dtors.o)
+                0x000006ae                __do_global_dtors
  *(.fini6)
  *(.fini5)
  *(.fini5)
@@ -491,11 +495,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000006bc        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_exit.o)
+ .fini0         0x000006cc        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_exit.o)
  *(.fini0)
-                0x000006c0                _etext = .
+                0x000006d0                _etext = .
 
-.data           0x00800200       0x3c load address 0x000006c0
+.data           0x00800200       0x3c load address 0x000006d0
                 0x00800200                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -506,31 +510,31 @@ END GROUP
                 0x00800200       0x39 main.o
                                  0x3c (size before relaxing)
  .rodata.str1.1
-                0x00800239        0x2 RecieverLamp.o
+                0x00800239        0x2 Reciever.o
  *(.gnu.linkonce.r*)
                 0x0080023c                . = ALIGN (0x2)
  *fill*         0x0080023b        0x1 
                 0x0080023c                _edata = .
                 0x0080023c                PROVIDE (__data_end, .)
 
-.bss            0x0080023c       0x1b
+.bss            0x0080023c       0x17
                 0x0080023c                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  .bss.uart_     0x0080023c        0x1 main.o
                 0x0080023c                uart_
- .bss.Reciever  0x0080023d       0x1a main.o
+ .bss.Reciever  0x0080023d       0x16 main.o
                 0x0080023d                Reciever
  *(COMMON)
-                0x00800257                PROVIDE (__bss_end, .)
-                0x000006c0                __data_load_start = LOADADDR (.data)
-                0x000006fc                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00800253                PROVIDE (__bss_end, .)
+                0x000006d0                __data_load_start = LOADADDR (.data)
+                0x0000070c                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800257        0x0
+.noinit         0x00800253        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800257                _end = .
+                0x00800253                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -574,7 +578,7 @@ END GROUP
  *(.comment)
  .comment       0x00000000       0x30 main.o
                                  0x31 (size before relaxing)
- .comment       0x00000030       0x31 RecieverLamp.o
+ .comment       0x00000030       0x31 Reciever.o
  .comment       0x00000030       0x31 UART.o
 
 .note.gnu.avr.deviceinfo
@@ -597,59 +601,59 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x108
+.debug_aranges  0x00000000      0x110
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x48 main.o
  .debug_aranges
-                0x00000048       0x88 RecieverLamp.o
+                0x00000048       0x90 Reciever.o
  .debug_aranges
-                0x000000d0       0x38 UART.o
+                0x000000d8       0x38 UART.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x1f37
+.debug_info     0x00000000     0x1f98
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0xbbc C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.6.364/gcc/dev/atmega2560/avr6/crtatmega2560.o
- .debug_info    0x00000bbc      0x731 main.o
- .debug_info    0x000012ed      0x91f RecieverLamp.o
- .debug_info    0x00001c0c      0x32b UART.o
+ .debug_info    0x00000bbc      0x767 main.o
+ .debug_info    0x00001323      0x94a Reciever.o
+ .debug_info    0x00001c6d      0x32b UART.o
 
 .debug_abbrev   0x00000000     0x1142
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0xb1a C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.6.364/gcc/dev/atmega2560/avr6/crtatmega2560.o
  .debug_abbrev  0x00000b1a      0x1de main.o
- .debug_abbrev  0x00000cf8      0x27a RecieverLamp.o
+ .debug_abbrev  0x00000cf8      0x27a Reciever.o
  .debug_abbrev  0x00000f72      0x1d0 UART.o
 
-.debug_line     0x00000000      0x928
+.debug_line     0x00000000      0x939
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x1fa C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.6.364/gcc/dev/atmega2560/avr6/crtatmega2560.o
- .debug_line    0x000001fa      0x184 main.o
- .debug_line    0x0000037e      0x485 RecieverLamp.o
- .debug_line    0x00000803      0x125 UART.o
+ .debug_line    0x000001fa      0x17a main.o
+ .debug_line    0x00000374      0x4a0 Reciever.o
+ .debug_line    0x00000814      0x125 UART.o
 
-.debug_frame    0x00000000      0x290
+.debug_frame    0x00000000      0x2a0
  *(.debug_frame)
  .debug_frame   0x00000000       0xcc main.o
- .debug_frame   0x000000cc      0x140 RecieverLamp.o
- .debug_frame   0x0000020c       0x84 UART.o
+ .debug_frame   0x000000cc      0x150 Reciever.o
+ .debug_frame   0x0000021c       0x84 UART.o
 
-.debug_str      0x00000000      0xb3f
+.debug_str      0x00000000      0xb4f
  *(.debug_str)
  .debug_str     0x00000000      0x3e6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.6.364/gcc/dev/atmega2560/avr6/crtatmega2560.o
- .debug_str     0x000003e6      0x650 main.o
-                                0x69f (size before relaxing)
- .debug_str     0x00000a36       0xb0 RecieverLamp.o
-                                0x66d (size before relaxing)
- .debug_str     0x00000ae6       0x59 UART.o
+ .debug_str     0x000003e6      0x5d1 main.o
+                                0x613 (size before relaxing)
+ .debug_str     0x000009b7       0xa2 Reciever.o
+                                0x5dc (size before relaxing)
+ .debug_str     0x00000a59       0xf6 UART.o
                                 0x2c6 (size before relaxing)
 
 .debug_loc      0x00000000      0x89b
  *(.debug_loc)
  .debug_loc     0x00000000      0x165 main.o
- .debug_loc     0x00000165      0x4ed RecieverLamp.o
+ .debug_loc     0x00000165      0x4ed Reciever.o
  .debug_loc     0x00000652      0x249 UART.o
 
 .debug_macinfo
@@ -670,11 +674,11 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0xd8
+.debug_ranges   0x00000000       0xe0
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x38 main.o
- .debug_ranges  0x00000038       0x78 RecieverLamp.o
- .debug_ranges  0x000000b0       0x28 UART.o
+ .debug_ranges  0x00000038       0x80 Reciever.o
+ .debug_ranges  0x000000b8       0x28 UART.o
 
 .debug_macro
  *(.debug_macro)

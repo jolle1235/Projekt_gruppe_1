@@ -146,10 +146,10 @@
     <Compile Include="main.cpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="RecieverLamp.cpp">
+    <Compile Include="Reciever.cpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="RecieverLamp.h">
+    <Compile Include="Reciever.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="UART.cpp">
