@@ -9,8 +9,6 @@ Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "Reciever", "Reciever\Reciev
 EndProject
 Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "Transmitter", "Transmitter\Transmitter.cppproj", "{54ADA2D9-4457-4CBD-8561-1B5268ACB25B}"
 EndProject
-Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "Tranciever", "Tranciever\Tranciever.cppproj", "{4111743F-0BFE-4D6E-A658-0920F5C4CEB4}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|AVR = Debug|AVR
@@ -29,10 +27,6 @@ Global
 		{54ADA2D9-4457-4CBD-8561-1B5268ACB25B}.Debug|AVR.Build.0 = Debug|AVR
 		{54ADA2D9-4457-4CBD-8561-1B5268ACB25B}.Release|AVR.ActiveCfg = Release|AVR
 		{54ADA2D9-4457-4CBD-8561-1B5268ACB25B}.Release|AVR.Build.0 = Release|AVR
-		{4111743F-0BFE-4D6E-A658-0920F5C4CEB4}.Debug|AVR.ActiveCfg = Debug|AVR
-		{4111743F-0BFE-4D6E-A658-0920F5C4CEB4}.Debug|AVR.Build.0 = Debug|AVR
-		{4111743F-0BFE-4D6E-A658-0920F5C4CEB4}.Release|AVR.ActiveCfg = Release|AVR
-		{4111743F-0BFE-4D6E-A658-0920F5C4CEB4}.Release|AVR.Build.0 = Release|AVR
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
