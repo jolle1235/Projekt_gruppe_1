@@ -15,11 +15,11 @@
 #include <util/delay.h>
 #include "UART.h"
 
-class RecieverLamp
+class Reciever
 {
 public:
-	RecieverLamp();
-	~RecieverLamp();
+	Reciever();
+	~Reciever();
 	int getZeroCross();
 	void setZeroCross(int zeroCross);
 	int getNyesteBit();
@@ -47,10 +47,10 @@ private:
 	int counter_;
 	
 	UART* uart_;
-	RecieverLamp( const RecieverLamp &c );
-	RecieverLamp& operator=( const RecieverLamp &c );
+	Reciever( const Reciever &c );
+	Reciever& operator=( const Reciever &c );
 
-}; //RecieverLamp
+}; //Reciever
 
 
 #endif //__RECIEVER_H__

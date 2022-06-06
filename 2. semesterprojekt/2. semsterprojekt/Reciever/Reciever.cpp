@@ -6,11 +6,11 @@
 */
 
 
-#include "RecieverLamp.h"
+#include "Reciever.h"
 
 
 // default constructor
-RecieverLamp::RecieverLamp()
+Reciever::Reciever()
 {
 	zeroCross_ = 0;
 	nyesteBit_ = 0;
@@ -26,29 +26,29 @@ RecieverLamp::RecieverLamp()
 } 
 
 // default destructor
-RecieverLamp::~RecieverLamp()
+Reciever::~Reciever()
 {
 	
 } 
-int RecieverLamp::getZeroCross()
+int Reciever::getZeroCross()
 {
 	return zeroCross_;
 }
-void RecieverLamp::setZeroCross(int zeroCross)
+void Reciever::setZeroCross(int zeroCross)
 {
 	zeroCross_ = zeroCross;
 }
 
-int RecieverLamp::getNyesteBit()
+int Reciever::getNyesteBit()
 {
 		return nyesteBit_;		
 }
-void RecieverLamp::setNyesteBit(int nyestebit)
+void Reciever::setNyesteBit(int nyestebit)
 {
 		nyesteBit_ = nyestebit;
 }
 
-int RecieverLamp::readStartBits(){
+int Reciever::readStartBits(){
 	seneste6Bits_ = 0;
 	counter_ = 0;
 	while(startBits_ != seneste6Bits_){
@@ -73,7 +73,7 @@ int RecieverLamp::readStartBits(){
 	return 1;
 	
 }
-int RecieverLamp::readAdresseBits(){
+int Reciever::readAdresseBits(){
 	seneste6Bits_ = 0;
 	counter_ = 0;
 	
@@ -99,7 +99,7 @@ int RecieverLamp::readAdresseBits(){
 	return seneste6Bits_;
 	
 }
-void RecieverLamp::setAdresseBits()
+void Reciever::setAdresseBits()
 {
 	while (PINA & 0b01000000)
 	{
@@ -135,14 +135,14 @@ void RecieverLamp::setAdresseBits()
 		}
 	}
 		adresseBits_ = PINB;
-		PORTB |= 0b01000000
+		PORTB |= 0b01000000;
 }
-int RecieverLamp::getAdresseBits()
+int Reciever::getAdresseBits()
 {
 	return adresseBits_;
 }
 
-int RecieverLamp::readDataBits()
+int Reciever::readDataBits()
 {
 	seneste6Bits_ = 0;
 	counter_ = 0;
@@ -178,7 +178,7 @@ ABSTRACT:
 koden oven over, skal aflæse havd der bliver modtaget (indkodet analog og ikke binært signal)signal 
 og så skal den retuner en int som er et afkodet kommando.
 */ 
-int RecieverLamp::readStopBits()
+int Reciever::readStopBits()
 {
 	seneste6Bits_ = 0;
 	counter_ = 0;
@@ -201,7 +201,7 @@ int RecieverLamp::readStopBits()
 	return 1;
 }
 
-void RecieverLamp::readADC(){
+void Reciever::readADC(){
 	
 	//// timer
 	TCNT0 = 240;			// timer på 1 ms	
@@ -241,12 +241,12 @@ void RecieverLamp::readADC(){
 	uart_->SendString("\\");	
 }
 
-void RecieverLamp::turnOnLight()
+void Reciever::turnOnLight()
 {
 	PORTB = 0xFF;
 }
 
-void RecieverLamp::turnOffLight()
+void Reciever::turnOffLight()
 {
 	PORTB = 0;	
 }

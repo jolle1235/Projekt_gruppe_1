@@ -3,31 +3,31 @@ Reciever.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         0000003c  00800200  000006c0  00000754  2**0
+  0 .data         0000003c  00800200  000006d0  00000764  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         000006c0  00000000  00000000  00000094  2**1
+  1 .text         000006d0  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          0000001b  0080023c  0080023c  00000790  2**0
+  2 .bss          00000017  0080023c  0080023c  000007a0  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000790  2**0
+  3 .comment      00000030  00000000  00000000  000007a0  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000007c0  2**2
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000007d0  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000108  00000000  00000000  00000800  2**0
+  5 .debug_aranges 00000110  00000000  00000000  00000810  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00001f37  00000000  00000000  00000908  2**0
+  6 .debug_info   00001f98  00000000  00000000  00000920  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00001142  00000000  00000000  0000283f  2**0
+  7 .debug_abbrev 00001142  00000000  00000000  000028b8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000928  00000000  00000000  00003981  2**0
+  8 .debug_line   00000939  00000000  00000000  000039fa  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000290  00000000  00000000  000042ac  2**2
+  9 .debug_frame  000002a0  00000000  00000000  00004334  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000b3f  00000000  00000000  0000453c  2**0
+ 10 .debug_str    00000b4f  00000000  00000000  000045d4  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    0000089b  00000000  00000000  0000507b  2**0
+ 11 .debug_loc    0000089b  00000000  00000000  00005123  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000000d8  00000000  00000000  00005916  2**0
+ 12 .debug_ranges 000000e0  00000000  00000000  000059be  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -35,7 +35,7 @@ Disassembly of section .text:
 00000000 <__vectors>:
    0:	73 c0       	rjmp	.+230    	; 0xe8 <__dtors_end>
    2:	00 00       	nop
-   4:	03 c1       	rjmp	.+518    	; 0x20c <__vector_1>
+   4:	05 c1       	rjmp	.+522    	; 0x210 <__vector_1>
    6:	00 00       	nop
    8:	9d c0       	rjmp	.+314    	; 0x144 <__bad_interrupt>
    a:	00 00       	nop
@@ -149,10 +149,10 @@ Disassembly of section .text:
 	...
 
 000000e4 <__ctors_start>:
-  e4:	31 01       	movw	r6, r2
+  e4:	33 01       	movw	r6, r6
 
 000000e6 <__ctors_end>:
-  e6:	38 01       	movw	r6, r16
+  e6:	3a 01       	movw	r6, r20
 
 000000e8 <__dtors_end>:
   e8:	11 24       	eor	r1, r1
@@ -168,7 +168,7 @@ Disassembly of section .text:
   f8:	12 e0       	ldi	r17, 0x02	; 2
   fa:	a0 e0       	ldi	r26, 0x00	; 0
   fc:	b2 e0       	ldi	r27, 0x02	; 2
-  fe:	e0 ec       	ldi	r30, 0xC0	; 192
+  fe:	e0 ed       	ldi	r30, 0xD0	; 208
  100:	f6 e0       	ldi	r31, 0x06	; 6
  102:	00 e0       	ldi	r16, 0x00	; 0
  104:	0b bf       	out	0x3b, r16	; 59
@@ -189,7 +189,7 @@ Disassembly of section .text:
  11a:	1d 92       	st	X+, r1
 
 0000011c <.do_clear_bss_start>:
- 11c:	a7 35       	cpi	r26, 0x57	; 87
+ 11c:	a3 35       	cpi	r26, 0x53	; 83
  11e:	b2 07       	cpc	r27, r18
  120:	e1 f7       	brne	.-8      	; 0x11a <.do_clear_bss_loop>
 
@@ -203,20 +203,20 @@ Disassembly of section .text:
  12e:	01 09       	sbc	r16, r1
  130:	80 2f       	mov	r24, r16
  132:	fe 01       	movw	r30, r28
- 134:	79 d2       	rcall	.+1266   	; 0x628 <__tablejump2__>
+ 134:	81 d2       	rcall	.+1282   	; 0x638 <__tablejump2__>
  136:	c2 37       	cpi	r28, 0x72	; 114
  138:	d1 07       	cpc	r29, r17
  13a:	80 e0       	ldi	r24, 0x00	; 0
  13c:	08 07       	cpc	r16, r24
  13e:	b1 f7       	brne	.-20     	; 0x12c <__do_global_ctors+0xa>
  140:	13 d0       	rcall	.+38     	; 0x168 <main>
- 142:	ad c2       	rjmp	.+1370   	; 0x69e <__do_global_dtors>
+ 142:	b5 c2       	rjmp	.+1386   	; 0x6ae <__do_global_dtors>
 
 00000144 <__bad_interrupt>:
  144:	5d cf       	rjmp	.-326    	; 0x0 <__vectors>
 
 00000146 <_Z13initInterupt0v>:
-RecieverLamp Reciever;
+Reciever Reciever;
 UART uart_;
 
 void initInterupt0()				// Int0 Gøres klar
@@ -263,7 +263,7 @@ int main(void)
 	UART uart;
  172:	ce 01       	movw	r24, r28
  174:	01 96       	adiw	r24, 0x01	; 1
- 176:	0c d2       	rcall	.+1048   	; 0x590 <_ZN4UARTC1Ev>
+ 176:	14 d2       	rcall	.+1064   	; 0x5a0 <_ZN4UARTC1Ev>
 	
 	DDRF = 0;
  178:	10 ba       	out	0x10, r1	; 16
@@ -286,15 +286,15 @@ int main(void)
  188:	92 e0       	ldi	r25, 0x02	; 2
 	
 	uart.SendInteger(Reciever.getAdresseBits());
- 18a:	a2 d0       	rcall	.+324    	; 0x2d0 <_ZN12RecieverLamp14setAdresseBitsEv>
+ 18a:	a4 d0       	rcall	.+328    	; 0x2d4 <_ZN8Reciever14setAdresseBitsEv>
  18c:	8d e3       	ldi	r24, 0x3D	; 61
  18e:	92 e0       	ldi	r25, 0x02	; 2
- 190:	02 d1       	rcall	.+516    	; 0x396 <_ZN12RecieverLamp14getAdresseBitsEv>
+ 190:	05 d1       	rcall	.+522    	; 0x39c <_ZN8Reciever14getAdresseBitsEv>
  192:	bc 01       	movw	r22, r24
  194:	ce 01       	movw	r24, r28
  196:	01 96       	adiw	r24, 0x01	; 1
 	uart.SendString("\n\r");
- 198:	24 d2       	rcall	.+1096   	; 0x5e2 <_ZN4UART11SendIntegerEi>
+ 198:	2c d2       	rcall	.+1112   	; 0x5f2 <_ZN4UART11SendIntegerEi>
  19a:	66 e3       	ldi	r22, 0x36	; 54
  19c:	72 e0       	ldi	r23, 0x02	; 2
  19e:	ce 01       	movw	r24, r28
@@ -302,1063 +302,1024 @@ int main(void)
 	
 	
 	uart.SendString("program starter \n");
- 1a2:	0b d2       	rcall	.+1046   	; 0x5ba <_ZN4UART10SendStringEPc>
+ 1a2:	13 d2       	rcall	.+1062   	; 0x5ca <_ZN4UART10SendStringEPc>
  1a4:	60 e0       	ldi	r22, 0x00	; 0
  1a6:	72 e0       	ldi	r23, 0x02	; 2
  1a8:	ce 01       	movw	r24, r28
  1aa:	01 96       	adiw	r24, 0x01	; 1
-			{
-				uart.SendString("\n\rAdressen passede");
-				switch(data)
-				{
-					case 42:
-						PORTB = 0xFF;
- 1ac:	06 d2       	rcall	.+1036   	; 0x5ba <_ZN4UART10SendStringEPc>
-	uart.SendString("program starter \n");
 	
     /* Replace with your application code */
     while (1) 
     {
 		if (Reciever.readStartBits() == 1)
- 1ae:	dd 24       	eor	r13, r13
- 1b0:	da 94       	dec	r13
- 1b2:	8d e3       	ldi	r24, 0x3D	; 61
- 1b4:	92 e0       	ldi	r25, 0x02	; 2
- 1b6:	3b d1       	rcall	.+630    	; 0x42e <_ZN12RecieverLamp13readStartBitsEv>
+ 1ac:	0e d2       	rcall	.+1052   	; 0x5ca <_ZN4UART10SendStringEPc>
+ 1ae:	8d e3       	ldi	r24, 0x3D	; 61
+ 1b0:	92 e0       	ldi	r25, 0x02	; 2
+ 1b2:	40 d1       	rcall	.+640    	; 0x434 <_ZN8Reciever13readStartBitsEv>
+ 1b4:	01 97       	sbiw	r24, 0x01	; 1
 		{
 			adresse = Reciever.readAdresseBits();
- 1b8:	01 97       	sbiw	r24, 0x01	; 1
- 1ba:	d9 f7       	brne	.-10     	; 0x1b2 <main+0x4a>
- 1bc:	8d e3       	ldi	r24, 0x3D	; 61
- 1be:	92 e0       	ldi	r25, 0x02	; 2
+ 1b6:	d9 f7       	brne	.-10     	; 0x1ae <main+0x46>
+ 1b8:	8d e3       	ldi	r24, 0x3D	; 61
+ 1ba:	92 e0       	ldi	r25, 0x02	; 2
+ 1bc:	61 d1       	rcall	.+706    	; 0x480 <_ZN8Reciever15readAdresseBitsEv>
 			data = Reciever.readDataBits();
- 1c0:	5c d1       	rcall	.+696    	; 0x47a <_ZN12RecieverLamp15readAdresseBitsEv>
- 1c2:	8c 01       	movw	r16, r24
- 1c4:	8d e3       	ldi	r24, 0x3D	; 61
- 1c6:	92 e0       	ldi	r25, 0x02	; 2
- 1c8:	87 d1       	rcall	.+782    	; 0x4d8 <_ZN12RecieverLamp12readDataBitsEv>
+ 1be:	8c 01       	movw	r16, r24
+ 1c0:	8d e3       	ldi	r24, 0x3D	; 61
+ 1c2:	92 e0       	ldi	r25, 0x02	; 2
+ 1c4:	8c d1       	rcall	.+792    	; 0x4de <_ZN8Reciever12readDataBitsEv>
+ 1c6:	7c 01       	movw	r14, r24
 			Reciever.readStopBits();
- 1ca:	7c 01       	movw	r14, r24
- 1cc:	8d e3       	ldi	r24, 0x3D	; 61
- 1ce:	92 e0       	ldi	r25, 0x02	; 2
+ 1c8:	8d e3       	ldi	r24, 0x3D	; 61
+ 1ca:	92 e0       	ldi	r25, 0x02	; 2
+ 1cc:	b7 d1       	rcall	.+878    	; 0x53c <_ZN8Reciever12readStopBitsEv>
 			
 			if (adresse == Reciever.getAdresseBits())
- 1d0:	b2 d1       	rcall	.+868    	; 0x536 <_ZN12RecieverLamp12readStopBitsEv>
- 1d2:	8d e3       	ldi	r24, 0x3D	; 61
- 1d4:	92 e0       	ldi	r25, 0x02	; 2
- 1d6:	df d0       	rcall	.+446    	; 0x396 <_ZN12RecieverLamp14getAdresseBitsEv>
- 1d8:	08 17       	cp	r16, r24
- 1da:	19 07       	cpc	r17, r25
- 1dc:	51 f7       	brne	.-44     	; 0x1b2 <main+0x4a>
+ 1ce:	8d e3       	ldi	r24, 0x3D	; 61
+ 1d0:	92 e0       	ldi	r25, 0x02	; 2
+ 1d2:	e4 d0       	rcall	.+456    	; 0x39c <_ZN8Reciever14getAdresseBitsEv>
+ 1d4:	08 17       	cp	r16, r24
+ 1d6:	19 07       	cpc	r17, r25
+ 1d8:	51 f7       	brne	.-44     	; 0x1ae <main+0x46>
+ 1da:	62 e1       	ldi	r22, 0x12	; 18
 			{
 				uart.SendString("\n\rAdressen passede");
- 1de:	62 e1       	ldi	r22, 0x12	; 18
- 1e0:	72 e0       	ldi	r23, 0x02	; 2
- 1e2:	ce 01       	movw	r24, r28
- 1e4:	01 96       	adiw	r24, 0x01	; 1
- 1e6:	e9 d1       	rcall	.+978    	; 0x5ba <_ZN4UART10SendStringEPc>
- 1e8:	85 e1       	ldi	r24, 0x15	; 21
+ 1dc:	72 e0       	ldi	r23, 0x02	; 2
+ 1de:	ce 01       	movw	r24, r28
+ 1e0:	01 96       	adiw	r24, 0x01	; 1
+ 1e2:	f3 d1       	rcall	.+998    	; 0x5ca <_ZN4UART10SendStringEPc>
+ 1e4:	85 e1       	ldi	r24, 0x15	; 21
 				switch(data)
- 1ea:	e8 16       	cp	r14, r24
- 1ec:	f1 04       	cpc	r15, r1
- 1ee:	31 f0       	breq	.+12     	; 0x1fc <main+0x94>
- 1f0:	8a e2       	ldi	r24, 0x2A	; 42
- 1f2:	e8 16       	cp	r14, r24
- 1f4:	f1 04       	cpc	r15, r1
- 1f6:	21 f4       	brne	.+8      	; 0x200 <main+0x98>
+ 1e6:	e8 16       	cp	r14, r24
+ 1e8:	f1 04       	cpc	r15, r1
+ 1ea:	41 f0       	breq	.+16     	; 0x1fc <main+0x94>
+ 1ec:	8a e2       	ldi	r24, 0x2A	; 42
+ 1ee:	e8 16       	cp	r14, r24
+ 1f0:	f1 04       	cpc	r15, r1
 				{
 					case 42:
-						PORTB = 0xFF;
- 1f8:	d5 b8       	out	0x05, r13	; 5
+						Reciever.turnOnLight();
+ 1f2:	41 f4       	brne	.+16     	; 0x204 <main+0x9c>
+ 1f4:	8d e3       	ldi	r24, 0x3D	; 61
+ 1f6:	92 e0       	ldi	r25, 0x02	; 2
+ 1f8:	ce d1       	rcall	.+924    	; 0x596 <_ZN8Reciever11turnOnLightEv>
 						break;
- 1fa:	db cf       	rjmp	.-74     	; 0x1b2 <main+0x4a>
+ 1fa:	d9 cf       	rjmp	.-78     	; 0x1ae <main+0x46>
 					case 21:
-						PORTB = 0;
- 1fc:	15 b8       	out	0x05, r1	; 5
+						Reciever.turnOffLight();
+ 1fc:	8d e3       	ldi	r24, 0x3D	; 61
+ 1fe:	92 e0       	ldi	r25, 0x02	; 2
+ 200:	cd d1       	rcall	.+922    	; 0x59c <_ZN8Reciever12turnOffLightEv>
+ 202:	d5 cf       	rjmp	.-86     	; 0x1ae <main+0x46>
 						break;
- 1fe:	d9 cf       	rjmp	.-78     	; 0x1b2 <main+0x4a>
+ 204:	65 e2       	ldi	r22, 0x25	; 37
 					default:
 						uart.SendString("Den gik i default\n\r");
- 200:	65 e2       	ldi	r22, 0x25	; 37
- 202:	72 e0       	ldi	r23, 0x02	; 2
- 204:	ce 01       	movw	r24, r28
- 206:	01 96       	adiw	r24, 0x01	; 1
- 208:	d8 d1       	rcall	.+944    	; 0x5ba <_ZN4UART10SendStringEPc>
- 20a:	d3 cf       	rjmp	.-90     	; 0x1b2 <main+0x4a>
+ 206:	72 e0       	ldi	r23, 0x02	; 2
+ 208:	ce 01       	movw	r24, r28
+ 20a:	01 96       	adiw	r24, 0x01	; 1
+ 20c:	de d1       	rcall	.+956    	; 0x5ca <_ZN4UART10SendStringEPc>
+ 20e:	cf cf       	rjmp	.-98     	; 0x1ae <main+0x46>
 
-0000020c <__vector_1>:
+00000210 <__vector_1>:
+ 210:	1f 92       	push	r1
 						break;
- 20c:	1f 92       	push	r1
+ 212:	0f 92       	push	r0
 	}
 }
 
 
 ISR(INT0_vect)
 {
- 20e:	0f 92       	push	r0
- 210:	0f b6       	in	r0, 0x3f	; 63
- 212:	0f 92       	push	r0
- 214:	11 24       	eor	r1, r1
- 216:	0b b6       	in	r0, 0x3b	; 59
- 218:	0f 92       	push	r0
- 21a:	2f 93       	push	r18
- 21c:	3f 93       	push	r19
- 21e:	4f 93       	push	r20
- 220:	5f 93       	push	r21
- 222:	6f 93       	push	r22
- 224:	7f 93       	push	r23
- 226:	8f 93       	push	r24
- 228:	9f 93       	push	r25
- 22a:	af 93       	push	r26
- 22c:	bf 93       	push	r27
- 22e:	ef 93       	push	r30
- 230:	ff 93       	push	r31
+ 214:	0f b6       	in	r0, 0x3f	; 63
+ 216:	0f 92       	push	r0
+ 218:	11 24       	eor	r1, r1
+ 21a:	0b b6       	in	r0, 0x3b	; 59
+ 21c:	0f 92       	push	r0
+ 21e:	2f 93       	push	r18
+ 220:	3f 93       	push	r19
+ 222:	4f 93       	push	r20
+ 224:	5f 93       	push	r21
+ 226:	6f 93       	push	r22
+ 228:	7f 93       	push	r23
+ 22a:	8f 93       	push	r24
+ 22c:	9f 93       	push	r25
+ 22e:	af 93       	push	r26
+ 230:	bf 93       	push	r27
+ 232:	ef 93       	push	r30
+ 234:	ff 93       	push	r31
 	
 	Reciever.setZeroCross(1);			// Bliver sat true hver gang der har været et cross
- 232:	61 e0       	ldi	r22, 0x01	; 1
- 234:	70 e0       	ldi	r23, 0x00	; 0
- 236:	8d e3       	ldi	r24, 0x3D	; 61
- 238:	92 e0       	ldi	r25, 0x02	; 2
- 23a:	46 d0       	rcall	.+140    	; 0x2c8 <_ZN12RecieverLamp12setZeroCrossEi>
+ 236:	61 e0       	ldi	r22, 0x01	; 1
+ 238:	70 e0       	ldi	r23, 0x00	; 0
+ 23a:	8d e3       	ldi	r24, 0x3D	; 61
+ 23c:	92 e0       	ldi	r25, 0x02	; 2
+ 23e:	46 d0       	rcall	.+140    	; 0x2cc <_ZN8Reciever12setZeroCrossEi>
 	
 }
- 23c:	ff 91       	pop	r31
- 23e:	ef 91       	pop	r30
- 240:	bf 91       	pop	r27
- 242:	af 91       	pop	r26
- 244:	9f 91       	pop	r25
- 246:	8f 91       	pop	r24
- 248:	7f 91       	pop	r23
- 24a:	6f 91       	pop	r22
- 24c:	5f 91       	pop	r21
- 24e:	4f 91       	pop	r20
- 250:	3f 91       	pop	r19
- 252:	2f 91       	pop	r18
- 254:	0f 90       	pop	r0
- 256:	0b be       	out	0x3b, r0	; 59
+ 240:	ff 91       	pop	r31
+ 242:	ef 91       	pop	r30
+ 244:	bf 91       	pop	r27
+ 246:	af 91       	pop	r26
+ 248:	9f 91       	pop	r25
+ 24a:	8f 91       	pop	r24
+ 24c:	7f 91       	pop	r23
+ 24e:	6f 91       	pop	r22
+ 250:	5f 91       	pop	r21
+ 252:	4f 91       	pop	r20
+ 254:	3f 91       	pop	r19
+ 256:	2f 91       	pop	r18
  258:	0f 90       	pop	r0
- 25a:	0f be       	out	0x3f, r0	; 63
+ 25a:	0b be       	out	0x3b, r0	; 59
  25c:	0f 90       	pop	r0
- 25e:	1f 90       	pop	r1
- 260:	18 95       	reti
+ 25e:	0f be       	out	0x3f, r0	; 63
+ 260:	0f 90       	pop	r0
+ 262:	1f 90       	pop	r1
+ 264:	18 95       	reti
 
-00000262 <_GLOBAL__sub_I_Reciever>:
+00000266 <_GLOBAL__sub_I_Reciever>:
 
 	
 ISR(INT0_vect);
 void initInterupt0();
 void initADC();
-RecieverLamp Reciever;
- 262:	8d e3       	ldi	r24, 0x3D	; 61
- 264:	92 e0       	ldi	r25, 0x02	; 2
- 266:	08 d0       	rcall	.+16     	; 0x278 <_ZN12RecieverLampC1Ev>
+Reciever Reciever;
+ 266:	8d e3       	ldi	r24, 0x3D	; 61
+ 268:	92 e0       	ldi	r25, 0x02	; 2
+ 26a:	08 d0       	rcall	.+16     	; 0x27c <_ZN8RecieverC1Ev>
 UART uart_;
- 268:	8c e3       	ldi	r24, 0x3C	; 60
- 26a:	92 e0       	ldi	r25, 0x02	; 2
- 26c:	91 c1       	rjmp	.+802    	; 0x590 <_ZN4UARTC1Ev>
- 26e:	08 95       	ret
+ 26c:	8c e3       	ldi	r24, 0x3C	; 60
+ 26e:	92 e0       	ldi	r25, 0x02	; 2
+ 270:	97 c1       	rjmp	.+814    	; 0x5a0 <_ZN4UARTC1Ev>
+ 272:	08 95       	ret
 
-00000270 <_GLOBAL__sub_D_Reciever>:
+00000274 <_GLOBAL__sub_D_Reciever>:
 
 	
 ISR(INT0_vect);
 void initInterupt0();
 void initADC();
-RecieverLamp Reciever;
- 270:	8d e3       	ldi	r24, 0x3D	; 61
- 272:	92 e0       	ldi	r25, 0x02	; 2
- 274:	28 c0       	rjmp	.+80     	; 0x2c6 <_ZN12RecieverLampD1Ev>
- 276:	08 95       	ret
+Reciever Reciever;
+ 274:	8d e3       	ldi	r24, 0x3D	; 61
+ 276:	92 e0       	ldi	r25, 0x02	; 2
+ 278:	28 c0       	rjmp	.+80     	; 0x2ca <_ZN8RecieverD1Ev>
+ 27a:	08 95       	ret
 
-00000278 <_ZN12RecieverLampC1Ev>:
+0000027c <_ZN8RecieverC1Ev>:
 {
 		return nyesteBit_;		
 }
-void RecieverLamp::setNyesteBit(int nyestebit)
+void Reciever::setNyesteBit(int nyestebit)
 {
 		nyesteBit_ = nyestebit;
- 278:	cf 93       	push	r28
- 27a:	df 93       	push	r29
- 27c:	1f 92       	push	r1
- 27e:	cd b7       	in	r28, 0x3d	; 61
- 280:	de b7       	in	r29, 0x3e	; 62
- 282:	fc 01       	movw	r30, r24
- 284:	11 82       	std	Z+1, r1	; 0x01
- 286:	10 82       	st	Z, r1
- 288:	13 82       	std	Z+3, r1	; 0x03
- 28a:	12 82       	std	Z+2, r1	; 0x02
- 28c:	17 86       	std	Z+15, r1	; 0x0f
- 28e:	16 86       	std	Z+14, r1	; 0x0e
- 290:	11 8a       	std	Z+17, r1	; 0x11
- 292:	10 8a       	std	Z+16, r1	; 0x10
- 294:	15 82       	std	Z+5, r1	; 0x05
- 296:	14 82       	std	Z+4, r1	; 0x04
- 298:	8e e0       	ldi	r24, 0x0E	; 14
- 29a:	90 e0       	ldi	r25, 0x00	; 0
- 29c:	97 83       	std	Z+7, r25	; 0x07
- 29e:	86 83       	std	Z+6, r24	; 0x06
- 2a0:	87 e0       	ldi	r24, 0x07	; 7
- 2a2:	90 e0       	ldi	r25, 0x00	; 0
- 2a4:	91 87       	std	Z+9, r25	; 0x09
- 2a6:	80 87       	std	Z+8, r24	; 0x08
- 2a8:	85 e1       	ldi	r24, 0x15	; 21
- 2aa:	90 e0       	ldi	r25, 0x00	; 0
- 2ac:	93 87       	std	Z+11, r25	; 0x0b
- 2ae:	82 87       	std	Z+10, r24	; 0x0a
- 2b0:	8a e2       	ldi	r24, 0x2A	; 42
- 2b2:	90 e0       	ldi	r25, 0x00	; 0
- 2b4:	95 87       	std	Z+13, r25	; 0x0d
- 2b6:	84 87       	std	Z+12, r24	; 0x0c
- 2b8:	ce 01       	movw	r24, r28
- 2ba:	01 96       	adiw	r24, 0x01	; 1
- 2bc:	69 d1       	rcall	.+722    	; 0x590 <_ZN4UARTC1Ev>
- 2be:	0f 90       	pop	r0
- 2c0:	df 91       	pop	r29
- 2c2:	cf 91       	pop	r28
- 2c4:	08 95       	ret
+ 27c:	cf 93       	push	r28
+ 27e:	df 93       	push	r29
+ 280:	1f 92       	push	r1
+ 282:	cd b7       	in	r28, 0x3d	; 61
+ 284:	de b7       	in	r29, 0x3e	; 62
+ 286:	fc 01       	movw	r30, r24
+ 288:	11 82       	std	Z+1, r1	; 0x01
+ 28a:	10 82       	st	Z, r1
+ 28c:	13 82       	std	Z+3, r1	; 0x03
+ 28e:	12 82       	std	Z+2, r1	; 0x02
+ 290:	17 86       	std	Z+15, r1	; 0x0f
+ 292:	16 86       	std	Z+14, r1	; 0x0e
+ 294:	11 8a       	std	Z+17, r1	; 0x11
+ 296:	10 8a       	std	Z+16, r1	; 0x10
+ 298:	15 82       	std	Z+5, r1	; 0x05
+ 29a:	14 82       	std	Z+4, r1	; 0x04
+ 29c:	8e e0       	ldi	r24, 0x0E	; 14
+ 29e:	90 e0       	ldi	r25, 0x00	; 0
+ 2a0:	97 83       	std	Z+7, r25	; 0x07
+ 2a2:	86 83       	std	Z+6, r24	; 0x06
+ 2a4:	87 e0       	ldi	r24, 0x07	; 7
+ 2a6:	90 e0       	ldi	r25, 0x00	; 0
+ 2a8:	91 87       	std	Z+9, r25	; 0x09
+ 2aa:	80 87       	std	Z+8, r24	; 0x08
+ 2ac:	85 e1       	ldi	r24, 0x15	; 21
+ 2ae:	90 e0       	ldi	r25, 0x00	; 0
+ 2b0:	93 87       	std	Z+11, r25	; 0x0b
+ 2b2:	82 87       	std	Z+10, r24	; 0x0a
+ 2b4:	8a e2       	ldi	r24, 0x2A	; 42
+ 2b6:	90 e0       	ldi	r25, 0x00	; 0
+ 2b8:	95 87       	std	Z+13, r25	; 0x0d
+ 2ba:	84 87       	std	Z+12, r24	; 0x0c
+ 2bc:	ce 01       	movw	r24, r28
+ 2be:	01 96       	adiw	r24, 0x01	; 1
+ 2c0:	6f d1       	rcall	.+734    	; 0x5a0 <_ZN4UARTC1Ev>
+ 2c2:	0f 90       	pop	r0
+ 2c4:	df 91       	pop	r29
+ 2c6:	cf 91       	pop	r28
+ 2c8:	08 95       	ret
 
-000002c6 <_ZN12RecieverLampD1Ev>:
- 2c6:	08 95       	ret
+000002ca <_ZN8RecieverD1Ev>:
+ 2ca:	08 95       	ret
 
-000002c8 <_ZN12RecieverLamp12setZeroCrossEi>:
- 2c8:	fc 01       	movw	r30, r24
- 2ca:	71 83       	std	Z+1, r23	; 0x01
- 2cc:	60 83       	st	Z, r22
- 2ce:	08 95       	ret
+000002cc <_ZN8Reciever12setZeroCrossEi>:
+ 2cc:	fc 01       	movw	r30, r24
+ 2ce:	71 83       	std	Z+1, r23	; 0x01
+ 2d0:	60 83       	st	Z, r22
+ 2d2:	08 95       	ret
 
-000002d0 <_ZN12RecieverLamp14setAdresseBitsEv>:
+000002d4 <_ZN8Reciever14setAdresseBitsEv>:
 	
 	return seneste6Bits_;
 	
 }
-void RecieverLamp::setAdresseBits()
+void Reciever::setAdresseBits()
 {
- 2d0:	fc 01       	movw	r30, r24
+ 2d4:	fc 01       	movw	r30, r24
 	while (PINA & 0b01000000)
 	{
 		if ((PINA & 0b00000001) == 0)
 		{
 			_delay_ms(250);
 			PORTB = PINB ^ 0b00000001;
- 2d2:	81 e0       	ldi	r24, 0x01	; 1
+ 2d6:	81 e0       	ldi	r24, 0x01	; 1
 		}
 		if ((PINA & 0b00000010) == 0)
 		{
 			_delay_ms(250);
 			PORTB = PINB ^ 0b00000010;
- 2d4:	52 e0       	ldi	r21, 0x02	; 2
+ 2d8:	52 e0       	ldi	r21, 0x02	; 2
 		}
 		if ((PINA & 0b00000100) == 0)
 		{
 			_delay_ms(250);
 			PORTB = PINB ^ 0b00000100;
- 2d6:	44 e0       	ldi	r20, 0x04	; 4
+ 2da:	44 e0       	ldi	r20, 0x04	; 4
 		}
 		if ((PINA & 0b00001000) == 0)
 		{
 			_delay_ms(250);
 			PORTB = PINB ^ 0b00001000;
- 2d8:	38 e0       	ldi	r19, 0x08	; 8
+ 2dc:	38 e0       	ldi	r19, 0x08	; 8
 		}
 		if ((PINA & 0b00010000) == 0)
 		{
 			_delay_ms(250);
 			PORTB = PINB ^ 0b00010000;
- 2da:	20 e1       	ldi	r18, 0x10	; 16
+ 2de:	20 e1       	ldi	r18, 0x10	; 16
 		}
 		if ((PINA & 0b00100000) == 0)
 		{
 			_delay_ms(250);
 			PORTB = PINB ^ 0b00100000;
- 2dc:	60 e2       	ldi	r22, 0x20	; 32
+ 2e0:	60 e2       	ldi	r22, 0x20	; 32
 	return seneste6Bits_;
 	
 }
-void RecieverLamp::setAdresseBits()
+void Reciever::setAdresseBits()
 {
 	while (PINA & 0b01000000)
- 2de:	06 9b       	sbis	0x00, 6	; 0
- 2e0:	55 c0       	rjmp	.+170    	; 0x38c <_ZN12RecieverLamp14setAdresseBitsEv+0xbc>
+ 2e2:	06 9b       	sbis	0x00, 6	; 0
+ 2e4:	55 c0       	rjmp	.+170    	; 0x390 <_ZN8Reciever14setAdresseBitsEv+0xbc>
 	{
 		if ((PINA & 0b00000001) == 0)
- 2e2:	00 99       	sbic	0x00, 0	; 0
- 2e4:	0c c0       	rjmp	.+24     	; 0x2fe <_ZN12RecieverLamp14setAdresseBitsEv+0x2e>
+ 2e6:	00 99       	sbic	0x00, 0	; 0
+ 2e8:	0c c0       	rjmp	.+24     	; 0x302 <_ZN8Reciever14setAdresseBitsEv+0x2e>
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 2e6:	7f ef       	ldi	r23, 0xFF	; 255
- 2e8:	94 e3       	ldi	r25, 0x34	; 52
- 2ea:	ac e0       	ldi	r26, 0x0C	; 12
- 2ec:	71 50       	subi	r23, 0x01	; 1
- 2ee:	90 40       	sbci	r25, 0x00	; 0
- 2f0:	a0 40       	sbci	r26, 0x00	; 0
- 2f2:	e1 f7       	brne	.-8      	; 0x2ec <_ZN12RecieverLamp14setAdresseBitsEv+0x1c>
- 2f4:	00 c0       	rjmp	.+0      	; 0x2f6 <_ZN12RecieverLamp14setAdresseBitsEv+0x26>
- 2f6:	00 00       	nop
+ 2ea:	7f ef       	ldi	r23, 0xFF	; 255
+ 2ec:	94 e3       	ldi	r25, 0x34	; 52
+ 2ee:	ac e0       	ldi	r26, 0x0C	; 12
+ 2f0:	71 50       	subi	r23, 0x01	; 1
+ 2f2:	90 40       	sbci	r25, 0x00	; 0
+ 2f4:	a0 40       	sbci	r26, 0x00	; 0
+ 2f6:	e1 f7       	brne	.-8      	; 0x2f0 <_ZN8Reciever14setAdresseBitsEv+0x1c>
+ 2f8:	00 c0       	rjmp	.+0      	; 0x2fa <_ZN8Reciever14setAdresseBitsEv+0x26>
+ 2fa:	00 00       	nop
 		{
 			_delay_ms(250);
 			PORTB = PINB ^ 0b00000001;
- 2f8:	93 b1       	in	r25, 0x03	; 3
- 2fa:	98 27       	eor	r25, r24
- 2fc:	95 b9       	out	0x05, r25	; 5
+ 2fc:	93 b1       	in	r25, 0x03	; 3
+ 2fe:	98 27       	eor	r25, r24
+ 300:	95 b9       	out	0x05, r25	; 5
 		}
 		if ((PINA & 0b00000010) == 0)
- 2fe:	01 99       	sbic	0x00, 1	; 0
- 300:	0c c0       	rjmp	.+24     	; 0x31a <_ZN12RecieverLamp14setAdresseBitsEv+0x4a>
- 302:	7f ef       	ldi	r23, 0xFF	; 255
- 304:	94 e3       	ldi	r25, 0x34	; 52
- 306:	ac e0       	ldi	r26, 0x0C	; 12
- 308:	71 50       	subi	r23, 0x01	; 1
- 30a:	90 40       	sbci	r25, 0x00	; 0
- 30c:	a0 40       	sbci	r26, 0x00	; 0
- 30e:	e1 f7       	brne	.-8      	; 0x308 <_ZN12RecieverLamp14setAdresseBitsEv+0x38>
- 310:	00 c0       	rjmp	.+0      	; 0x312 <_ZN12RecieverLamp14setAdresseBitsEv+0x42>
- 312:	00 00       	nop
+ 302:	01 99       	sbic	0x00, 1	; 0
+ 304:	0c c0       	rjmp	.+24     	; 0x31e <_ZN8Reciever14setAdresseBitsEv+0x4a>
+ 306:	7f ef       	ldi	r23, 0xFF	; 255
+ 308:	94 e3       	ldi	r25, 0x34	; 52
+ 30a:	ac e0       	ldi	r26, 0x0C	; 12
+ 30c:	71 50       	subi	r23, 0x01	; 1
+ 30e:	90 40       	sbci	r25, 0x00	; 0
+ 310:	a0 40       	sbci	r26, 0x00	; 0
+ 312:	e1 f7       	brne	.-8      	; 0x30c <_ZN8Reciever14setAdresseBitsEv+0x38>
+ 314:	00 c0       	rjmp	.+0      	; 0x316 <_ZN8Reciever14setAdresseBitsEv+0x42>
+ 316:	00 00       	nop
 		{
 			_delay_ms(250);
 			PORTB = PINB ^ 0b00000010;
- 314:	93 b1       	in	r25, 0x03	; 3
- 316:	95 27       	eor	r25, r21
- 318:	95 b9       	out	0x05, r25	; 5
+ 318:	93 b1       	in	r25, 0x03	; 3
+ 31a:	95 27       	eor	r25, r21
+ 31c:	95 b9       	out	0x05, r25	; 5
 		}
 		if ((PINA & 0b00000100) == 0)
- 31a:	02 99       	sbic	0x00, 2	; 0
- 31c:	0c c0       	rjmp	.+24     	; 0x336 <_ZN12RecieverLamp14setAdresseBitsEv+0x66>
- 31e:	7f ef       	ldi	r23, 0xFF	; 255
- 320:	94 e3       	ldi	r25, 0x34	; 52
- 322:	ac e0       	ldi	r26, 0x0C	; 12
- 324:	71 50       	subi	r23, 0x01	; 1
- 326:	90 40       	sbci	r25, 0x00	; 0
- 328:	a0 40       	sbci	r26, 0x00	; 0
- 32a:	e1 f7       	brne	.-8      	; 0x324 <_ZN12RecieverLamp14setAdresseBitsEv+0x54>
- 32c:	00 c0       	rjmp	.+0      	; 0x32e <_ZN12RecieverLamp14setAdresseBitsEv+0x5e>
- 32e:	00 00       	nop
+ 31e:	02 99       	sbic	0x00, 2	; 0
+ 320:	0c c0       	rjmp	.+24     	; 0x33a <_ZN8Reciever14setAdresseBitsEv+0x66>
+ 322:	7f ef       	ldi	r23, 0xFF	; 255
+ 324:	94 e3       	ldi	r25, 0x34	; 52
+ 326:	ac e0       	ldi	r26, 0x0C	; 12
+ 328:	71 50       	subi	r23, 0x01	; 1
+ 32a:	90 40       	sbci	r25, 0x00	; 0
+ 32c:	a0 40       	sbci	r26, 0x00	; 0
+ 32e:	e1 f7       	brne	.-8      	; 0x328 <_ZN8Reciever14setAdresseBitsEv+0x54>
+ 330:	00 c0       	rjmp	.+0      	; 0x332 <_ZN8Reciever14setAdresseBitsEv+0x5e>
+ 332:	00 00       	nop
 		{
 			_delay_ms(250);
 			PORTB = PINB ^ 0b00000100;
- 330:	93 b1       	in	r25, 0x03	; 3
- 332:	94 27       	eor	r25, r20
- 334:	95 b9       	out	0x05, r25	; 5
+ 334:	93 b1       	in	r25, 0x03	; 3
+ 336:	94 27       	eor	r25, r20
+ 338:	95 b9       	out	0x05, r25	; 5
 		}
 		if ((PINA & 0b00001000) == 0)
- 336:	03 99       	sbic	0x00, 3	; 0
- 338:	0c c0       	rjmp	.+24     	; 0x352 <_ZN12RecieverLamp14setAdresseBitsEv+0x82>
- 33a:	7f ef       	ldi	r23, 0xFF	; 255
- 33c:	94 e3       	ldi	r25, 0x34	; 52
- 33e:	ac e0       	ldi	r26, 0x0C	; 12
- 340:	71 50       	subi	r23, 0x01	; 1
- 342:	90 40       	sbci	r25, 0x00	; 0
- 344:	a0 40       	sbci	r26, 0x00	; 0
- 346:	e1 f7       	brne	.-8      	; 0x340 <_ZN12RecieverLamp14setAdresseBitsEv+0x70>
- 348:	00 c0       	rjmp	.+0      	; 0x34a <_ZN12RecieverLamp14setAdresseBitsEv+0x7a>
- 34a:	00 00       	nop
+ 33a:	03 99       	sbic	0x00, 3	; 0
+ 33c:	0c c0       	rjmp	.+24     	; 0x356 <_ZN8Reciever14setAdresseBitsEv+0x82>
+ 33e:	7f ef       	ldi	r23, 0xFF	; 255
+ 340:	94 e3       	ldi	r25, 0x34	; 52
+ 342:	ac e0       	ldi	r26, 0x0C	; 12
+ 344:	71 50       	subi	r23, 0x01	; 1
+ 346:	90 40       	sbci	r25, 0x00	; 0
+ 348:	a0 40       	sbci	r26, 0x00	; 0
+ 34a:	e1 f7       	brne	.-8      	; 0x344 <_ZN8Reciever14setAdresseBitsEv+0x70>
+ 34c:	00 c0       	rjmp	.+0      	; 0x34e <_ZN8Reciever14setAdresseBitsEv+0x7a>
+ 34e:	00 00       	nop
 		{
 			_delay_ms(250);
 			PORTB = PINB ^ 0b00001000;
- 34c:	93 b1       	in	r25, 0x03	; 3
- 34e:	93 27       	eor	r25, r19
- 350:	95 b9       	out	0x05, r25	; 5
+ 350:	93 b1       	in	r25, 0x03	; 3
+ 352:	93 27       	eor	r25, r19
+ 354:	95 b9       	out	0x05, r25	; 5
 		}
 		if ((PINA & 0b00010000) == 0)
- 352:	04 99       	sbic	0x00, 4	; 0
- 354:	0c c0       	rjmp	.+24     	; 0x36e <_ZN12RecieverLamp14setAdresseBitsEv+0x9e>
- 356:	7f ef       	ldi	r23, 0xFF	; 255
- 358:	94 e3       	ldi	r25, 0x34	; 52
- 35a:	ac e0       	ldi	r26, 0x0C	; 12
- 35c:	71 50       	subi	r23, 0x01	; 1
- 35e:	90 40       	sbci	r25, 0x00	; 0
- 360:	a0 40       	sbci	r26, 0x00	; 0
- 362:	e1 f7       	brne	.-8      	; 0x35c <_ZN12RecieverLamp14setAdresseBitsEv+0x8c>
- 364:	00 c0       	rjmp	.+0      	; 0x366 <_ZN12RecieverLamp14setAdresseBitsEv+0x96>
- 366:	00 00       	nop
+ 356:	04 99       	sbic	0x00, 4	; 0
+ 358:	0c c0       	rjmp	.+24     	; 0x372 <_ZN8Reciever14setAdresseBitsEv+0x9e>
+ 35a:	7f ef       	ldi	r23, 0xFF	; 255
+ 35c:	94 e3       	ldi	r25, 0x34	; 52
+ 35e:	ac e0       	ldi	r26, 0x0C	; 12
+ 360:	71 50       	subi	r23, 0x01	; 1
+ 362:	90 40       	sbci	r25, 0x00	; 0
+ 364:	a0 40       	sbci	r26, 0x00	; 0
+ 366:	e1 f7       	brne	.-8      	; 0x360 <_ZN8Reciever14setAdresseBitsEv+0x8c>
+ 368:	00 c0       	rjmp	.+0      	; 0x36a <_ZN8Reciever14setAdresseBitsEv+0x96>
+ 36a:	00 00       	nop
 		{
 			_delay_ms(250);
 			PORTB = PINB ^ 0b00010000;
- 368:	93 b1       	in	r25, 0x03	; 3
- 36a:	92 27       	eor	r25, r18
- 36c:	95 b9       	out	0x05, r25	; 5
+ 36c:	93 b1       	in	r25, 0x03	; 3
+ 36e:	92 27       	eor	r25, r18
+ 370:	95 b9       	out	0x05, r25	; 5
 		}
 		if ((PINA & 0b00100000) == 0)
- 36e:	05 99       	sbic	0x00, 5	; 0
- 370:	b6 cf       	rjmp	.-148    	; 0x2de <_ZN12RecieverLamp14setAdresseBitsEv+0xe>
- 372:	7f ef       	ldi	r23, 0xFF	; 255
- 374:	94 e3       	ldi	r25, 0x34	; 52
- 376:	ac e0       	ldi	r26, 0x0C	; 12
- 378:	71 50       	subi	r23, 0x01	; 1
- 37a:	90 40       	sbci	r25, 0x00	; 0
- 37c:	a0 40       	sbci	r26, 0x00	; 0
- 37e:	e1 f7       	brne	.-8      	; 0x378 <_ZN12RecieverLamp14setAdresseBitsEv+0xa8>
- 380:	00 c0       	rjmp	.+0      	; 0x382 <_ZN12RecieverLamp14setAdresseBitsEv+0xb2>
- 382:	00 00       	nop
+ 372:	05 99       	sbic	0x00, 5	; 0
+ 374:	b6 cf       	rjmp	.-148    	; 0x2e2 <_ZN8Reciever14setAdresseBitsEv+0xe>
+ 376:	7f ef       	ldi	r23, 0xFF	; 255
+ 378:	94 e3       	ldi	r25, 0x34	; 52
+ 37a:	ac e0       	ldi	r26, 0x0C	; 12
+ 37c:	71 50       	subi	r23, 0x01	; 1
+ 37e:	90 40       	sbci	r25, 0x00	; 0
+ 380:	a0 40       	sbci	r26, 0x00	; 0
+ 382:	e1 f7       	brne	.-8      	; 0x37c <_ZN8Reciever14setAdresseBitsEv+0xa8>
+ 384:	00 c0       	rjmp	.+0      	; 0x386 <_ZN8Reciever14setAdresseBitsEv+0xb2>
+ 386:	00 00       	nop
 		{
 			_delay_ms(250);
 			PORTB = PINB ^ 0b00100000;
- 384:	93 b1       	in	r25, 0x03	; 3
- 386:	96 27       	eor	r25, r22
- 388:	95 b9       	out	0x05, r25	; 5
- 38a:	a9 cf       	rjmp	.-174    	; 0x2de <_ZN12RecieverLamp14setAdresseBitsEv+0xe>
+ 388:	93 b1       	in	r25, 0x03	; 3
+ 38a:	96 27       	eor	r25, r22
+ 38c:	95 b9       	out	0x05, r25	; 5
+ 38e:	a9 cf       	rjmp	.-174    	; 0x2e2 <_ZN8Reciever14setAdresseBitsEv+0xe>
 		}
 	}
 		adresseBits_ = PINB;
- 38c:	83 b1       	in	r24, 0x03	; 3
- 38e:	90 e0       	ldi	r25, 0x00	; 0
- 390:	93 87       	std	Z+11, r25	; 0x0b
- 392:	82 87       	std	Z+10, r24	; 0x0a
- 394:	08 95       	ret
+ 390:	83 b1       	in	r24, 0x03	; 3
+ 392:	90 e0       	ldi	r25, 0x00	; 0
+ 394:	93 87       	std	Z+11, r25	; 0x0b
+ 396:	82 87       	std	Z+10, r24	; 0x0a
+		PORTB |= 0b01000000;
+ 398:	2e 9a       	sbi	0x05, 6	; 5
+ 39a:	08 95       	ret
 
-00000396 <_ZN12RecieverLamp14getAdresseBitsEv>:
+0000039c <_ZN8Reciever14getAdresseBitsEv>:
 }
-int RecieverLamp::getAdresseBits()
+int Reciever::getAdresseBits()
 {
 	return adresseBits_;
 }
- 396:	fc 01       	movw	r30, r24
- 398:	82 85       	ldd	r24, Z+10	; 0x0a
- 39a:	93 85       	ldd	r25, Z+11	; 0x0b
- 39c:	08 95       	ret
+ 39c:	fc 01       	movw	r30, r24
+ 39e:	82 85       	ldd	r24, Z+10	; 0x0a
+ 3a0:	93 85       	ldd	r25, Z+11	; 0x0b
+ 3a2:	08 95       	ret
 
-0000039e <_ZN12RecieverLamp7readADCEv>:
+000003a4 <_ZN8Reciever7readADCEv>:
 	}
 	
 	return 1;
 }
 
-void RecieverLamp::readADC(){
- 39e:	cf 93       	push	r28
- 3a0:	df 93       	push	r29
- 3a2:	ec 01       	movw	r28, r24
+void Reciever::readADC(){
+ 3a4:	cf 93       	push	r28
+ 3a6:	df 93       	push	r29
+ 3a8:	ec 01       	movw	r28, r24
 	
 	//// timer
-	TCNT0 = 240;
- 3a4:	80 ef       	ldi	r24, 0xF0	; 240
- 3a6:	86 bd       	out	0x26, r24	; 38
-	TCCR0A |= 0b00000000; // starter timer
- 3a8:	84 b5       	in	r24, 0x24	; 36
- 3aa:	84 bd       	out	0x24, r24	; 36
-	TCCR0B |= 0b00000101;
- 3ac:	85 b5       	in	r24, 0x25	; 37
- 3ae:	85 60       	ori	r24, 0x05	; 5
- 3b0:	85 bd       	out	0x25, r24	; 37
+	TCNT0 = 240;			// timer på 1 ms	
+ 3aa:	80 ef       	ldi	r24, 0xF0	; 240
+ 3ac:	86 bd       	out	0x26, r24	; 38
+	TCCR0A |= 0b00000000;	// starter timer
+ 3ae:	84 b5       	in	r24, 0x24	; 36
+ 3b0:	84 bd       	out	0x24, r24	; 36
+	TCCR0B |= 0b00000101;	// Prescale på 1024
+ 3b2:	85 b5       	in	r24, 0x25	; 37
+ 3b4:	85 60       	ori	r24, 0x05	; 5
+ 3b6:	85 bd       	out	0x25, r24	; 37
 	while((TIFR0 & (1<<0)) == 0)
- 3b2:	a8 9b       	sbis	0x15, 0	; 21
- 3b4:	fe cf       	rjmp	.-4      	; 0x3b2 <_ZN12RecieverLamp7readADCEv+0x14>
+ 3b8:	a8 9b       	sbis	0x15, 0	; 21
+ 3ba:	fe cf       	rjmp	.-4      	; 0x3b8 <_ZN8Reciever7readADCEv+0x14>
 	{}
 	TCCR0B = 0b00000000; // slut timer
- 3b6:	15 bc       	out	0x25, r1	; 37
+ 3bc:	15 bc       	out	0x25, r1	; 37
 	TIFR0 = 0b00000001;
- 3b8:	81 e0       	ldi	r24, 0x01	; 1
- 3ba:	85 bb       	out	0x15, r24	; 21
+ 3be:	81 e0       	ldi	r24, 0x01	; 1
+ 3c0:	85 bb       	out	0x15, r24	; 21
 	//// timer
 	
 	////ADC start
 	ADCSRA |= 0b01000000;
- 3bc:	ea e7       	ldi	r30, 0x7A	; 122
- 3be:	f0 e0       	ldi	r31, 0x00	; 0
- 3c0:	80 81       	ld	r24, Z
- 3c2:	80 64       	ori	r24, 0x40	; 64
- 3c4:	80 83       	st	Z, r24
+ 3c2:	ea e7       	ldi	r30, 0x7A	; 122
+ 3c4:	f0 e0       	ldi	r31, 0x00	; 0
+ 3c6:	80 81       	ld	r24, Z
+ 3c8:	80 64       	ori	r24, 0x40	; 64
+ 3ca:	80 83       	st	Z, r24
 			
 	while (ADCSRA & 0b01000000)
- 3c6:	80 81       	ld	r24, Z
- 3c8:	86 fd       	sbrc	r24, 6
- 3ca:	fd cf       	rjmp	.-6      	; 0x3c6 <_ZN12RecieverLamp7readADCEv+0x28>
+ 3cc:	80 81       	ld	r24, Z
+ 3ce:	86 fd       	sbrc	r24, 6
+ 3d0:	fd cf       	rjmp	.-6      	; 0x3cc <_ZN8Reciever7readADCEv+0x28>
 	{}
 	
 	ADCread_ = ADCW;
- 3cc:	60 91 78 00 	lds	r22, 0x0078	; 0x800078 <__TEXT_REGION_LENGTH__+0x7c0078>
- 3d0:	70 91 79 00 	lds	r23, 0x0079	; 0x800079 <__TEXT_REGION_LENGTH__+0x7c0079>
- 3d4:	7f 87       	std	Y+15, r23	; 0x0f
- 3d6:	6e 87       	std	Y+14, r22	; 0x0e
+ 3d2:	60 91 78 00 	lds	r22, 0x0078	; 0x800078 <__TEXT_REGION_LENGTH__+0x7c0078>
+ 3d6:	70 91 79 00 	lds	r23, 0x0079	; 0x800079 <__TEXT_REGION_LENGTH__+0x7c0079>
+ 3da:	7f 87       	std	Y+15, r23	; 0x0f
+ 3dc:	6e 87       	std	Y+14, r22	; 0x0e
 	////ADC slut
 	////sendet ud på uart
 	uart_->SendInteger(ADCread_);
- 3d8:	88 8d       	ldd	r24, Y+24	; 0x18
- 3da:	99 8d       	ldd	r25, Y+25	; 0x19
- 3dc:	02 d1       	rcall	.+516    	; 0x5e2 <_ZN4UART11SendIntegerEi>
+ 3de:	8c 89       	ldd	r24, Y+20	; 0x14
+ 3e0:	9d 89       	ldd	r25, Y+21	; 0x15
+ 3e2:	07 d1       	rcall	.+526    	; 0x5f2 <_ZN4UART11SendIntegerEi>
 	uart_->SendString("\\");
- 3de:	69 e3       	ldi	r22, 0x39	; 57
- 3e0:	72 e0       	ldi	r23, 0x02	; 2
- 3e2:	88 8d       	ldd	r24, Y+24	; 0x18
- 3e4:	99 8d       	ldd	r25, Y+25	; 0x19
- 3e6:	e9 d0       	rcall	.+466    	; 0x5ba <_ZN4UART10SendStringEPc>
+ 3e4:	69 e3       	ldi	r22, 0x39	; 57
+ 3e6:	72 e0       	ldi	r23, 0x02	; 2
+ 3e8:	8c 89       	ldd	r24, Y+20	; 0x14
+ 3ea:	9d 89       	ldd	r25, Y+21	; 0x15
+ 3ec:	ee d0       	rcall	.+476    	; 0x5ca <_ZN4UART10SendStringEPc>
 	
 
 	////sætter nyeste bit alt efter hvad adc giver af værdi
 	if (((ADCread_ > ADClastRead_) && (ADCread_> 10)) || (ADCread_ > 50))
- 3e8:	8e 85       	ldd	r24, Y+14	; 0x0e
- 3ea:	9f 85       	ldd	r25, Y+15	; 0x0f
- 3ec:	28 89       	ldd	r18, Y+16	; 0x10
- 3ee:	39 89       	ldd	r19, Y+17	; 0x11
- 3f0:	28 17       	cp	r18, r24
- 3f2:	39 07       	cpc	r19, r25
- 3f4:	1c f4       	brge	.+6      	; 0x3fc <_ZN12RecieverLamp7readADCEv+0x5e>
- 3f6:	8b 30       	cpi	r24, 0x0B	; 11
- 3f8:	91 05       	cpc	r25, r1
+ 3ee:	8e 85       	ldd	r24, Y+14	; 0x0e
+ 3f0:	9f 85       	ldd	r25, Y+15	; 0x0f
+ 3f2:	28 89       	ldd	r18, Y+16	; 0x10
+ 3f4:	39 89       	ldd	r19, Y+17	; 0x11
+ 3f6:	28 17       	cp	r18, r24
+ 3f8:	39 07       	cpc	r19, r25
  3fa:	1c f4       	brge	.+6      	; 0x402 <__LOCK_REGION_LENGTH__+0x2>
- 3fc:	83 33       	cpi	r24, 0x33	; 51
+ 3fc:	8b 30       	cpi	r24, 0x0B	; 11
  3fe:	91 05       	cpc	r25, r1
- 400:	2c f0       	brlt	.+10     	; 0x40c <__LOCK_REGION_LENGTH__+0xc>
-	//if (ADCread_ > 10)
-	//if(PINF0 == 0)
+ 400:	1c f4       	brge	.+6      	; 0x408 <__LOCK_REGION_LENGTH__+0x8>
+ 402:	83 33       	cpi	r24, 0x33	; 51
+ 404:	91 05       	cpc	r25, r1
+ 406:	2c f0       	brlt	.+10     	; 0x412 <__LOCK_REGION_LENGTH__+0x12>
 	{
 		nyesteBit_ = 1;			
- 402:	21 e0       	ldi	r18, 0x01	; 1
- 404:	30 e0       	ldi	r19, 0x00	; 0
- 406:	3b 83       	std	Y+3, r19	; 0x03
- 408:	2a 83       	std	Y+2, r18	; 0x02
- 40a:	02 c0       	rjmp	.+4      	; 0x410 <__LOCK_REGION_LENGTH__+0x10>
+ 408:	21 e0       	ldi	r18, 0x01	; 1
+ 40a:	30 e0       	ldi	r19, 0x00	; 0
+ 40c:	3b 83       	std	Y+3, r19	; 0x03
+ 40e:	2a 83       	std	Y+2, r18	; 0x02
+ 410:	02 c0       	rjmp	.+4      	; 0x416 <__LOCK_REGION_LENGTH__+0x16>
 	}								
 	else
 	{
 		nyesteBit_ = 0; 
- 40c:	1b 82       	std	Y+3, r1	; 0x03
- 40e:	1a 82       	std	Y+2, r1	; 0x02
+ 412:	1b 82       	std	Y+3, r1	; 0x03
+ 414:	1a 82       	std	Y+2, r1	; 0x02
 	}
 	ADClastRead_ = ADCread_;
- 410:	99 8b       	std	Y+17, r25	; 0x11
- 412:	88 8b       	std	Y+16, r24	; 0x10
+ 416:	99 8b       	std	Y+17, r25	; 0x11
+ 418:	88 8b       	std	Y+16, r24	; 0x10
 	
 	uart_->SendInteger(nyesteBit_);
- 414:	6a 81       	ldd	r22, Y+2	; 0x02
- 416:	7b 81       	ldd	r23, Y+3	; 0x03
- 418:	88 8d       	ldd	r24, Y+24	; 0x18
- 41a:	99 8d       	ldd	r25, Y+25	; 0x19
- 41c:	e2 d0       	rcall	.+452    	; 0x5e2 <_ZN4UART11SendIntegerEi>
+ 41a:	6a 81       	ldd	r22, Y+2	; 0x02
+ 41c:	7b 81       	ldd	r23, Y+3	; 0x03
+ 41e:	8c 89       	ldd	r24, Y+20	; 0x14
+ 420:	9d 89       	ldd	r25, Y+21	; 0x15
+ 422:	e7 d0       	rcall	.+462    	; 0x5f2 <_ZN4UART11SendIntegerEi>
 	uart_->SendString("\\");	
- 41e:	69 e3       	ldi	r22, 0x39	; 57
- 420:	72 e0       	ldi	r23, 0x02	; 2
- 422:	88 8d       	ldd	r24, Y+24	; 0x18
- 424:	99 8d       	ldd	r25, Y+25	; 0x19
- 426:	c9 d0       	rcall	.+402    	; 0x5ba <_ZN4UART10SendStringEPc>
+ 424:	69 e3       	ldi	r22, 0x39	; 57
+ 426:	72 e0       	ldi	r23, 0x02	; 2
+ 428:	8c 89       	ldd	r24, Y+20	; 0x14
+ 42a:	9d 89       	ldd	r25, Y+21	; 0x15
+ 42c:	ce d0       	rcall	.+412    	; 0x5ca <_ZN4UART10SendStringEPc>
 }
- 428:	df 91       	pop	r29
- 42a:	cf 91       	pop	r28
- 42c:	08 95       	ret
+ 42e:	df 91       	pop	r29
+ 430:	cf 91       	pop	r28
+ 432:	08 95       	ret
 
-0000042e <_ZN12RecieverLamp13readStartBitsEv>:
-void RecieverLamp::setNyesteBit(int nyestebit)
+00000434 <_ZN8Reciever13readStartBitsEv>:
+void Reciever::setNyesteBit(int nyestebit)
 {
 		nyesteBit_ = nyestebit;
 }
 
-int RecieverLamp::readStartBits(){
- 42e:	cf 93       	push	r28
- 430:	df 93       	push	r29
- 432:	ec 01       	movw	r28, r24
+int Reciever::readStartBits(){
+ 434:	cf 93       	push	r28
+ 436:	df 93       	push	r29
+ 438:	ec 01       	movw	r28, r24
 	seneste6Bits_ = 0;
- 434:	1d 82       	std	Y+5, r1	; 0x05
- 436:	1c 82       	std	Y+4, r1	; 0x04
+ 43a:	1d 82       	std	Y+5, r1	; 0x05
+ 43c:	1c 82       	std	Y+4, r1	; 0x04
 	counter_ = 0;
- 438:	1b 8a       	std	Y+19, r1	; 0x13
- 43a:	1a 8a       	std	Y+18, r1	; 0x12
+ 43e:	1b 8a       	std	Y+19, r1	; 0x13
+ 440:	1a 8a       	std	Y+18, r1	; 0x12
 	while(startBits_ != seneste6Bits_){
- 43c:	4e 81       	ldd	r20, Y+6	; 0x06
- 43e:	5f 81       	ldd	r21, Y+7	; 0x07
- 440:	2c 81       	ldd	r18, Y+4	; 0x04
- 442:	3d 81       	ldd	r19, Y+5	; 0x05
- 444:	42 17       	cp	r20, r18
- 446:	53 07       	cpc	r21, r19
- 448:	99 f0       	breq	.+38     	; 0x470 <_ZN12RecieverLamp13readStartBitsEv+0x42>
+ 442:	4e 81       	ldd	r20, Y+6	; 0x06
+ 444:	5f 81       	ldd	r21, Y+7	; 0x07
+ 446:	2c 81       	ldd	r18, Y+4	; 0x04
+ 448:	3d 81       	ldd	r19, Y+5	; 0x05
+ 44a:	42 17       	cp	r20, r18
+ 44c:	53 07       	cpc	r21, r19
+ 44e:	99 f0       	breq	.+38     	; 0x476 <_ZN8Reciever13readStartBitsEv+0x42>
 			if (zeroCross_ == 1)
- 44a:	88 81       	ld	r24, Y
- 44c:	99 81       	ldd	r25, Y+1	; 0x01
- 44e:	01 97       	sbiw	r24, 0x01	; 1
- 450:	c9 f7       	brne	.-14     	; 0x444 <_ZN12RecieverLamp13readStartBitsEv+0x16>
+ 450:	88 81       	ld	r24, Y
+ 452:	99 81       	ldd	r25, Y+1	; 0x01
+ 454:	01 97       	sbiw	r24, 0x01	; 1
+ 456:	c9 f7       	brne	.-14     	; 0x44a <_ZN8Reciever13readStartBitsEv+0x16>
 			{
 		
 				
 				readADC();
- 452:	ce 01       	movw	r24, r28
- 454:	a4 df       	rcall	.-184    	; 0x39e <_ZN12RecieverLamp7readADCEv>
+ 458:	ce 01       	movw	r24, r28
+ 45a:	a4 df       	rcall	.-184    	; 0x3a4 <_ZN8Reciever7readADCEv>
 				
 				seneste6Bits_ = seneste6Bits_ << 1;
 				seneste6Bits_ |= nyesteBit_; 
- 456:	8c 81       	ldd	r24, Y+4	; 0x04
- 458:	9d 81       	ldd	r25, Y+5	; 0x05
- 45a:	88 0f       	add	r24, r24
- 45c:	99 1f       	adc	r25, r25
- 45e:	2a 81       	ldd	r18, Y+2	; 0x02
- 460:	3b 81       	ldd	r19, Y+3	; 0x03
- 462:	82 2b       	or	r24, r18
- 464:	93 2b       	or	r25, r19
- 466:	9d 83       	std	Y+5, r25	; 0x05
- 468:	8c 83       	std	Y+4, r24	; 0x04
+ 45c:	8c 81       	ldd	r24, Y+4	; 0x04
+ 45e:	9d 81       	ldd	r25, Y+5	; 0x05
+ 460:	88 0f       	add	r24, r24
+ 462:	99 1f       	adc	r25, r25
+ 464:	2a 81       	ldd	r18, Y+2	; 0x02
+ 466:	3b 81       	ldd	r19, Y+3	; 0x03
+ 468:	82 2b       	or	r24, r18
+ 46a:	93 2b       	or	r25, r19
+ 46c:	9d 83       	std	Y+5, r25	; 0x05
+ 46e:	8c 83       	std	Y+4, r24	; 0x04
 				//PORTB = seneste6Bits_;
 			
 				zeroCross_ = 0;
- 46a:	19 82       	std	Y+1, r1	; 0x01
- 46c:	18 82       	st	Y, r1
- 46e:	e6 cf       	rjmp	.-52     	; 0x43c <_ZN12RecieverLamp13readStartBitsEv+0xe>
+ 470:	19 82       	std	Y+1, r1	; 0x01
+ 472:	18 82       	st	Y, r1
+ 474:	e6 cf       	rjmp	.-52     	; 0x442 <_ZN8Reciever13readStartBitsEv+0xe>
 	}
 	
 	
 	return 1;
 	
 }
- 470:	81 e0       	ldi	r24, 0x01	; 1
- 472:	90 e0       	ldi	r25, 0x00	; 0
- 474:	df 91       	pop	r29
- 476:	cf 91       	pop	r28
- 478:	08 95       	ret
+ 476:	81 e0       	ldi	r24, 0x01	; 1
+ 478:	90 e0       	ldi	r25, 0x00	; 0
+ 47a:	df 91       	pop	r29
+ 47c:	cf 91       	pop	r28
+ 47e:	08 95       	ret
 
-0000047a <_ZN12RecieverLamp15readAdresseBitsEv>:
-int RecieverLamp::readAdresseBits(){
- 47a:	cf 93       	push	r28
- 47c:	df 93       	push	r29
- 47e:	ec 01       	movw	r28, r24
+00000480 <_ZN8Reciever15readAdresseBitsEv>:
+int Reciever::readAdresseBits(){
+ 480:	cf 93       	push	r28
+ 482:	df 93       	push	r29
+ 484:	ec 01       	movw	r28, r24
 	seneste6Bits_ = 0;
- 480:	1d 82       	std	Y+5, r1	; 0x05
- 482:	1c 82       	std	Y+4, r1	; 0x04
+ 486:	1d 82       	std	Y+5, r1	; 0x05
+ 488:	1c 82       	std	Y+4, r1	; 0x04
 	counter_ = 0;
- 484:	1b 8a       	std	Y+19, r1	; 0x13
- 486:	1a 8a       	std	Y+18, r1	; 0x12
-		//seneste6Bits_ = seneste6Bits_ << 1;
-		//seneste6Bits_ |= nyesteBit_;
-		//zeroCross_ = 0;
-	//}
+ 48a:	1b 8a       	std	Y+19, r1	; 0x13
+ 48c:	1a 8a       	std	Y+18, r1	; 0x12
 	
 	while(adresseBits_ != seneste6Bits_){
- 488:	4a 85       	ldd	r20, Y+10	; 0x0a
- 48a:	5b 85       	ldd	r21, Y+11	; 0x0b
- 48c:	8c 81       	ldd	r24, Y+4	; 0x04
- 48e:	9d 81       	ldd	r25, Y+5	; 0x05
- 490:	48 17       	cp	r20, r24
- 492:	59 07       	cpc	r21, r25
- 494:	f1 f0       	breq	.+60     	; 0x4d2 <_ZN12RecieverLamp15readAdresseBitsEv+0x58>
+ 48e:	4a 85       	ldd	r20, Y+10	; 0x0a
+ 490:	5b 85       	ldd	r21, Y+11	; 0x0b
+ 492:	8c 81       	ldd	r24, Y+4	; 0x04
+ 494:	9d 81       	ldd	r25, Y+5	; 0x05
+ 496:	48 17       	cp	r20, r24
+ 498:	59 07       	cpc	r21, r25
+ 49a:	f1 f0       	breq	.+60     	; 0x4d8 <_ZN8Reciever15readAdresseBitsEv+0x58>
 		if (zeroCross_ == 1)
- 496:	28 81       	ld	r18, Y
- 498:	39 81       	ldd	r19, Y+1	; 0x01
- 49a:	21 30       	cpi	r18, 0x01	; 1
- 49c:	31 05       	cpc	r19, r1
- 49e:	c1 f7       	brne	.-16     	; 0x490 <_ZN12RecieverLamp15readAdresseBitsEv+0x16>
+ 49c:	28 81       	ld	r18, Y
+ 49e:	39 81       	ldd	r19, Y+1	; 0x01
+ 4a0:	21 30       	cpi	r18, 0x01	; 1
+ 4a2:	31 05       	cpc	r19, r1
+ 4a4:	c1 f7       	brne	.-16     	; 0x496 <_ZN8Reciever15readAdresseBitsEv+0x16>
 		{
 			if (counter_ < 6){
- 4a0:	2a 89       	ldd	r18, Y+18	; 0x12
- 4a2:	3b 89       	ldd	r19, Y+19	; 0x13
- 4a4:	26 30       	cpi	r18, 0x06	; 6
- 4a6:	31 05       	cpc	r19, r1
- 4a8:	a4 f4       	brge	.+40     	; 0x4d2 <_ZN12RecieverLamp15readAdresseBitsEv+0x58>
+ 4a6:	2a 89       	ldd	r18, Y+18	; 0x12
+ 4a8:	3b 89       	ldd	r19, Y+19	; 0x13
+ 4aa:	26 30       	cpi	r18, 0x06	; 6
+ 4ac:	31 05       	cpc	r19, r1
+ 4ae:	a4 f4       	brge	.+40     	; 0x4d8 <_ZN8Reciever15readAdresseBitsEv+0x58>
 			readADC();
- 4aa:	ce 01       	movw	r24, r28
- 4ac:	78 df       	rcall	.-272    	; 0x39e <_ZN12RecieverLamp7readADCEv>
+ 4b0:	ce 01       	movw	r24, r28
+ 4b2:	78 df       	rcall	.-272    	; 0x3a4 <_ZN8Reciever7readADCEv>
 			
 			seneste6Bits_ = seneste6Bits_ << 1;
 			seneste6Bits_ |= nyesteBit_;
- 4ae:	8c 81       	ldd	r24, Y+4	; 0x04
- 4b0:	9d 81       	ldd	r25, Y+5	; 0x05
- 4b2:	88 0f       	add	r24, r24
- 4b4:	99 1f       	adc	r25, r25
- 4b6:	2a 81       	ldd	r18, Y+2	; 0x02
- 4b8:	3b 81       	ldd	r19, Y+3	; 0x03
- 4ba:	82 2b       	or	r24, r18
- 4bc:	93 2b       	or	r25, r19
- 4be:	9d 83       	std	Y+5, r25	; 0x05
- 4c0:	8c 83       	std	Y+4, r24	; 0x04
-			//PORTB = seneste6Bits_;
+ 4b4:	8c 81       	ldd	r24, Y+4	; 0x04
+ 4b6:	9d 81       	ldd	r25, Y+5	; 0x05
+ 4b8:	88 0f       	add	r24, r24
+ 4ba:	99 1f       	adc	r25, r25
+ 4bc:	2a 81       	ldd	r18, Y+2	; 0x02
+ 4be:	3b 81       	ldd	r19, Y+3	; 0x03
+ 4c0:	82 2b       	or	r24, r18
+ 4c2:	93 2b       	or	r25, r19
+ 4c4:	9d 83       	std	Y+5, r25	; 0x05
+ 4c6:	8c 83       	std	Y+4, r24	; 0x04
 			
 			zeroCross_ = 0;
- 4c2:	19 82       	std	Y+1, r1	; 0x01
- 4c4:	18 82       	st	Y, r1
-			// PORTB ^= (1<<6);		bruges til at teste
+ 4c8:	19 82       	std	Y+1, r1	; 0x01
+ 4ca:	18 82       	st	Y, r1
 			counter_++;
- 4c6:	8a 89       	ldd	r24, Y+18	; 0x12
- 4c8:	9b 89       	ldd	r25, Y+19	; 0x13
- 4ca:	01 96       	adiw	r24, 0x01	; 1
- 4cc:	9b 8b       	std	Y+19, r25	; 0x13
- 4ce:	8a 8b       	std	Y+18, r24	; 0x12
- 4d0:	db cf       	rjmp	.-74     	; 0x488 <_ZN12RecieverLamp15readAdresseBitsEv+0xe>
+ 4cc:	8a 89       	ldd	r24, Y+18	; 0x12
+ 4ce:	9b 89       	ldd	r25, Y+19	; 0x13
+ 4d0:	01 96       	adiw	r24, 0x01	; 1
+ 4d2:	9b 8b       	std	Y+19, r25	; 0x13
+ 4d4:	8a 8b       	std	Y+18, r24	; 0x12
+ 4d6:	db cf       	rjmp	.-74     	; 0x48e <_ZN8Reciever15readAdresseBitsEv+0xe>
 		}
 	}
 	
 	return seneste6Bits_;
 	
 }
- 4d2:	df 91       	pop	r29
- 4d4:	cf 91       	pop	r28
- 4d6:	08 95       	ret
+ 4d8:	df 91       	pop	r29
+ 4da:	cf 91       	pop	r28
+ 4dc:	08 95       	ret
 
-000004d8 <_ZN12RecieverLamp12readDataBitsEv>:
+000004de <_ZN8Reciever12readDataBitsEv>:
 {
 	return adresseBits_;
 }
 
-int RecieverLamp::readDataBits()
+int Reciever::readDataBits()
 {
- 4d8:	cf 93       	push	r28
- 4da:	df 93       	push	r29
- 4dc:	ec 01       	movw	r28, r24
+ 4de:	cf 93       	push	r28
+ 4e0:	df 93       	push	r29
+ 4e2:	ec 01       	movw	r28, r24
 	seneste6Bits_ = 0;
- 4de:	1d 82       	std	Y+5, r1	; 0x05
- 4e0:	1c 82       	std	Y+4, r1	; 0x04
+ 4e4:	1d 82       	std	Y+5, r1	; 0x05
+ 4e6:	1c 82       	std	Y+4, r1	; 0x04
 	counter_ = 0;
- 4e2:	1b 8a       	std	Y+19, r1	; 0x13
- 4e4:	1a 8a       	std	Y+18, r1	; 0x12
-		//seneste6Bits_ |= nyesteBit_;		
-		//zeroCross_ = 0;
-	//}
-	//return seneste6Bits_;
+ 4e8:	1b 8a       	std	Y+19, r1	; 0x13
+ 4ea:	1a 8a       	std	Y+18, r1	; 0x12
 	
 	while(kommandoBits_ != seneste6Bits_)      // Går ud fra at denne lykke vare 6bit, altså det er lykken som hvor afkoden sker.
- 4e6:	4c 85       	ldd	r20, Y+12	; 0x0c
- 4e8:	5d 85       	ldd	r21, Y+13	; 0x0d
- 4ea:	8c 81       	ldd	r24, Y+4	; 0x04
- 4ec:	9d 81       	ldd	r25, Y+5	; 0x05
- 4ee:	48 17       	cp	r20, r24
- 4f0:	59 07       	cpc	r21, r25
- 4f2:	f1 f0       	breq	.+60     	; 0x530 <_ZN12RecieverLamp12readDataBitsEv+0x58>
+ 4ec:	4c 85       	ldd	r20, Y+12	; 0x0c
+ 4ee:	5d 85       	ldd	r21, Y+13	; 0x0d
+ 4f0:	8c 81       	ldd	r24, Y+4	; 0x04
+ 4f2:	9d 81       	ldd	r25, Y+5	; 0x05
+ 4f4:	48 17       	cp	r20, r24
+ 4f6:	59 07       	cpc	r21, r25
+ 4f8:	f1 f0       	breq	.+60     	; 0x536 <_ZN8Reciever12readDataBitsEv+0x58>
 	{				
 		if (zeroCross_ == 1)
- 4f4:	28 81       	ld	r18, Y
- 4f6:	39 81       	ldd	r19, Y+1	; 0x01
- 4f8:	21 30       	cpi	r18, 0x01	; 1
- 4fa:	31 05       	cpc	r19, r1
- 4fc:	c1 f7       	brne	.-16     	; 0x4ee <_ZN12RecieverLamp12readDataBitsEv+0x16>
+ 4fa:	28 81       	ld	r18, Y
+ 4fc:	39 81       	ldd	r19, Y+1	; 0x01
+ 4fe:	21 30       	cpi	r18, 0x01	; 1
+ 500:	31 05       	cpc	r19, r1
+ 502:	c1 f7       	brne	.-16     	; 0x4f4 <_ZN8Reciever12readDataBitsEv+0x16>
 		{
 			if (counter_ < 6)
- 4fe:	2a 89       	ldd	r18, Y+18	; 0x12
- 500:	3b 89       	ldd	r19, Y+19	; 0x13
- 502:	26 30       	cpi	r18, 0x06	; 6
- 504:	31 05       	cpc	r19, r1
- 506:	a4 f4       	brge	.+40     	; 0x530 <_ZN12RecieverLamp12readDataBitsEv+0x58>
+ 504:	2a 89       	ldd	r18, Y+18	; 0x12
+ 506:	3b 89       	ldd	r19, Y+19	; 0x13
+ 508:	26 30       	cpi	r18, 0x06	; 6
+ 50a:	31 05       	cpc	r19, r1
+ 50c:	a4 f4       	brge	.+40     	; 0x536 <_ZN8Reciever12readDataBitsEv+0x58>
 			{
 			readADC();
- 508:	ce 01       	movw	r24, r28
- 50a:	49 df       	rcall	.-366    	; 0x39e <_ZN12RecieverLamp7readADCEv>
+ 50e:	ce 01       	movw	r24, r28
+ 510:	49 df       	rcall	.-366    	; 0x3a4 <_ZN8Reciever7readADCEv>
 			
 			seneste6Bits_ = seneste6Bits_ << 1;
 			seneste6Bits_ |= nyesteBit_;
- 50c:	8c 81       	ldd	r24, Y+4	; 0x04
- 50e:	9d 81       	ldd	r25, Y+5	; 0x05
- 510:	88 0f       	add	r24, r24
- 512:	99 1f       	adc	r25, r25
- 514:	2a 81       	ldd	r18, Y+2	; 0x02
- 516:	3b 81       	ldd	r19, Y+3	; 0x03
- 518:	82 2b       	or	r24, r18
- 51a:	93 2b       	or	r25, r19
- 51c:	9d 83       	std	Y+5, r25	; 0x05
- 51e:	8c 83       	std	Y+4, r24	; 0x04
-			//PORTB = seneste6Bits_;
+ 512:	8c 81       	ldd	r24, Y+4	; 0x04
+ 514:	9d 81       	ldd	r25, Y+5	; 0x05
+ 516:	88 0f       	add	r24, r24
+ 518:	99 1f       	adc	r25, r25
+ 51a:	2a 81       	ldd	r18, Y+2	; 0x02
+ 51c:	3b 81       	ldd	r19, Y+3	; 0x03
+ 51e:	82 2b       	or	r24, r18
+ 520:	93 2b       	or	r25, r19
+ 522:	9d 83       	std	Y+5, r25	; 0x05
+ 524:	8c 83       	std	Y+4, r24	; 0x04
 			
 			zeroCross_ = 0;
- 520:	19 82       	std	Y+1, r1	; 0x01
- 522:	18 82       	st	Y, r1
-			// PORTB ^= (1<<6);		bruges til at teste
+ 526:	19 82       	std	Y+1, r1	; 0x01
+ 528:	18 82       	st	Y, r1
 			counter_++;
- 524:	8a 89       	ldd	r24, Y+18	; 0x12
- 526:	9b 89       	ldd	r25, Y+19	; 0x13
- 528:	01 96       	adiw	r24, 0x01	; 1
- 52a:	9b 8b       	std	Y+19, r25	; 0x13
- 52c:	8a 8b       	std	Y+18, r24	; 0x12
- 52e:	db cf       	rjmp	.-74     	; 0x4e6 <_ZN12RecieverLamp12readDataBitsEv+0xe>
+ 52a:	8a 89       	ldd	r24, Y+18	; 0x12
+ 52c:	9b 89       	ldd	r25, Y+19	; 0x13
+ 52e:	01 96       	adiw	r24, 0x01	; 1
+ 530:	9b 8b       	std	Y+19, r25	; 0x13
+ 532:	8a 8b       	std	Y+18, r24	; 0x12
+ 534:	db cf       	rjmp	.-74     	; 0x4ec <_ZN8Reciever12readDataBitsEv+0xe>
 	
 	return seneste6Bits_;
 	
 
 
 }
- 530:	df 91       	pop	r29
- 532:	cf 91       	pop	r28
- 534:	08 95       	ret
+ 536:	df 91       	pop	r29
+ 538:	cf 91       	pop	r28
+ 53a:	08 95       	ret
 
-00000536 <_ZN12RecieverLamp12readStopBitsEv>:
+0000053c <_ZN8Reciever12readStopBitsEv>:
 ABSTRACT:
 koden oven over, skal aflæse havd der bliver modtaget (indkodet analog og ikke binært signal)signal 
 og så skal den retuner en int som er et afkodet kommando.
 */ 
-int RecieverLamp::readStopBits()
+int Reciever::readStopBits()
 {
- 536:	cf 93       	push	r28
- 538:	df 93       	push	r29
- 53a:	ec 01       	movw	r28, r24
+ 53c:	cf 93       	push	r28
+ 53e:	df 93       	push	r29
+ 540:	ec 01       	movw	r28, r24
 	seneste6Bits_ = 0;
- 53c:	1d 82       	std	Y+5, r1	; 0x05
- 53e:	1c 82       	std	Y+4, r1	; 0x04
+ 542:	1d 82       	std	Y+5, r1	; 0x05
+ 544:	1c 82       	std	Y+4, r1	; 0x04
 	counter_ = 0;
- 540:	1b 8a       	std	Y+19, r1	; 0x13
- 542:	1a 8a       	std	Y+18, r1	; 0x12
+ 546:	1b 8a       	std	Y+19, r1	; 0x13
+ 548:	1a 8a       	std	Y+18, r1	; 0x12
 	while(stopBits_ != seneste6Bits_){
- 544:	48 85       	ldd	r20, Y+8	; 0x08
- 546:	59 85       	ldd	r21, Y+9	; 0x09
- 548:	2c 81       	ldd	r18, Y+4	; 0x04
- 54a:	3d 81       	ldd	r19, Y+5	; 0x05
- 54c:	42 17       	cp	r20, r18
- 54e:	53 07       	cpc	r21, r19
- 550:	b9 f0       	breq	.+46     	; 0x580 <_ZN12RecieverLamp12readStopBitsEv+0x4a>
+ 54a:	48 85       	ldd	r20, Y+8	; 0x08
+ 54c:	59 85       	ldd	r21, Y+9	; 0x09
+ 54e:	2c 81       	ldd	r18, Y+4	; 0x04
+ 550:	3d 81       	ldd	r19, Y+5	; 0x05
+ 552:	42 17       	cp	r20, r18
+ 554:	53 07       	cpc	r21, r19
+ 556:	b9 f0       	breq	.+46     	; 0x586 <_ZN8Reciever12readStopBitsEv+0x4a>
 		if (zeroCross_ == 1)
- 552:	88 81       	ld	r24, Y
- 554:	99 81       	ldd	r25, Y+1	; 0x01
- 556:	01 97       	sbiw	r24, 0x01	; 1
- 558:	c9 f7       	brne	.-14     	; 0x54c <_ZN12RecieverLamp12readStopBitsEv+0x16>
+ 558:	88 81       	ld	r24, Y
+ 55a:	99 81       	ldd	r25, Y+1	; 0x01
+ 55c:	01 97       	sbiw	r24, 0x01	; 1
+ 55e:	c9 f7       	brne	.-14     	; 0x552 <_ZN8Reciever12readStopBitsEv+0x16>
 		{
 			if (counter_ <= 6){
- 55a:	8a 89       	ldd	r24, Y+18	; 0x12
- 55c:	9b 89       	ldd	r25, Y+19	; 0x13
- 55e:	07 97       	sbiw	r24, 0x07	; 7
- 560:	94 f4       	brge	.+36     	; 0x586 <_ZN12RecieverLamp12readStopBitsEv+0x50>
+ 560:	8a 89       	ldd	r24, Y+18	; 0x12
+ 562:	9b 89       	ldd	r25, Y+19	; 0x13
+ 564:	07 97       	sbiw	r24, 0x07	; 7
+ 566:	94 f4       	brge	.+36     	; 0x58c <_ZN8Reciever12readStopBitsEv+0x50>
 			readADC();
- 562:	ce 01       	movw	r24, r28
- 564:	1c df       	rcall	.-456    	; 0x39e <_ZN12RecieverLamp7readADCEv>
+ 568:	ce 01       	movw	r24, r28
+ 56a:	1c df       	rcall	.-456    	; 0x3a4 <_ZN8Reciever7readADCEv>
 			
 			seneste6Bits_ = seneste6Bits_ << 1;
 			seneste6Bits_ |= nyesteBit_;
- 566:	8c 81       	ldd	r24, Y+4	; 0x04
- 568:	9d 81       	ldd	r25, Y+5	; 0x05
- 56a:	88 0f       	add	r24, r24
- 56c:	99 1f       	adc	r25, r25
- 56e:	2a 81       	ldd	r18, Y+2	; 0x02
- 570:	3b 81       	ldd	r19, Y+3	; 0x03
- 572:	82 2b       	or	r24, r18
- 574:	93 2b       	or	r25, r19
- 576:	9d 83       	std	Y+5, r25	; 0x05
- 578:	8c 83       	std	Y+4, r24	; 0x04
+ 56c:	8c 81       	ldd	r24, Y+4	; 0x04
+ 56e:	9d 81       	ldd	r25, Y+5	; 0x05
+ 570:	88 0f       	add	r24, r24
+ 572:	99 1f       	adc	r25, r25
+ 574:	2a 81       	ldd	r18, Y+2	; 0x02
+ 576:	3b 81       	ldd	r19, Y+3	; 0x03
+ 578:	82 2b       	or	r24, r18
+ 57a:	93 2b       	or	r25, r19
+ 57c:	9d 83       	std	Y+5, r25	; 0x05
+ 57e:	8c 83       	std	Y+4, r24	; 0x04
 			
 			zeroCross_ = 0;
- 57a:	19 82       	std	Y+1, r1	; 0x01
- 57c:	18 82       	st	Y, r1
- 57e:	e2 cf       	rjmp	.-60     	; 0x544 <_ZN12RecieverLamp12readStopBitsEv+0xe>
+ 580:	19 82       	std	Y+1, r1	; 0x01
+ 582:	18 82       	st	Y, r1
+ 584:	e2 cf       	rjmp	.-60     	; 0x54a <_ZN8Reciever12readStopBitsEv+0xe>
 				return 0;
 			}
 		}
 	}
 	
 	return 1;
- 580:	81 e0       	ldi	r24, 0x01	; 1
- 582:	90 e0       	ldi	r25, 0x00	; 0
- 584:	02 c0       	rjmp	.+4      	; 0x58a <_ZN12RecieverLamp12readStopBitsEv+0x54>
+ 586:	81 e0       	ldi	r24, 0x01	; 1
+ 588:	90 e0       	ldi	r25, 0x00	; 0
+ 58a:	02 c0       	rjmp	.+4      	; 0x590 <_ZN8Reciever12readStopBitsEv+0x54>
 			seneste6Bits_ = seneste6Bits_ << 1;
 			seneste6Bits_ |= nyesteBit_;
 			
 			zeroCross_ = 0;
 			}else{
 				return 0;
- 586:	80 e0       	ldi	r24, 0x00	; 0
- 588:	90 e0       	ldi	r25, 0x00	; 0
+ 58c:	80 e0       	ldi	r24, 0x00	; 0
+ 58e:	90 e0       	ldi	r25, 0x00	; 0
 			}
 		}
 	}
 	
 	return 1;
 }
- 58a:	df 91       	pop	r29
- 58c:	cf 91       	pop	r28
- 58e:	08 95       	ret
+ 590:	df 91       	pop	r29
+ 592:	cf 91       	pop	r28
+ 594:	08 95       	ret
 
-00000590 <_ZN4UARTC1Ev>:
-#include "UART.h"
+00000596 <_ZN8Reciever11turnOnLightEv>:
+	uart_->SendString("\\");	
+}
 
-// default constructor
-UART::UART()
+void Reciever::turnOnLight()
 {
-	UCSR0B = 0b10011000;			// Tænder for sender og modtager + enabler interupt ved modtagelse
- 590:	88 e9       	ldi	r24, 0x98	; 152
- 592:	80 93 c1 00 	sts	0x00C1, r24	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7c00c1>
-	UBRR0 = 103;					// Værdien gør at baud raten er 9600
- 596:	87 e6       	ldi	r24, 0x67	; 103
- 598:	90 e0       	ldi	r25, 0x00	; 0
- 59a:	90 93 c5 00 	sts	0x00C5, r25	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7c00c5>
- 59e:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7c00c4>
-	UCSR0C = 0b00000110;			// bit 0 gør ingenting
- 5a2:	86 e0       	ldi	r24, 0x06	; 6
- 5a4:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7c00c2>
- 5a8:	08 95       	ret
+	PORTB = 0xFF;
+ 596:	8f ef       	ldi	r24, 0xFF	; 255
+ 598:	85 b9       	out	0x05, r24	; 5
+ 59a:	08 95       	ret
 
-000005aa <_ZN4UART8SendCharEc>:
-} //UART
+0000059c <_ZN8Reciever12turnOffLightEv>:
+}
 
-void UART::SendChar(char Tegn)
+void Reciever::turnOffLight()
 {
-	// <---- Skriv din kode her
-	while((0b00100000 & UCSR0A) == 0)
- 5aa:	e0 ec       	ldi	r30, 0xC0	; 192
- 5ac:	f0 e0       	ldi	r31, 0x00	; 0
- 5ae:	80 81       	ld	r24, Z
- 5b0:	85 ff       	sbrs	r24, 5
- 5b2:	fd cf       	rjmp	.-6      	; 0x5ae <_ZN4UART8SendCharEc+0x4>
-	{}
-	UDR0 = Tegn;
- 5b4:	60 93 c6 00 	sts	0x00C6, r22	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7c00c6>
+	PORTB = 0;	
+ 59c:	15 b8       	out	0x05, r1	; 5
+ 59e:	08 95       	ret
+
+000005a0 <_ZN4UARTC1Ev>:
+ 5a0:	88 e9       	ldi	r24, 0x98	; 152
+ 5a2:	80 93 c1 00 	sts	0x00C1, r24	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7c00c1>
+ 5a6:	87 e6       	ldi	r24, 0x67	; 103
+ 5a8:	90 e0       	ldi	r25, 0x00	; 0
+ 5aa:	90 93 c5 00 	sts	0x00C5, r25	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7c00c5>
+ 5ae:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7c00c4>
+ 5b2:	86 e0       	ldi	r24, 0x06	; 6
+ 5b4:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7c00c2>
  5b8:	08 95       	ret
 
-000005ba <_ZN4UART10SendStringEPc>:
-}
+000005ba <_ZN4UART8SendCharEc>:
+ 5ba:	e0 ec       	ldi	r30, 0xC0	; 192
+ 5bc:	f0 e0       	ldi	r31, 0x00	; 0
+ 5be:	80 81       	ld	r24, Z
+ 5c0:	85 ff       	sbrs	r24, 5
+ 5c2:	fd cf       	rjmp	.-6      	; 0x5be <_ZN4UART8SendCharEc+0x4>
+ 5c4:	60 93 c6 00 	sts	0x00C6, r22	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7c00c6>
+ 5c8:	08 95       	ret
 
-void UART::SendString(char* Streng)
-{
- 5ba:	0f 93       	push	r16
- 5bc:	1f 93       	push	r17
- 5be:	cf 93       	push	r28
- 5c0:	df 93       	push	r29
- 5c2:	eb 01       	movw	r28, r22
-	while (*Streng != 0)
- 5c4:	68 81       	ld	r22, Y
- 5c6:	66 23       	and	r22, r22
- 5c8:	39 f0       	breq	.+14     	; 0x5d8 <_ZN4UART10SendStringEPc+0x1e>
- 5ca:	8c 01       	movw	r16, r24
- 5cc:	21 96       	adiw	r28, 0x01	; 1
-	{
-		SendChar(*Streng);
- 5ce:	c8 01       	movw	r24, r16
- 5d0:	ec df       	rcall	.-40     	; 0x5aa <_ZN4UART8SendCharEc>
-	UDR0 = Tegn;
-}
+000005ca <_ZN4UART10SendStringEPc>:
+ 5ca:	0f 93       	push	r16
+ 5cc:	1f 93       	push	r17
+ 5ce:	cf 93       	push	r28
+ 5d0:	df 93       	push	r29
+ 5d2:	eb 01       	movw	r28, r22
+ 5d4:	68 81       	ld	r22, Y
+ 5d6:	66 23       	and	r22, r22
+ 5d8:	39 f0       	breq	.+14     	; 0x5e8 <_ZN4UART10SendStringEPc+0x1e>
+ 5da:	8c 01       	movw	r16, r24
+ 5dc:	21 96       	adiw	r28, 0x01	; 1
+ 5de:	c8 01       	movw	r24, r16
+ 5e0:	ec df       	rcall	.-40     	; 0x5ba <_ZN4UART8SendCharEc>
+ 5e2:	69 91       	ld	r22, Y+
+ 5e4:	61 11       	cpse	r22, r1
+ 5e6:	fb cf       	rjmp	.-10     	; 0x5de <_ZN4UART10SendStringEPc+0x14>
+ 5e8:	df 91       	pop	r29
+ 5ea:	cf 91       	pop	r28
+ 5ec:	1f 91       	pop	r17
+ 5ee:	0f 91       	pop	r16
+ 5f0:	08 95       	ret
 
-void UART::SendString(char* Streng)
-{
-	while (*Streng != 0)
- 5d2:	69 91       	ld	r22, Y+
- 5d4:	61 11       	cpse	r22, r1
- 5d6:	fb cf       	rjmp	.-10     	; 0x5ce <_ZN4UART10SendStringEPc+0x14>
-	{
-		SendChar(*Streng);
-		Streng++;
-	}
-}
- 5d8:	df 91       	pop	r29
- 5da:	cf 91       	pop	r28
- 5dc:	1f 91       	pop	r17
- 5de:	0f 91       	pop	r16
- 5e0:	08 95       	ret
-
-000005e2 <_ZN4UART11SendIntegerEi>:
-
-void UART::SendInteger(int Tal)
-{
- 5e2:	0f 93       	push	r16
- 5e4:	1f 93       	push	r17
- 5e6:	cf 93       	push	r28
- 5e8:	df 93       	push	r29
- 5ea:	cd b7       	in	r28, 0x3d	; 61
- 5ec:	de b7       	in	r29, 0x3e	; 62
- 5ee:	27 97       	sbiw	r28, 0x07	; 7
- 5f0:	0f b6       	in	r0, 0x3f	; 63
- 5f2:	f8 94       	cli
- 5f4:	de bf       	out	0x3e, r29	; 62
- 5f6:	0f be       	out	0x3f, r0	; 63
- 5f8:	cd bf       	out	0x3d, r28	; 61
- 5fa:	8c 01       	movw	r16, r24
- 5fc:	cb 01       	movw	r24, r22
+000005f2 <_ZN4UART11SendIntegerEi>:
+ 5f2:	0f 93       	push	r16
+ 5f4:	1f 93       	push	r17
+ 5f6:	cf 93       	push	r28
+ 5f8:	df 93       	push	r29
+ 5fa:	cd b7       	in	r28, 0x3d	; 61
+ 5fc:	de b7       	in	r29, 0x3e	; 62
+ 5fe:	27 97       	sbiw	r28, 0x07	; 7
+ 600:	0f b6       	in	r0, 0x3f	; 63
+ 602:	f8 94       	cli
+ 604:	de bf       	out	0x3e, r29	; 62
+ 606:	0f be       	out	0x3f, r0	; 63
+ 608:	cd bf       	out	0x3d, r28	; 61
+ 60a:	8c 01       	movw	r16, r24
+ 60c:	cb 01       	movw	r24, r22
     } else if (__radix < 2 || __radix > 36) {
 	*__s = 0;
 	return __s;
     } else {
 	extern char *__itoa_ncheck (int, char *, unsigned char);
 	return __itoa_ncheck (__val, __s, __radix);
- 5fe:	4a e0       	ldi	r20, 0x0A	; 10
- 600:	be 01       	movw	r22, r28
- 602:	6f 5f       	subi	r22, 0xFF	; 255
- 604:	7f 4f       	sbci	r23, 0xFF	; 255
- 606:	18 d0       	rcall	.+48     	; 0x638 <__itoa_ncheck>
-	char array[7];
-	// Convert the integer to an ASCII string (array), radix = 10
-	itoa(Tal, array, 10);
-	// - then send the string
-	SendString(array);
- 608:	be 01       	movw	r22, r28
- 60a:	6f 5f       	subi	r22, 0xFF	; 255
- 60c:	7f 4f       	sbci	r23, 0xFF	; 255
- 60e:	c8 01       	movw	r24, r16
- 610:	d4 df       	rcall	.-88     	; 0x5ba <_ZN4UART10SendStringEPc>
- 612:	27 96       	adiw	r28, 0x07	; 7
- 614:	0f b6       	in	r0, 0x3f	; 63
- 616:	f8 94       	cli
- 618:	de bf       	out	0x3e, r29	; 62
- 61a:	0f be       	out	0x3f, r0	; 63
- 61c:	cd bf       	out	0x3d, r28	; 61
- 61e:	df 91       	pop	r29
- 620:	cf 91       	pop	r28
- 622:	1f 91       	pop	r17
- 624:	0f 91       	pop	r16
- 626:	08 95       	ret
+ 60e:	4a e0       	ldi	r20, 0x0A	; 10
+ 610:	be 01       	movw	r22, r28
+ 612:	6f 5f       	subi	r22, 0xFF	; 255
+ 614:	7f 4f       	sbci	r23, 0xFF	; 255
+ 616:	18 d0       	rcall	.+48     	; 0x648 <__itoa_ncheck>
+ 618:	be 01       	movw	r22, r28
+ 61a:	6f 5f       	subi	r22, 0xFF	; 255
+ 61c:	7f 4f       	sbci	r23, 0xFF	; 255
+ 61e:	c8 01       	movw	r24, r16
+ 620:	d4 df       	rcall	.-88     	; 0x5ca <_ZN4UART10SendStringEPc>
+ 622:	27 96       	adiw	r28, 0x07	; 7
+ 624:	0f b6       	in	r0, 0x3f	; 63
+ 626:	f8 94       	cli
+ 628:	de bf       	out	0x3e, r29	; 62
+ 62a:	0f be       	out	0x3f, r0	; 63
+ 62c:	cd bf       	out	0x3d, r28	; 61
+ 62e:	df 91       	pop	r29
+ 630:	cf 91       	pop	r28
+ 632:	1f 91       	pop	r17
+ 634:	0f 91       	pop	r16
+ 636:	08 95       	ret
 
-00000628 <__tablejump2__>:
- 628:	ee 0f       	add	r30, r30
- 62a:	ff 1f       	adc	r31, r31
- 62c:	88 1f       	adc	r24, r24
- 62e:	8b bf       	out	0x3b, r24	; 59
- 630:	07 90       	elpm	r0, Z+
- 632:	f6 91       	elpm	r31, Z
- 634:	e0 2d       	mov	r30, r0
- 636:	19 94       	eijmp
+00000638 <__tablejump2__>:
+ 638:	ee 0f       	add	r30, r30
+ 63a:	ff 1f       	adc	r31, r31
+ 63c:	88 1f       	adc	r24, r24
+ 63e:	8b bf       	out	0x3b, r24	; 59
+ 640:	07 90       	elpm	r0, Z+
+ 642:	f6 91       	elpm	r31, Z
+ 644:	e0 2d       	mov	r30, r0
+ 646:	19 94       	eijmp
 
-00000638 <__itoa_ncheck>:
- 638:	bb 27       	eor	r27, r27
- 63a:	4a 30       	cpi	r20, 0x0A	; 10
- 63c:	31 f4       	brne	.+12     	; 0x64a <__itoa_ncheck+0x12>
- 63e:	99 23       	and	r25, r25
- 640:	22 f4       	brpl	.+8      	; 0x64a <__itoa_ncheck+0x12>
- 642:	bd e2       	ldi	r27, 0x2D	; 45
- 644:	90 95       	com	r25
- 646:	81 95       	neg	r24
- 648:	9f 4f       	sbci	r25, 0xFF	; 255
- 64a:	01 c0       	rjmp	.+2      	; 0x64e <__utoa_common>
+00000648 <__itoa_ncheck>:
+ 648:	bb 27       	eor	r27, r27
+ 64a:	4a 30       	cpi	r20, 0x0A	; 10
+ 64c:	31 f4       	brne	.+12     	; 0x65a <__itoa_ncheck+0x12>
+ 64e:	99 23       	and	r25, r25
+ 650:	22 f4       	brpl	.+8      	; 0x65a <__itoa_ncheck+0x12>
+ 652:	bd e2       	ldi	r27, 0x2D	; 45
+ 654:	90 95       	com	r25
+ 656:	81 95       	neg	r24
+ 658:	9f 4f       	sbci	r25, 0xFF	; 255
+ 65a:	01 c0       	rjmp	.+2      	; 0x65e <__utoa_common>
 
-0000064c <__utoa_ncheck>:
- 64c:	bb 27       	eor	r27, r27
+0000065c <__utoa_ncheck>:
+ 65c:	bb 27       	eor	r27, r27
 
-0000064e <__utoa_common>:
- 64e:	fb 01       	movw	r30, r22
- 650:	55 27       	eor	r21, r21
- 652:	aa 27       	eor	r26, r26
- 654:	88 0f       	add	r24, r24
- 656:	99 1f       	adc	r25, r25
- 658:	aa 1f       	adc	r26, r26
- 65a:	a4 17       	cp	r26, r20
- 65c:	10 f0       	brcs	.+4      	; 0x662 <__utoa_common+0x14>
- 65e:	a4 1b       	sub	r26, r20
- 660:	83 95       	inc	r24
- 662:	50 51       	subi	r21, 0x10	; 16
- 664:	b9 f7       	brne	.-18     	; 0x654 <__utoa_common+0x6>
- 666:	a0 5d       	subi	r26, 0xD0	; 208
- 668:	aa 33       	cpi	r26, 0x3A	; 58
- 66a:	08 f0       	brcs	.+2      	; 0x66e <__utoa_common+0x20>
- 66c:	a9 5d       	subi	r26, 0xD9	; 217
- 66e:	a1 93       	st	Z+, r26
- 670:	00 97       	sbiw	r24, 0x00	; 0
- 672:	79 f7       	brne	.-34     	; 0x652 <__utoa_common+0x4>
- 674:	b1 11       	cpse	r27, r1
- 676:	b1 93       	st	Z+, r27
- 678:	11 92       	st	Z+, r1
- 67a:	cb 01       	movw	r24, r22
- 67c:	00 c0       	rjmp	.+0      	; 0x67e <strrev>
+0000065e <__utoa_common>:
+ 65e:	fb 01       	movw	r30, r22
+ 660:	55 27       	eor	r21, r21
+ 662:	aa 27       	eor	r26, r26
+ 664:	88 0f       	add	r24, r24
+ 666:	99 1f       	adc	r25, r25
+ 668:	aa 1f       	adc	r26, r26
+ 66a:	a4 17       	cp	r26, r20
+ 66c:	10 f0       	brcs	.+4      	; 0x672 <__utoa_common+0x14>
+ 66e:	a4 1b       	sub	r26, r20
+ 670:	83 95       	inc	r24
+ 672:	50 51       	subi	r21, 0x10	; 16
+ 674:	b9 f7       	brne	.-18     	; 0x664 <__utoa_common+0x6>
+ 676:	a0 5d       	subi	r26, 0xD0	; 208
+ 678:	aa 33       	cpi	r26, 0x3A	; 58
+ 67a:	08 f0       	brcs	.+2      	; 0x67e <__utoa_common+0x20>
+ 67c:	a9 5d       	subi	r26, 0xD9	; 217
+ 67e:	a1 93       	st	Z+, r26
+ 680:	00 97       	sbiw	r24, 0x00	; 0
+ 682:	79 f7       	brne	.-34     	; 0x662 <__utoa_common+0x4>
+ 684:	b1 11       	cpse	r27, r1
+ 686:	b1 93       	st	Z+, r27
+ 688:	11 92       	st	Z+, r1
+ 68a:	cb 01       	movw	r24, r22
+ 68c:	00 c0       	rjmp	.+0      	; 0x68e <strrev>
 
-0000067e <strrev>:
- 67e:	dc 01       	movw	r26, r24
- 680:	fc 01       	movw	r30, r24
- 682:	67 2f       	mov	r22, r23
- 684:	71 91       	ld	r23, Z+
- 686:	77 23       	and	r23, r23
- 688:	e1 f7       	brne	.-8      	; 0x682 <strrev+0x4>
- 68a:	32 97       	sbiw	r30, 0x02	; 2
- 68c:	04 c0       	rjmp	.+8      	; 0x696 <strrev+0x18>
- 68e:	7c 91       	ld	r23, X
- 690:	6d 93       	st	X+, r22
- 692:	70 83       	st	Z, r23
- 694:	62 91       	ld	r22, -Z
- 696:	ae 17       	cp	r26, r30
- 698:	bf 07       	cpc	r27, r31
- 69a:	c8 f3       	brcs	.-14     	; 0x68e <strrev+0x10>
- 69c:	08 95       	ret
+0000068e <strrev>:
+ 68e:	dc 01       	movw	r26, r24
+ 690:	fc 01       	movw	r30, r24
+ 692:	67 2f       	mov	r22, r23
+ 694:	71 91       	ld	r23, Z+
+ 696:	77 23       	and	r23, r23
+ 698:	e1 f7       	brne	.-8      	; 0x692 <strrev+0x4>
+ 69a:	32 97       	sbiw	r30, 0x02	; 2
+ 69c:	04 c0       	rjmp	.+8      	; 0x6a6 <strrev+0x18>
+ 69e:	7c 91       	ld	r23, X
+ 6a0:	6d 93       	st	X+, r22
+ 6a2:	70 83       	st	Z, r23
+ 6a4:	62 91       	ld	r22, -Z
+ 6a6:	ae 17       	cp	r26, r30
+ 6a8:	bf 07       	cpc	r27, r31
+ 6aa:	c8 f3       	brcs	.-14     	; 0x69e <strrev+0x10>
+ 6ac:	08 95       	ret
 
-0000069e <__do_global_dtors>:
- 69e:	10 e0       	ldi	r17, 0x00	; 0
- 6a0:	c3 e7       	ldi	r28, 0x73	; 115
- 6a2:	d0 e0       	ldi	r29, 0x00	; 0
- 6a4:	00 e0       	ldi	r16, 0x00	; 0
- 6a6:	05 c0       	rjmp	.+10     	; 0x6b2 <__do_global_dtors+0x14>
- 6a8:	80 2f       	mov	r24, r16
- 6aa:	fe 01       	movw	r30, r28
- 6ac:	bd df       	rcall	.-134    	; 0x628 <__tablejump2__>
- 6ae:	21 96       	adiw	r28, 0x01	; 1
- 6b0:	01 1d       	adc	r16, r1
- 6b2:	c4 37       	cpi	r28, 0x74	; 116
- 6b4:	d1 07       	cpc	r29, r17
- 6b6:	80 e0       	ldi	r24, 0x00	; 0
- 6b8:	08 07       	cpc	r16, r24
- 6ba:	b1 f7       	brne	.-20     	; 0x6a8 <__do_global_dtors+0xa>
- 6bc:	f8 94       	cli
+000006ae <__do_global_dtors>:
+ 6ae:	10 e0       	ldi	r17, 0x00	; 0
+ 6b0:	c3 e7       	ldi	r28, 0x73	; 115
+ 6b2:	d0 e0       	ldi	r29, 0x00	; 0
+ 6b4:	00 e0       	ldi	r16, 0x00	; 0
+ 6b6:	05 c0       	rjmp	.+10     	; 0x6c2 <__do_global_dtors+0x14>
+ 6b8:	80 2f       	mov	r24, r16
+ 6ba:	fe 01       	movw	r30, r28
+ 6bc:	bd df       	rcall	.-134    	; 0x638 <__tablejump2__>
+ 6be:	21 96       	adiw	r28, 0x01	; 1
+ 6c0:	01 1d       	adc	r16, r1
+ 6c2:	c4 37       	cpi	r28, 0x74	; 116
+ 6c4:	d1 07       	cpc	r29, r17
+ 6c6:	80 e0       	ldi	r24, 0x00	; 0
+ 6c8:	08 07       	cpc	r16, r24
+ 6ca:	b1 f7       	brne	.-20     	; 0x6b8 <__do_global_dtors+0xa>
+ 6cc:	f8 94       	cli
 
-000006be <__stop_program>:
- 6be:	ff cf       	rjmp	.-2      	; 0x6be <__stop_program>
+000006ce <__stop_program>:
+ 6ce:	ff cf       	rjmp	.-2      	; 0x6ce <__stop_program>

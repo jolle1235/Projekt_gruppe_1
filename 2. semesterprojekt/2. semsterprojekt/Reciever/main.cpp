@@ -11,14 +11,14 @@
 #define F_CPU 16000000
 #include <util/delay.h>
 #include "UART.h"
-#include "RecieverLamp.h"
+#include "Reciever.h"
 
 
 	
 ISR(INT0_vect);
 void initInterupt0();
 void initADC();
-RecieverLamp Reciever;
+Reciever Reciever;
 UART uart_;
 
 void initInterupt0()				// Int0 Gøres klar

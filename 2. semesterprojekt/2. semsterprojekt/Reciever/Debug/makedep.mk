@@ -4,7 +4,7 @@
 
 main.cpp
 
-RecieverLamp.cpp
+Reciever.cpp
 
 UART.cpp
 
