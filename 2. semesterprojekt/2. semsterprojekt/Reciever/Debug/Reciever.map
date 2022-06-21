@@ -645,9 +645,9 @@ END GROUP
  .debug_str     0x00000000      0x3e6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.6.364/gcc/dev/atmega2560/avr6/crtatmega2560.o
  .debug_str     0x000003e6      0x5d1 main.o
                                 0x613 (size before relaxing)
- .debug_str     0x000009b7       0xa2 Reciever.o
-                                0x5dc (size before relaxing)
- .debug_str     0x00000a59       0xf6 UART.o
+ .debug_str     0x000009b7      0x13f Reciever.o
+                                0x60a (size before relaxing)
+ .debug_str     0x00000af6       0x59 UART.o
                                 0x2c6 (size before relaxing)
 
 .debug_loc      0x00000000      0x89b
