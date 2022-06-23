@@ -72,10 +72,10 @@ int main(void)
 				uart.SendString("\n\rAdressen passede");
 				switch(data)
 				{
-					case 42:
+					case 42:											//svare til 101010
 						Reciever.turnOnLight();
 						break;
-					case 21:
+					case 21:											//svare til 010101
 						Reciever.turnOffLight();
 						break;
 					default:
