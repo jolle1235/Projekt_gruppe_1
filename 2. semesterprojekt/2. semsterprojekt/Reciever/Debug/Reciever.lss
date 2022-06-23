@@ -216,16 +216,8 @@ Disassembly of section .text:
  144:	5d cf       	rjmp	.-326    	; 0x0 <__vectors>
 
 00000146 <_Z13initInterupt0v>:
-Reciever Reciever;
-UART uart_;
-
-void initInterupt0()				// Int0 Gøres klar
-{
-	sei();
  146:	78 94       	sei
-	EIMSK |= 0b00000001;
  148:	e8 9a       	sbi	0x1d, 0	; 29
-	EICRA |= 0b00000001;
  14a:	e9 e6       	ldi	r30, 0x69	; 105
  14c:	f0 e0       	ldi	r31, 0x00	; 0
  14e:	80 81       	ld	r24, Z
@@ -234,58 +226,31 @@ void initInterupt0()				// Int0 Gøres klar
  154:	08 95       	ret
 
 00000156 <_Z7initADCv>:
-	
-}
-
-void initADC()						// ADC bliver klar gjordt
-{
-	ADCSRA = 0b10000111;
  156:	87 e8       	ldi	r24, 0x87	; 135
  158:	80 93 7a 00 	sts	0x007A, r24	; 0x80007a <__TEXT_REGION_LENGTH__+0x7c007a>
-	ADMUX = 0b01000000;
  15c:	80 e4       	ldi	r24, 0x40	; 64
  15e:	80 93 7c 00 	sts	0x007C, r24	; 0x80007c <__TEXT_REGION_LENGTH__+0x7c007c>
-	ADCSRB = 0b00000000;
  162:	10 92 7b 00 	sts	0x007B, r1	; 0x80007b <__TEXT_REGION_LENGTH__+0x7c007b>
  166:	08 95       	ret
 
 00000168 <main>:
-	
-}
-
-int main(void)
-{
  168:	cf 93       	push	r28
  16a:	df 93       	push	r29
  16c:	1f 92       	push	r1
  16e:	cd b7       	in	r28, 0x3d	; 61
  170:	de b7       	in	r29, 0x3e	; 62
-	UART uart;
  172:	ce 01       	movw	r24, r28
  174:	01 96       	adiw	r24, 0x01	; 1
  176:	14 d2       	rcall	.+1064   	; 0x5a0 <_ZN4UARTC1Ev>
-	
-	DDRF = 0;
  178:	10 ba       	out	0x10, r1	; 16
-	DDRD = 0;			//Sætter IO pins kan tilføjes i en funktion
  17a:	1a b8       	out	0x0a, r1	; 10
-	DDRB = 0xFF;
  17c:	8f ef       	ldi	r24, 0xFF	; 255
  17e:	84 b9       	out	0x04, r24	; 4
-	PORTB = 0;
-	int adresse;
-	int data;
-	initInterupt0();
  180:	15 b8       	out	0x05, r1	; 5
-	initADC();
  182:	e1 df       	rcall	.-62     	; 0x146 <_Z13initInterupt0v>
-	
-	Reciever.setAdresseBits();
  184:	e8 df       	rcall	.-48     	; 0x156 <_Z7initADCv>
  186:	8d e3       	ldi	r24, 0x3D	; 61
  188:	92 e0       	ldi	r25, 0x02	; 2
-	
-	uart.SendInteger(Reciever.getAdresseBits());
  18a:	a4 d0       	rcall	.+328    	; 0x2d4 <_ZN8Reciever14setAdresseBitsEv>
  18c:	8d e3       	ldi	r24, 0x3D	; 61
  18e:	92 e0       	ldi	r25, 0x02	; 2
@@ -293,48 +258,33 @@ int main(void)
  192:	bc 01       	movw	r22, r24
  194:	ce 01       	movw	r24, r28
  196:	01 96       	adiw	r24, 0x01	; 1
-	uart.SendString("\n\r");
  198:	2c d2       	rcall	.+1112   	; 0x5f2 <_ZN4UART11SendIntegerEi>
  19a:	66 e3       	ldi	r22, 0x36	; 54
  19c:	72 e0       	ldi	r23, 0x02	; 2
  19e:	ce 01       	movw	r24, r28
  1a0:	01 96       	adiw	r24, 0x01	; 1
-	
-	
-	uart.SendString("program starter \n");
  1a2:	13 d2       	rcall	.+1062   	; 0x5ca <_ZN4UART10SendStringEPc>
  1a4:	60 e0       	ldi	r22, 0x00	; 0
  1a6:	72 e0       	ldi	r23, 0x02	; 2
  1a8:	ce 01       	movw	r24, r28
  1aa:	01 96       	adiw	r24, 0x01	; 1
-	
-    /* Replace with your application code */
-    while (1) 
-    {
-		if (Reciever.readStartBits() == 1)
  1ac:	0e d2       	rcall	.+1052   	; 0x5ca <_ZN4UART10SendStringEPc>
  1ae:	8d e3       	ldi	r24, 0x3D	; 61
  1b0:	92 e0       	ldi	r25, 0x02	; 2
  1b2:	40 d1       	rcall	.+640    	; 0x434 <_ZN8Reciever13readStartBitsEv>
  1b4:	01 97       	sbiw	r24, 0x01	; 1
-		{
-			adresse = Reciever.readAdresseBits();
  1b6:	d9 f7       	brne	.-10     	; 0x1ae <main+0x46>
  1b8:	8d e3       	ldi	r24, 0x3D	; 61
  1ba:	92 e0       	ldi	r25, 0x02	; 2
  1bc:	61 d1       	rcall	.+706    	; 0x480 <_ZN8Reciever15readAdresseBitsEv>
-			data = Reciever.readDataBits();
  1be:	8c 01       	movw	r16, r24
  1c0:	8d e3       	ldi	r24, 0x3D	; 61
  1c2:	92 e0       	ldi	r25, 0x02	; 2
  1c4:	8c d1       	rcall	.+792    	; 0x4de <_ZN8Reciever12readDataBitsEv>
  1c6:	7c 01       	movw	r14, r24
-			Reciever.readStopBits();
  1c8:	8d e3       	ldi	r24, 0x3D	; 61
  1ca:	92 e0       	ldi	r25, 0x02	; 2
  1cc:	b7 d1       	rcall	.+878    	; 0x53c <_ZN8Reciever12readStopBitsEv>
-			
-			if (adresse == Reciever.getAdresseBits())
  1ce:	8d e3       	ldi	r24, 0x3D	; 61
  1d0:	92 e0       	ldi	r25, 0x02	; 2
  1d2:	e4 d0       	rcall	.+456    	; 0x39c <_ZN8Reciever14getAdresseBitsEv>
@@ -342,39 +292,27 @@ int main(void)
  1d6:	19 07       	cpc	r17, r25
  1d8:	51 f7       	brne	.-44     	; 0x1ae <main+0x46>
  1da:	62 e1       	ldi	r22, 0x12	; 18
-			{
-				uart.SendString("\n\rAdressen passede");
  1dc:	72 e0       	ldi	r23, 0x02	; 2
  1de:	ce 01       	movw	r24, r28
  1e0:	01 96       	adiw	r24, 0x01	; 1
  1e2:	f3 d1       	rcall	.+998    	; 0x5ca <_ZN4UART10SendStringEPc>
  1e4:	85 e1       	ldi	r24, 0x15	; 21
-				switch(data)
  1e6:	e8 16       	cp	r14, r24
  1e8:	f1 04       	cpc	r15, r1
  1ea:	41 f0       	breq	.+16     	; 0x1fc <main+0x94>
  1ec:	8a e2       	ldi	r24, 0x2A	; 42
  1ee:	e8 16       	cp	r14, r24
  1f0:	f1 04       	cpc	r15, r1
-				{
-					case 42:
-						Reciever.turnOnLight();
  1f2:	41 f4       	brne	.+16     	; 0x204 <main+0x9c>
  1f4:	8d e3       	ldi	r24, 0x3D	; 61
  1f6:	92 e0       	ldi	r25, 0x02	; 2
  1f8:	ce d1       	rcall	.+924    	; 0x596 <_ZN8Reciever11turnOnLightEv>
-						break;
  1fa:	d9 cf       	rjmp	.-78     	; 0x1ae <main+0x46>
-					case 21:
-						Reciever.turnOffLight();
  1fc:	8d e3       	ldi	r24, 0x3D	; 61
  1fe:	92 e0       	ldi	r25, 0x02	; 2
  200:	cd d1       	rcall	.+922    	; 0x59c <_ZN8Reciever12turnOffLightEv>
  202:	d5 cf       	rjmp	.-86     	; 0x1ae <main+0x46>
-						break;
  204:	65 e2       	ldi	r22, 0x25	; 37
-					default:
-						uart.SendString("Den gik i default\n\r");
  206:	72 e0       	ldi	r23, 0x02	; 2
  208:	ce 01       	movw	r24, r28
  20a:	01 96       	adiw	r24, 0x01	; 1
@@ -383,14 +321,7 @@ int main(void)
 
 00000210 <__vector_1>:
  210:	1f 92       	push	r1
-						break;
  212:	0f 92       	push	r0
-	}
-}
-
-
-ISR(INT0_vect)
-{
  214:	0f b6       	in	r0, 0x3f	; 63
  216:	0f 92       	push	r0
  218:	11 24       	eor	r1, r1
@@ -408,15 +339,11 @@ ISR(INT0_vect)
  230:	bf 93       	push	r27
  232:	ef 93       	push	r30
  234:	ff 93       	push	r31
-	
-	Reciever.setZeroCross(1);			// Bliver sat true hver gang der har været et cross
  236:	61 e0       	ldi	r22, 0x01	; 1
  238:	70 e0       	ldi	r23, 0x00	; 0
  23a:	8d e3       	ldi	r24, 0x3D	; 61
  23c:	92 e0       	ldi	r25, 0x02	; 2
  23e:	46 d0       	rcall	.+140    	; 0x2cc <_ZN8Reciever12setZeroCrossEi>
-	
-}
  240:	ff 91       	pop	r31
  242:	ef 91       	pop	r30
  244:	bf 91       	pop	r27
@@ -438,28 +365,15 @@ ISR(INT0_vect)
  264:	18 95       	reti
 
 00000266 <_GLOBAL__sub_I_Reciever>:
-
-	
-ISR(INT0_vect);
-void initInterupt0();
-void initADC();
-Reciever Reciever;
  266:	8d e3       	ldi	r24, 0x3D	; 61
  268:	92 e0       	ldi	r25, 0x02	; 2
  26a:	08 d0       	rcall	.+16     	; 0x27c <_ZN8RecieverC1Ev>
-UART uart_;
  26c:	8c e3       	ldi	r24, 0x3C	; 60
  26e:	92 e0       	ldi	r25, 0x02	; 2
  270:	97 c1       	rjmp	.+814    	; 0x5a0 <_ZN4UARTC1Ev>
  272:	08 95       	ret
 
 00000274 <_GLOBAL__sub_D_Reciever>:
-
-	
-ISR(INT0_vect);
-void initInterupt0();
-void initADC();
-Reciever Reciever;
  274:	8d e3       	ldi	r24, 0x3D	; 61
  276:	92 e0       	ldi	r25, 0x02	; 2
  278:	28 c0       	rjmp	.+80     	; 0x2ca <_ZN8RecieverD1Ev>
@@ -729,8 +643,8 @@ void Reciever::readADC(){
  3a8:	ec 01       	movw	r28, r24
 	
 	//// timer
-	TCNT0 = 240;			// timer på 1 ms	
- 3aa:	80 ef       	ldi	r24, 0xF0	; 240
+	TCNT0 = 246;			// timer på 1 ms	
+ 3aa:	86 ef       	ldi	r24, 0xF6	; 246
  3ac:	86 bd       	out	0x26, r24	; 38
 	TCCR0A |= 0b00000000;	// starter timer
  3ae:	84 b5       	in	r24, 0x24	; 36
@@ -1150,41 +1064,75 @@ void Reciever::turnOffLight()
  59e:	08 95       	ret
 
 000005a0 <_ZN4UARTC1Ev>:
+#include "UART.h"
+
+// default constructor
+UART::UART()
+{
+	UCSR0B = 0b10011000;			// Tænder for sender og modtager + enabler interupt ved modtagelse
  5a0:	88 e9       	ldi	r24, 0x98	; 152
  5a2:	80 93 c1 00 	sts	0x00C1, r24	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7c00c1>
+	UBRR0 = 103;					// Værdien gør at baud raten er 9600
  5a6:	87 e6       	ldi	r24, 0x67	; 103
  5a8:	90 e0       	ldi	r25, 0x00	; 0
  5aa:	90 93 c5 00 	sts	0x00C5, r25	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7c00c5>
  5ae:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7c00c4>
+	UCSR0C = 0b00000110;			// bit 0 gør ingenting
  5b2:	86 e0       	ldi	r24, 0x06	; 6
  5b4:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7c00c2>
  5b8:	08 95       	ret
 
 000005ba <_ZN4UART8SendCharEc>:
+} //UART
+
+void UART::SendChar(char Tegn)
+{
+	// <---- Skriv din kode her
+	while((0b00100000 & UCSR0A) == 0)
  5ba:	e0 ec       	ldi	r30, 0xC0	; 192
  5bc:	f0 e0       	ldi	r31, 0x00	; 0
  5be:	80 81       	ld	r24, Z
  5c0:	85 ff       	sbrs	r24, 5
  5c2:	fd cf       	rjmp	.-6      	; 0x5be <_ZN4UART8SendCharEc+0x4>
+	{}
+	UDR0 = Tegn;
  5c4:	60 93 c6 00 	sts	0x00C6, r22	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7c00c6>
  5c8:	08 95       	ret
 
 000005ca <_ZN4UART10SendStringEPc>:
+}
+
+void UART::SendString(char* Streng)
+{
  5ca:	0f 93       	push	r16
  5cc:	1f 93       	push	r17
  5ce:	cf 93       	push	r28
  5d0:	df 93       	push	r29
  5d2:	eb 01       	movw	r28, r22
+	while (*Streng != 0)
  5d4:	68 81       	ld	r22, Y
  5d6:	66 23       	and	r22, r22
  5d8:	39 f0       	breq	.+14     	; 0x5e8 <_ZN4UART10SendStringEPc+0x1e>
  5da:	8c 01       	movw	r16, r24
  5dc:	21 96       	adiw	r28, 0x01	; 1
+	{
+		SendChar(*Streng);
  5de:	c8 01       	movw	r24, r16
  5e0:	ec df       	rcall	.-40     	; 0x5ba <_ZN4UART8SendCharEc>
+	UDR0 = Tegn;
+}
+
+void UART::SendString(char* Streng)
+{
+	while (*Streng != 0)
  5e2:	69 91       	ld	r22, Y+
  5e4:	61 11       	cpse	r22, r1
  5e6:	fb cf       	rjmp	.-10     	; 0x5de <_ZN4UART10SendStringEPc+0x14>
+	{
+		SendChar(*Streng);
+		Streng++;
+	}
+}
  5e8:	df 91       	pop	r29
  5ea:	cf 91       	pop	r28
  5ec:	1f 91       	pop	r17
@@ -1192,6 +1140,9 @@ void Reciever::turnOffLight()
  5f0:	08 95       	ret
 
 000005f2 <_ZN4UART11SendIntegerEi>:
+
+void UART::SendInteger(int Tal)
+{
  5f2:	0f 93       	push	r16
  5f4:	1f 93       	push	r17
  5f6:	cf 93       	push	r28
@@ -1217,6 +1168,11 @@ void Reciever::turnOffLight()
  612:	6f 5f       	subi	r22, 0xFF	; 255
  614:	7f 4f       	sbci	r23, 0xFF	; 255
  616:	18 d0       	rcall	.+48     	; 0x648 <__itoa_ncheck>
+	char array[7];
+	// Convert the integer to an ASCII string (array), radix = 10
+	itoa(Tal, array, 10);
+	// - then send the string
+	SendString(array);
  618:	be 01       	movw	r22, r28
  61a:	6f 5f       	subi	r22, 0xFF	; 255
  61c:	7f 4f       	sbci	r23, 0xFF	; 255
